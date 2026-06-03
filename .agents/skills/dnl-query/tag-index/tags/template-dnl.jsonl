@@ -1,0 +1,8 @@
+{"path":"DNL-system/authoring/rules/you-are-dnl-qa-bot.md","name":"Summary","status":"draft","tags":["template-dnl","dnl-builder","rule-dnl"],"description":[]}
+{"path":"DNL-system/templates/outputs/fix-plan.md","name":"fix-plan.md # 수정 계획 표준(영향범위/리스크/테스트/롤백)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
+{"path":"DNL-system/templates/outputs/investigation-report.md","name":"investigation-report.md # 조사 리포트 표준(요약/가설/증거/다음 액션)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
+{"path":"DNL-system/templates/outputs/pr-description.md","name":"pr-description.md # PR 설명 표준(변경점/이유/테스트/주의사항)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
+{"path":"DNL-system/templates/requests/bug-investigation.md","name":"Bug Investigation Request Template","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
+{"path":"DNL-system/templates/requests/design-review.md","name":"design-review.md # \\\"설계/구조 검토해줘\\\" 템플릿(목표/제약/대안/결정 포인트)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
+{"path":"DNL-system/templates/requests/dnl-doc-create.md","name":"DNL Document Creation Request Template","status":"draft","tags":["template-dnl","dnl-builder"],"description":[]}
+{"path":"DNL-system/templates/requests/doc-improvement.md","name":"doc-improvement.md # \\\"DNL 개선해줘\\\" 템플릿(대상/문제/원하는 형태/금지사항)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
