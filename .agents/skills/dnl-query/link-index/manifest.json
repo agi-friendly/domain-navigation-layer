@@ -1,13 +1,12 @@
 {
   "schemaVersion": 1,
   "sources": [
-    "docs",
     "DNL-system"
   ],
-  "documents": 42,
-  "links": 121,
-  "backlinks": 37,
+  "documents": 38,
+  "links": 107,
+  "backlinks": 36,
   "unresolvedPaths": 0,
-  "unusedPathTokens": 43,
+  "unusedPathTokens": 38,
   "missingPathTokens": 0
 }

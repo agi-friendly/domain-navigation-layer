@@ -1,12 +1,3 @@
----
-name: "Core Concept"
-status: "draft"
-tags: ["guide-dnl", "reference-dnl"]
-paths:
-  "@docs-index.md": "{@dnl-root}/docs/index.md"
-  "@repo-README.md": "{@dnl-root}/README.md"
----
-
 # Core Concept
 
 DNL is an information architecture pattern for navigation, not a content dump. It helps readers move from a short landing page to a focused topic page without guessing where the next answer lives.
@@ -24,3 +15,8 @@ DNL is an information architecture pattern for navigation, not a content dump. I
 - Link forward instead of repeating the same background in every file.
 - Keep public documentation generic and free of private examples unless the task explicitly calls for them.
 - Split a page once it starts acting like a table of contents for multiple unrelated topics.
+
+## Read next
+
+- [Back to the documentation index](index.md)
+- [Getting started](getting-started.md)

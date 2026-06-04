@@ -1,13 +1,3 @@
----
-name: "Repository Layout"
-status: "draft"
-tags: ["reference-dnl"]
-paths:
-  "@docs-index.md": "{@dnl-root}/docs/index.md"
-  "@dnl-system.md": "{@dnl-root}/DNL-system/README.md"
-  "@repo-README.md": "{@dnl-root}/README.md"
----
-
 # Repository Layout
 
 ```text
@@ -34,9 +24,14 @@ paths:
 
 - `README.md` is the public landing page.
 - `AGENTS.md` is the working contract for automated collaborators.
-- `docs/` holds the public explanation of the project.
-- `DNL-system/` holds maintenance and authoring guidance.
+- `docs/` holds the public explanation of the project. It uses normal Markdown links so readers can click through it on GitHub.
+- `DNL-system/` holds maintenance and authoring guidance. It keeps the DNL path-token notation for agents and tooling.
 - `.repo-history/` is historical material and should stay out of the main documentation flow.
 - `dnl-config.toml` defines the navigation and indexing surface.
 
 The repo is intentionally small at the top level so readers do not have to guess where to start.
+
+## Read next
+
+- [Back to the documentation index](index.md)
+- [DNL-system](../DNL-system/README.md)
