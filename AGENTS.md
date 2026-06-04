@@ -7,6 +7,8 @@ paths:
   "@ai-local-context.md": "{@dnl-root}/DNL-system/ai/local-context/README.md"
   "@paths-md.md": "{@dnl-root}/DNL-system/ai/local-context/paths-md.md"
   "@current-user-md.md": "{@dnl-root}/DNL-system/ai/local-context/current-user-md.md"
+  "@skills-readme.md": "{@dnl-root}/.agents/skills/README.md"
+  "@multi-agent-skill-guide.md": "{@dnl-root}/.agents/skills/multi-agent-skill-guide.md"
 ---
 
 # Before answering:
@@ -15,6 +17,8 @@ paths:
 - Use `@ai-context-loading.md` and `@ai-doc-selection-rules.md` to decide which documents to load next.
 - `@ai-local-context.md` when you need repository-local path mapping or current-user handoff.
 - `@paths-md.md` and `@current-user-md.md` if the task depends on local context details.
+- If the task mentions a skill, use `.agents/skills/{skill}/SKILL.md` as the source of truth.
+- Read `@skills-readme.md` and `@multi-agent-skill-guide.md` only when you need the shared skill catalog or wrapper-maintenance rules.
 
 ---
 

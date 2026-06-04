@@ -7,8 +7,6 @@ paths:
   "@dnl-builder.md": "{@dnl-root}/.agents/skills/dnl-builder/SKILL.md"
   "@dnl-query.md": "{@dnl-root}/.agents/skills/dnl-query/SKILL.md"
   "@tree.md": "{@dnl-root}/.agents/skills/tree/SKILL.md"
-  "@java-analyzer.md": "{@dnl-root}/.agents/skills/java-analyzer/SKILL.md"
-  "@windows-utf8-shell.md": "{@dnl-root}/.agents/skills/windows-utf8-shell/SKILL.md"
 ---
 
 # Multi-Agent Skill Guide
@@ -37,9 +35,9 @@ paths:
 ```
 
 ## 스킬 실행 흐름 (모든 AI 공통)
-1. 루트 `README.md`, `AGENTS.md`를 먼저 읽습니다.
-2. 현재 AI에 유지 중인 래퍼 `SKILL.md`가 있으면 읽습니다.
-3. 래퍼가 없으면 `.agents/skills/README.md`와 이 가이드를 기준으로 바로 이동합니다.
+1. 루트 `AGENTS.md`를 먼저 읽습니다.
+2. `README.md`와 `docs/`는 public explanation, onboarding, README/docs 작업일 때만 읽습니다.
+3. 현재 AI에 유지 중인 래퍼 `SKILL.md`가 있으면 짧은 라우터로만 사용합니다.
 4. 정본 `.agents/skills/{skill}/SKILL.md`를 읽습니다.
 5. 필요 시 정본 스킬의 스크립트/참조 파일만 추가로 읽습니다.
 
@@ -77,6 +75,5 @@ description: <trigger description>
 ---
 
 read `AGENTS.md` of root directory and get the information about the project.
-read `{@dnl-root}/.agents/skills/README.md` and `{@dnl-root}/.agents/skills/multi-agent-skill-guide.md` for shared multi-agent skill rules.
-then, read `{@dnl-root}/.agents/skills/<skill-name>/SKILL.md` and get the information about the skill.
+then, read `{@dnl-root}/.agents/skills/<skill-name>/SKILL.md` as the canonical skill source.
 ```

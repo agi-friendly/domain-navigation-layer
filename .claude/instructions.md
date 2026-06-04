@@ -1,4 +1,2 @@
 # Before answering:
 - Read and follow the AGENTS.md of project root as authoritative context.
-- If the task mentions skills, read `.agents/skills/README.md` and `.agents/skills/multi-agent-skill-guide.md`.
-- Use `<agent>/skills/{skill}/SKILL.md` as router, then follow `.agents/skills/{skill}/SKILL.md` as source of truth.
