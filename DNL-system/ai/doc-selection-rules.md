@@ -17,20 +17,28 @@ The goal is to route from a small set of high-signal pages instead of scanning t
 
 ## Core principles
 
-- Start with the repository landing page and docs index.
+- Start with the repository AI entrypoint and system portal.
 - Load the system/authoring docs only when the task is about DNL maintenance.
+- Load public reader docs when the task is about README, docs, onboarding, or public explanation.
 - Load deeper domain docs only after the target layer is known.
 - Stop and ask a clarifying question when the layer is unclear.
 
 ## Routing order
 
-### 1. Repository and docs
+### 1. AI entrypoint and system portal
 
-1. `README.md`
-2. `docs/index.md`
-3. `DNL-system/README.md` when the task is about rules or maintenance
+1. `AGENTS.md`
+2. `DNL-system/README.md`
+3. `DNL-system/ai/README.md` when the task is about agent behavior
 
-### 2. Layer discovery
+### 2. Public docs when relevant
+
+Use reader-facing public docs when the prompt is about repository presentation, onboarding, GitHub-facing documentation, or docs content:
+
+- `README.md`
+- `docs/index.md`
+
+### 3. Layer discovery
 
 If the repository has deeper domain layers, route by the strongest signal first:
 
@@ -39,7 +47,7 @@ If the repository has deeper domain layers, route by the strongest signal first:
 - Explicit module, feature, or screen name
 - Bug, feature, refactor, or doc intent
 
-### 3. Optional deeper layers
+### 4. Optional deeper layers
 
 When a repository uses company/product/project layers, use placeholder names in examples:
 
