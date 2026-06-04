@@ -3,12 +3,11 @@ version = "0.1"
 name = "domain-navigation-layer"
 
 [scan]
-include = ["docs", "DNL-system"]
+include = ["DNL-system"]
 exclude = [".git", "CURRENT_WORKING", ".repo-history", "DNL-system/history"]
 
 [paths.internal]
 "dnl-root" = "."
-"docs" = "docs"
 "DNL-system" = "DNL-system"
 
 [paths.external]
@@ -16,15 +15,10 @@ exclude = [".git", "CURRENT_WORKING", ".repo-history", "DNL-system/history"]
 
 [profiles]
 portal = [
-  "docs/index.md",
-  "docs/core-concept.md",
-  "docs/getting-started.md",
-  "docs/repository-layout.md",
   "DNL-system/README.md",
   "AGENTS.md",
 ]
 links = [
-  "docs",
   "DNL-system",
   "AGENTS.md",
 ]
