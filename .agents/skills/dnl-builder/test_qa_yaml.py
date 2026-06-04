@@ -302,7 +302,12 @@ paths: {}
         self.assertFalse(should_validate_yaml_frontmatter("DNL-system/authoring/SKILL.md"))
 
     def test_sample_readmes_are_generic_portal_docs(self) -> None:
-        self.assertTrue(portal_doc("docs/sample-dnl/sample-product/sample-project/README.md"))
+        self.assertTrue(
+            portal_doc(
+                "docs/sample-dnl/sample-product/sample-project/README.md",
+                ["docs/sample-dnl/sample-product/sample-project"],
+            )
+        )
 
     def test_qa_skips_hidden_agents_skill_markdown(self) -> None:
         completed = self.run_qa(
@@ -422,6 +427,68 @@ paths:
         self.assertEqual(completed.returncode, 0, completed.stdout)
         self.assertEqual(summary["files_checked"], 1)
         self.assertEqual(summary["status"], "SUCCESS")
+
+    def test_portal_profile_uses_configured_directories_for_portal_readmes(self) -> None:
+        completed = self.run_qa(
+            {
+                "dnl-config.toml": """[profiles]
+portal = ["DNL-Company", "products/README.md", "products/gw8-series/projects/DNL-demo"]
+
+[portal]
+readme_dirs = ["maps"]
+""",
+                "DNL-Company/README.md": """---
+name: "Company"
+status: "draft"
+tags: ["portal-dnl"]
+paths:
+  "@maps.md": "{@dnl-root}/DNL-Company/maps/README.md"
+---
+
+# Company
+""",
+                "DNL-Company/maps/README.md": """---
+name: "Maps"
+status: "draft"
+tags: ["portal-dnl"]
+---
+
+# Maps
+""",
+                "products/README.md": """---
+name: "Products"
+status: "draft"
+tags: ["portal-dnl"]
+---
+
+# Products
+""",
+                "products/gw8-series/projects/DNL-demo/README.md": """---
+name: "Demo Project"
+status: "draft"
+tags: ["portal-dnl"]
+---
+
+# Demo Project
+""",
+                "products/gw8-series/projects/DNL-other/README.md": """---
+name: "Other Project"
+status: "draft"
+tags: ["portal-dnl"]
+---
+
+# Other Project
+""",
+            },
+            include=None,
+            profile="portal",
+        )
+
+        summary = json.loads(completed.stdout)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertEqual(summary["files_checked"], 4)
+        self.assertEqual(summary["portal_readmes_checked"], 4)
+        self.assertEqual(summary["counts_by_kind"]["portal"], 3)
 
     def test_health_profile_reports_link_index_counts_without_findings(self) -> None:
         completed = self.run_qa(

@@ -95,8 +95,26 @@ def depth_up(path: str) -> int:
     return d
 
 
-def portal_doc(path: str) -> bool:
-    """Heuristic: which README files should be treated as navigation portals."""
+def normalize_source_path(source: str) -> str:
+    return source.replace("\\", "/").removeprefix("./").rstrip("/")
+
+
+def path_matches_source(path: str, source: str) -> bool:
+    p = path.replace("\\", "/").removeprefix("./")
+    s = normalize_source_path(source)
+    if not s:
+        return False
+    if s.endswith(".md"):
+        return p == s
+    return p == s or p.startswith(f"{s}/")
+
+
+def portal_doc(
+    path: str,
+    portal_sources: Iterable[str] | None = None,
+    portal_readme_dirs: Iterable[str] = (),
+) -> bool:
+    """Return whether a README should be checked as a configured portal."""
     p = path.replace("\\", "/")
     if not p.endswith(".md"):
         return False
@@ -104,15 +122,27 @@ def portal_doc(path: str) -> bool:
     if base != "readme.md":
         return False
 
-    parts = p.split("/")
     if p == "README.md":
         return False
 
-    if p.startswith("docs/") or p.startswith("DNL-system/"):
+    if portal_sources is None:
+        matching_sources: list[str] = []
+    else:
+        matching_sources = [
+            normalize_source_path(source)
+            for source in portal_sources
+            if path_matches_source(p, source)
+        ]
+        if not matching_sources:
+            return False
+
+    source_file = any(source.endswith(".md") and p == source for source in matching_sources)
+    source_root = any(not source.endswith(".md") and p == f"{source}/README.md" for source in matching_sources)
+    if source_file or source_root:
         return True
 
-    # Optional sample/example portals outside the main public skeleton.
-    return any(part.startswith("sample-") or part.startswith("example-") for part in parts[:-1])
+    portal_dir_set = set(portal_readme_dirs)
+    return any(part in portal_dir_set for part in p.split("/")[:-1])
 
 
 def should_skip_dir(dirpath: str, exclude: set[str]) -> bool:
@@ -415,7 +445,7 @@ def main() -> int:
         choices=["full", "portal", "links", "health"],
         help=(
             "QA preset. "
-            "full=repo-wide (default), portal=public portal READMEs and optional sample/example portals, "
+            "full=repo-wide (default), portal=configured portal profile, "
             "links=focus on link-related checks, health=link-index report-only summary."
         ),
     )
@@ -465,6 +495,7 @@ def main() -> int:
         args.exclude = base_exclude
 
     yaml_scan_include: tuple[str, ...] | None = None
+    portal_sources: list[str] = list(config.profiles["portal"])
 
     # profile presets
     if args.include is None:
@@ -480,6 +511,8 @@ def main() -> int:
             args.exclude = merge_unique(args.exclude, config.scan_exclude)
         elif args.profile == "health":
             args.include = []
+    else:
+        portal_sources = list(args.include)
     md_files: List[str] = []
     # include can contain files too
     for inc in args.include:
@@ -524,7 +557,7 @@ def main() -> int:
             findings.append(finding)
 
         # portal PATH block check
-        if portal_doc(rel):
+        if portal_doc(rel, portal_sources, config.portal_readme_dirs):
             portal_total += 1
             if not document_declares_paths(lines):
                 portal_missing += 1

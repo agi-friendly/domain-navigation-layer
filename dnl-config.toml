@@ -23,6 +23,24 @@ links = [
   "AGENTS.md",
 ]
 
+[portal]
+readme_dirs = [
+  "00_start-here",
+  "ai",
+  "authoring",
+  "boundaries",
+  "dnl-history",
+  "glossary",
+  "history",
+  "links",
+  "maps",
+  "rules",
+  "runbooks",
+  "status",
+  "templates",
+  "workflow",
+]
+
 [tags.required_by_filename]
 "README.md" = ["portal-dnl"]
 
