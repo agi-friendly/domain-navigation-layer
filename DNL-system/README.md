@@ -18,19 +18,19 @@ paths:
 
 This directory holds the maintenance guidance that keeps the documentation layer coherent.
 
-## Read first
-
-- Public overview: `@docs-index.md`
-- Core concept: `@docs-core-concept.md`
-- Getting started: `@docs-getting-started.md`
-- Repository layout: `@docs-repository-layout.md`
-
-## Operational docs
+## AI operating docs
 
 - Agent behavior and document selection: `@ai/README.md`
 - Writing and review rules: `@authoring/README.md`
 - Lifecycle and archival flow: `@workflow/README.md`
 - Reusable request and output templates: `@templates/README.md`
 - Safety boundaries: `@boundaries/README.md`
+
+## Public reader docs
+
+- Public overview: `@docs-index.md`
+- Core concept: `@docs-core-concept.md`
+- Getting started: `@docs-getting-started.md`
+- Repository layout: `@docs-repository-layout.md`
 
 Historical material is kept separate and should be reviewed carefully before it is made public.
