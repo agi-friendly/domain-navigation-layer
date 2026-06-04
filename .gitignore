@@ -1,3 +1,21 @@
+# DNL related files
+PATHS.md
+CURRENT_USER*.md
+CURRENT_WORKING/
+
+# IDE related files
+.idea/
+*.code-workspace
+
+# macOS related files
+.DS_Store
+**/.DS_Store
+
+# AI related files
+/.playwright-mcp/
+/.claude/settings.local.json
+/.claude/*.lock
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -216,3 +234,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    "docs",
+    "DNL-system"
+  ],
+  "documents": 42,
+  "statusCounts": {
+    "active": 0,
+    "draft": 42,
+    "deprecated": 0
+  },
+  "untaggedDocuments": 3,
+  "tags": {
+    "dnl-builder": {
+      "file": "tags/dnl-builder.jsonl",
+      "count": 8
+    },
+    "guide-dnl": {
+      "file": "tags/guide-dnl.jsonl",
+      "count": 4
+    },
+    "map-dnl": {
+      "file": "tags/map-dnl.jsonl",
+      "count": 1
+    },
+    "placeholder": {
+      "file": "tags/placeholder.jsonl",
+      "count": 9
+    },
+    "playbook-dnl": {
+      "file": "tags/playbook-dnl.jsonl",
+      "count": 2
+    },
+    "portal-dnl": {
+      "file": "tags/portal-dnl.jsonl",
+      "count": 11
+    },
+    "reference-dnl": {
+      "file": "tags/reference-dnl.jsonl",
+      "count": 5
+    },
+    "rule-dnl": {
+      "file": "tags/rule-dnl.jsonl",
+      "count": 15
+    },
+    "template-dnl": {
+      "file": "tags/template-dnl.jsonl",
+      "count": 8
+    },
+    "yaml-frontmatter": {
+      "file": "tags/yaml-frontmatter.jsonl",
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{"path":"DNL-system/README.md","name":"DNL system portal","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/ai/README.md","name":"ai - AI 운영 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/ai/local-context/README.md","name":"Local Context Portal","status":"draft","tags":["portal-dnl"],"description":["This document points to repository-local context guides for path mapping and current-user handoff."]}
+{"path":"DNL-system/authoring/README.md","name":"DNL authoring - DNL 작성/정비 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/authoring/rules/README.md","name":"rules - DNL 작성/정비 규칙 포털","status":"draft","tags":["portal-dnl","rule-dnl"],"description":[]}
+{"path":"DNL-system/boundaries/README.md","name":"boundaries - AI 바운더리 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/templates/README.md","name":"templates - 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/templates/outputs/README.md","name":"templates/outputs - 산출물 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/templates/requests/README.md","name":"templates/requests - 요청 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/workflow/README.md","name":"workflow - work lifecycle portal","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"docs/index.md","name":"Documentation Index","status":"draft","tags":["portal-dnl"],"description":[]}
