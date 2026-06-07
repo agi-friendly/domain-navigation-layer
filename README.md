@@ -47,9 +47,12 @@ At its largest, it can be an umbrella knowledge repository that routes across ma
 README.md
 PATHS.md
 DNL-system/
+DNL-Company/
 products/
-teams/
-projects/
+  DNL-product-platform/
+    projects/
+      DNL-webapp/
+      DNL-api-server/
 future/
 ```
 
@@ -126,14 +129,18 @@ workspace-dnl/
   AGENTS.md
   PATHS.md
   DNL-system/
+  DNL-Company/
   products/
-  projects/
+    DNL-product-platform/
+      projects/
+        DNL-webapp/
+        DNL-api-server/
   future/
 ```
 
 This is the orchestration mode. An agent opens the DNL repository first, then uses the DNL to find the right product, project, domain, runbook, and local source path.
 
-`PATHS.md` can map tokens such as `{@backend}`, `{@frontend}`, or `{@docs-site}` to real local repositories on your machine.
+`PATHS.md` can map source tokens such as `{@webapp}`, `{@api-server}`, or `{@docs-site}` to real local repositories on your machine.
 
 Read more: [Umbrella DNL](docs/umbrella-dnl.md)
 

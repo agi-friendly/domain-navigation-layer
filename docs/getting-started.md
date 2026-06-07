@@ -44,8 +44,11 @@ README.md
 AGENTS.md
 PATHS.md
 DNL-system/
+DNL-Company/
 products/
-projects/
+  DNL-product-platform/
+    projects/
+      DNL-webapp/
 future/
 ```
 

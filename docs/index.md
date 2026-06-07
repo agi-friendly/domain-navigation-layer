@@ -18,7 +18,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 - [Skills customization guide](skills.md): keep reusable agent workflows in `.agents/skills` and wrappers thin.
 - [Skill source migration guide](skill-source-migration.md): move or consolidate canonical skill folders without split-brain instructions.
 - [Small DNL](small-dnl.md): how to insert DNL into one existing project repository.
-- [Umbrella DNL](umbrella-dnl.md): placeholder for the multi-repository knowledge hub guide.
+- [Umbrella DNL](umbrella-dnl.md): how to build a multi-repository knowledge hub with DNL-prefixed document layers and local source path mapping.
 
 ## Maintain This Repository
 

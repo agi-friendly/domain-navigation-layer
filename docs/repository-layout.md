@@ -73,8 +73,10 @@ DNL/
 
 ```text
 products/
-teams/
-projects/
+  DNL-product-platform/
+    projects/
+      DNL-webapp/
+      DNL-api-server/
 future/
 ```
 
