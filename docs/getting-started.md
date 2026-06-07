@@ -18,14 +18,18 @@ This repository is a starter kit.
 
 You can clone it, download it as a zip, or copy only the files you need. Delete folders that do not match your workflow.
 
-For a tiny setup, you might keep only:
+For Small DNL, downloading a zip is often the easiest path because you are inserting DNL into an existing project repository.
+
+The minimum operating surface is:
 
 ```text
-README.md
 AGENTS.md
-DNL/
-  README.md
+dnl-config.toml
+DNL-system/
+.agents/skills/
 ```
+
+Then add your project knowledge folder, usually `DNL/README.md` first.
 
 For an umbrella setup, you might keep:
 
