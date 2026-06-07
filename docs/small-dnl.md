@@ -87,6 +87,8 @@ This is the AI entrypoint.
 
 When an agent opens your project, `AGENTS.md` should tell it where the DNL starts, which system docs matter, and how to route public docs versus project knowledge.
 
+For the full template and customization rules, read the [AGENTS.md customization guide](agents-md.md).
+
 For a Small DNL, the most important instruction is:
 
 ```text

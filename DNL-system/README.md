@@ -7,6 +7,7 @@ paths:
   "@docs-core-concept.md": "{@dnl-root}/docs/core-concept.md"
   "@docs-getting-started.md": "{@dnl-root}/docs/getting-started.md"
   "@docs-dnl-config.md": "{@dnl-root}/docs/dnl-config.md"
+  "@docs-agents-md.md": "{@dnl-root}/docs/agents-md.md"
   "@docs-repository-layout.md": "{@dnl-root}/docs/repository-layout.md"
   "@ai/README.md": "{@DNL-system}/ai/README.md"
   "@authoring/README.md": "{@DNL-system}/authoring/README.md"
@@ -33,6 +34,7 @@ This directory holds the maintenance guidance that keeps the documentation layer
 - Core concept: `@docs-core-concept.md`
 - Getting started: `@docs-getting-started.md`
 - Configuration guide: `@docs-dnl-config.md`
+- AI entrypoint guide: `@docs-agents-md.md`
 - Repository layout: `@docs-repository-layout.md`
 
 Historical material is kept separate and should be reviewed carefully before it is made public.

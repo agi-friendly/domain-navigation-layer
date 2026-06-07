@@ -24,6 +24,8 @@ This repository is a public starter for DNL. It is intentionally small at the to
 - `docs/` holds public explanation and onboarding pages.
 - `DNL-system/` holds authoring, workflow, AI routing, templates, and boundaries.
 
+Read the [AGENTS.md customization guide](agents-md.md) before adapting the AI entrypoint for your own repository.
+
 ## Agent Skill Surface
 
 The canonical skill source is:
@@ -86,5 +88,6 @@ Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
 ## Read Next
 
 - [Getting started](getting-started.md)
+- [AGENTS.md customization guide](agents-md.md)
 - [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)
