@@ -38,6 +38,8 @@ Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin w
 
 Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
 
+Read the [Skills customization guide](skills.md) before adding new skills or changing wrapper behavior.
+
 ## DNL-system
 
 `DNL-system/` is not the example domain knowledge tree. It is the rule layer that keeps a DNL coherent.
@@ -92,5 +94,6 @@ Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
 - [Getting started](getting-started.md)
 - [AGENTS.md customization guide](agents-md.md)
 - [DNL-system customization guide](dnl-system.md)
+- [Skills customization guide](skills.md)
 - [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)

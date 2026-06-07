@@ -83,6 +83,8 @@ The important starter skills are:
 
 Tool-specific folders such as `.cursor/`, `.claude/`, or `.github/` can wrap these skills, but `.agents/skills/` should stay the canonical source.
 
+For adding, pruning, or wrapping skills, read the [Skills customization guide](skills.md).
+
 ### 4. `AGENTS.md`
 
 This is the AI entrypoint.

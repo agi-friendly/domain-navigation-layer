@@ -9,6 +9,7 @@ paths:
   "@docs-dnl-config.md": "{@dnl-root}/docs/dnl-config.md"
   "@docs-agents-md.md": "{@dnl-root}/docs/agents-md.md"
   "@docs-dnl-system.md": "{@dnl-root}/docs/dnl-system.md"
+  "@docs-skills.md": "{@dnl-root}/docs/skills.md"
   "@docs-repository-layout.md": "{@dnl-root}/docs/repository-layout.md"
   "@ai/README.md": "{@DNL-system}/ai/README.md"
   "@authoring/README.md": "{@DNL-system}/authoring/README.md"
@@ -37,6 +38,7 @@ This directory holds the maintenance guidance that keeps the documentation layer
 - Configuration guide: `@docs-dnl-config.md`
 - AI entrypoint guide: `@docs-agents-md.md`
 - DNL-system customization guide: `@docs-dnl-system.md`
+- Skills customization guide: `@docs-skills.md`
 - Repository layout: `@docs-repository-layout.md`
 
 Historical material is kept separate and should be reviewed carefully before it is made public.

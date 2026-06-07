@@ -15,6 +15,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 - [dnl-config.toml guide](dnl-config.md): configure the DNL tooling scan surface, path tokens, profiles, and required tags.
 - [AGENTS.md customization guide](agents-md.md): customize the AI entrypoint and routing contract.
 - [DNL-system customization guide](dnl-system.md): adapt the DNL operating layer without mixing in project knowledge.
+- [Skills customization guide](skills.md): keep reusable agent workflows in `.agents/skills` and wrappers thin.
 - [Small DNL](small-dnl.md): how to insert DNL into one existing project repository.
 - [Umbrella DNL](umbrella-dnl.md): placeholder for the multi-repository knowledge hub guide.
 
