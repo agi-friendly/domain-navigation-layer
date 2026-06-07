@@ -182,4 +182,5 @@ If you are an automated agent, read `AGENTS.md` before making changes.
 - [Getting started](docs/getting-started.md)
 - [dnl-config.toml guide](docs/dnl-config.md)
 - [AGENTS.md customization guide](docs/agents-md.md)
+- [DNL-system customization guide](docs/dnl-system.md)
 - [Repository layout](docs/repository-layout.md)

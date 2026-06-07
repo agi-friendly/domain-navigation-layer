@@ -33,6 +33,7 @@ Then add your project knowledge folder, usually `DNL/README.md` first.
 
 Read [dnl-config.toml guide](dnl-config.md) when you are ready to adjust scan paths, profiles, or required tags.
 Read [AGENTS.md customization guide](agents-md.md) when you are ready to tune the AI entrypoint.
+Read [DNL-system customization guide](dnl-system.md) before changing global DNL operating rules.
 
 For an umbrella setup, you might keep:
 
@@ -88,6 +89,7 @@ Avoid building a large hierarchy before the first routing problem is clear.
 
 - [dnl-config.toml guide](dnl-config.md)
 - [AGENTS.md customization guide](agents-md.md)
+- [DNL-system customization guide](dnl-system.md)
 - [Small DNL](small-dnl.md)
 - [Umbrella DNL](umbrella-dnl.md)
 - [Core concept](core-concept.md)

@@ -69,6 +69,8 @@ This folder gives the agent the operating rules.
 
 It contains guidance for context loading, document selection, authoring, workflow, templates, and boundaries. Keep project-specific knowledge out of `DNL-system/`. Use it for how the DNL works, not what your product does.
 
+For pruning and customization rules, read the [DNL-system customization guide](dnl-system.md).
+
 ### 3. `.agents/skills/`
 
 This folder gives the agent reusable tools.

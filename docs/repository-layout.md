@@ -52,6 +52,8 @@ It contains:
 
 If you only want to try DNL in a small project, you can start without understanding every file here.
 
+Read the [DNL-system customization guide](dnl-system.md) before changing or pruning this layer.
+
 ## Optional Knowledge Layers
 
 Real DNL repositories may add their own knowledge tree.
@@ -89,5 +91,6 @@ Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
 
 - [Getting started](getting-started.md)
 - [AGENTS.md customization guide](agents-md.md)
+- [DNL-system customization guide](dnl-system.md)
 - [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)
