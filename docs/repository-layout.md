@@ -1,37 +1,87 @@
 # Repository Layout
 
+This repository is a public starter for DNL. It is intentionally small at the top level.
+
 ```text
 .
 ├── README.md
 ├── AGENTS.md
 ├── docs/
-│   ├── index.md
-│   ├── core-concept.md
-│   ├── getting-started.md
-│   └── repository-layout.md
 ├── DNL-system/
-│   └── README.md
 ├── .agents/
-│   └── skills/
-├── .github/
 ├── .claude/
+├── .cursor/
+├── .github/
 ├── .repo-history/
 ├── LICENSE
 └── dnl-config.toml
 ```
 
-## What the main files do
+## Main Entrypoints
 
-- `README.md` is the public landing page.
-- `AGENTS.md` is the working contract for automated collaborators.
-- `docs/` holds the public explanation of the project. It uses normal Markdown links so readers can click through it on GitHub.
-- `DNL-system/` holds maintenance and authoring guidance. It keeps the DNL path-token notation for agents and tooling.
-- `.repo-history/` is historical material and should stay out of the main documentation flow.
-- `dnl-config.toml` defines the navigation and indexing surface.
+- `README.md` is the public landing page for humans.
+- `AGENTS.md` is the working contract for AI agents.
+- `docs/` holds public explanation and onboarding pages.
+- `DNL-system/` holds authoring, workflow, AI routing, templates, and boundaries.
 
-The repo is intentionally small at the top level so readers do not have to guess where to start.
+## Agent Skill Surface
 
-## Read next
+The canonical skill source is:
 
-- [Back to the documentation index](index.md)
-- [DNL-system](../DNL-system/README.md)
+```text
+.agents/skills/
+```
+
+Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin wrappers for environments that expect their own skill locations.
+
+Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
+
+## DNL-system
+
+`DNL-system/` is not the example domain knowledge tree. It is the rule layer that keeps a DNL coherent.
+
+It contains:
+
+- AI context loading rules
+- authoring rules
+- workflow lifecycle rules
+- request and output templates
+- safety boundaries
+
+If you only want to try DNL in a small project, you can start without understanding every file here.
+
+## Optional Knowledge Layers
+
+Real DNL repositories may add their own knowledge tree.
+
+Examples:
+
+```text
+DNL/
+  README.md
+  maps/
+  domains/
+  runbooks/
+```
+
+```text
+products/
+teams/
+projects/
+future/
+```
+
+These are not required folders. They are shapes you can choose when your work needs them.
+
+## Configuration
+
+`dnl-config.toml` defines the scan surface for DNL tooling.
+
+In this public starter, it mostly points at `DNL-system/` because the example domain layers are intentionally not filled in yet.
+
+When you add your own DNL tree, update the config so QA and index tools know what to scan.
+
+## Read Next
+
+- [Getting started](getting-started.md)
+- [Core concept](core-concept.md)

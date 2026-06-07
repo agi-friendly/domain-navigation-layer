@@ -1,13 +1,20 @@
 # Documentation Index
 
-This folder is the public documentation hub for the repository.
+This folder is the public documentation hub for Domain Navigation Layer.
 
-## Read next
+Start with the root [README](../README.md), then choose the page that matches your question.
 
-- [Core concept](core-concept.md)
-- [Getting started](getting-started.md)
-- [Repository layout](repository-layout.md)
+## Understand DNL
 
-## Maintenance note
+- [Core concept](core-concept.md): what DNL is, what it is not, and why it is AI-first.
+- [Repository layout](repository-layout.md): what the folders in this starter repository do.
 
-If you are changing the documentation system itself, read [DNL-system](../DNL-system/README.md) and [AGENTS.md](../AGENTS.md) next.
+## Start Using DNL
+
+- [Getting started](getting-started.md): choose a starting shape and make your first useful route.
+- [Small DNL](small-dnl.md): placeholder for the single-project setup guide.
+- [Umbrella DNL](umbrella-dnl.md): placeholder for the multi-repository knowledge hub guide.
+
+## Maintain This Repository
+
+If you are changing the DNL system itself, read [DNL-system](../DNL-system/README.md) and [AGENTS.md](../AGENTS.md) next.
