@@ -81,7 +81,10 @@ In this public starter, it mostly points at `DNL-system/` because the example do
 
 When you add your own DNL tree, update the config so QA and index tools know what to scan.
 
+Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
+
 ## Read Next
 
 - [Getting started](getting-started.md)
+- [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)

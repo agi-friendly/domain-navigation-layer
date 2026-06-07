@@ -12,6 +12,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 ## Start Using DNL
 
 - [Getting started](getting-started.md): choose a starting shape and make your first useful route.
+- [dnl-config.toml guide](dnl-config.md): configure the DNL tooling scan surface, path tokens, profiles, and required tags.
 - [Small DNL](small-dnl.md): how to insert DNL into one existing project repository.
 - [Umbrella DNL](umbrella-dnl.md): placeholder for the multi-repository knowledge hub guide.
 

@@ -51,6 +51,8 @@ This is where DNL tooling starts.
 
 It defines the repository name, scan surface, path tokens, QA profiles, and tag requirements. If a future DNL UI exists, this file is a natural place for that UI to discover the DNL project.
 
+For the full field-by-field reference, read the [dnl-config.toml guide](dnl-config.md).
+
 For a Small DNL, make sure your project knowledge folder is included:
 
 ```toml
@@ -58,6 +60,8 @@ For a Small DNL, make sure your project knowledge folder is included:
 include = ["DNL-system", "DNL"]
 exclude = [".git", ".repo-history"]
 ```
+
+That is the first config change most Small DNL projects need.
 
 ### 2. `DNL-system/`
 
