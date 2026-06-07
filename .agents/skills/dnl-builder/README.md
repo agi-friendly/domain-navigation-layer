@@ -52,6 +52,7 @@ paths:
 `@dnl-config.toml`은 dnl-builder 계열 도구가 공유하는 프로젝트 지도입니다.
 
 - `qa.py --profile full`은 `scan.include`와 `scan.exclude`를 사용합니다.
+- `qa.py --profile portal`은 `profiles.portal`로 스캔 범위를 잡고, `portal.readme_dirs`로 포털 README 디렉토리명을 판단합니다.
 - tag index build/check/update는 같은 scan 범위로 index를 만듭니다.
 - QA required tag 검사는 `tags.required_by_filename`, `tags.required_by_path`를 사용합니다.
 
@@ -63,7 +64,7 @@ YAML 필수 필드, field order, status/tag/token 형식, 숨김 디렉토리와
 - 실행:
   - 전체 스캔(기본): `python3 .agents/skills/dnl-builder/qa.py`
   - 기본은 `--fail-on all`이므로, 이슈가 있으면 비0 종료합니다.
-  - 포털(회사+제품+핵심 2개 프로젝트)만: `python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all`
+  - 설정된 포털 범위만: `python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all`
   - 링크 중심(노이즈 적게): `python3 .agents/skills/dnl-builder/qa.py --profile links`
   - link-index health summary(report-only): `python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary`
   - 실패 정책 조정: `--fail-on none|low|med|high|all`

@@ -26,6 +26,22 @@ DEFAULT_PROFILES = {
     "portal": ("docs/index.md", "DNL-system/README.md", "AGENTS.md"),
     "links": (*DEFAULT_SCAN_INCLUDE, "AGENTS.md"),
 }
+DEFAULT_PORTAL_README_DIRS = (
+    "00_start-here",
+    "ai",
+    "authoring",
+    "boundaries",
+    "dnl-history",
+    "glossary",
+    "history",
+    "links",
+    "maps",
+    "rules",
+    "runbooks",
+    "status",
+    "templates",
+    "workflow",
+)
 DEFAULT_REQUIRED_TAGS_BY_FILENAME = {
     "README.md": ("portal-dnl",),
 }
@@ -57,6 +73,7 @@ class DnlConfig:
     internal_paths: dict[str, str]
     external_paths: dict[str, ExternalPathRule]
     profiles: dict[str, tuple[str, ...]]
+    portal_readme_dirs: tuple[str, ...]
     required_tags_by_filename: dict[str, tuple[str, ...]]
     required_tags_by_path: dict[str, tuple[str, ...]]
 
@@ -71,6 +88,7 @@ def default_dnl_config(root: Path) -> DnlConfig:
         internal_paths=_internal_paths(DEFAULT_INTERNAL_PATHS, "paths.internal"),
         external_paths=_parse_external_paths(DEFAULT_EXTERNAL_PATHS, "paths.external"),
         profiles=_profile_rules(DEFAULT_PROFILES, "profiles"),
+        portal_readme_dirs=DEFAULT_PORTAL_README_DIRS,
         required_tags_by_filename=dict(DEFAULT_REQUIRED_TAGS_BY_FILENAME),
         required_tags_by_path=dict(DEFAULT_REQUIRED_TAGS_BY_PATH),
     )
@@ -91,6 +109,7 @@ def load_dnl_config(root: Path) -> DnlConfig:
     scan = _table(data, "scan", {})
     paths = _table(data, "paths", {})
     profiles = {**DEFAULT_PROFILES, **_table(data, "profiles", {})}
+    portal = _table(data, "portal", {})
     tags = _table(data, "tags", {})
 
     internal = _table(paths, "internal", DEFAULT_INTERNAL_PATHS)
@@ -105,6 +124,7 @@ def load_dnl_config(root: Path) -> DnlConfig:
         internal_paths=_internal_paths(internal, "paths.internal"),
         external_paths=_parse_external_paths(external, "paths.external"),
         profiles=_profile_rules(profiles, "profiles"),
+        portal_readme_dirs=_string_list(portal, "readme_dirs", DEFAULT_PORTAL_README_DIRS),
         required_tags_by_filename=_tag_rules(
             _table(tags, "required_by_filename", DEFAULT_REQUIRED_TAGS_BY_FILENAME),
             "tags.required_by_filename",

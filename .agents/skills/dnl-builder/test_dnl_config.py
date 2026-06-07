@@ -34,6 +34,8 @@ class DnlConfigTest(unittest.TestCase):
             self.assertEqual(classify_path_variable(config, "unknown"), "unknown")
             self.assertEqual(config.profiles["portal"], ("docs/index.md", "DNL-system/README.md", "AGENTS.md"))
             self.assertEqual(config.profiles["links"], ("docs", "DNL-system", "AGENTS.md"))
+            self.assertIn("maps", config.portal_readme_dirs)
+            self.assertIn("workflow", config.portal_readme_dirs)
             self.assertEqual(required_tags_for_path(config, "docs/README.md"), ("portal-dnl",))
             self.assertEqual(required_tags_for_path(config, "DNL-system/authoring/rules/path.md"), ("rule-dnl",))
 
@@ -67,6 +69,9 @@ Project = { required = true, validate = "if-defined" }
 [profiles]
 portal = ["docs/README.md"]
 
+[portal]
+readme_dirs = ["maps"]
+
 [tags.required_by_filename]
 "README.md" = ["portal-dnl"]
 
@@ -84,6 +89,7 @@ portal = ["docs/README.md"]
             self.assertEqual(config.internal_paths, {"Docs": "docs", "dnl-root": "."})
             self.assertTrue(config.external_paths["Project"].required)
             self.assertEqual(config.profiles["portal"], ("docs/README.md",))
+            self.assertEqual(config.portal_readme_dirs, ("maps",))
             self.assertEqual(required_tags_for_path(config, "docs/README.md"), ("portal-dnl",))
             self.assertEqual(required_tags_for_path(config, "docs/rules/path.md"), ("rule-dnl",))
 
