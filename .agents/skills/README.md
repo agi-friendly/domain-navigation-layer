@@ -4,6 +4,7 @@ status: "draft"
 tags: ["portal-dnl"]
 paths:
   "@multi-agent-skill-guide.md": "{@dnl-root}/.agents/skills/multi-agent-skill-guide.md"
+  "@skill-source-migration.md": "{@dnl-root}/docs/skill-source-migration.md"
   "@dnl-builder.md": "{@dnl-root}/.agents/skills/dnl-builder/SKILL.md"
   "@dnl-query.md": "{@dnl-root}/.agents/skills/dnl-query/SKILL.md"
   "@tree.md": "{@dnl-root}/.agents/skills/tree/SKILL.md"
@@ -28,6 +29,7 @@ paths:
 
 ## 멀티 에이전트 가이드
 - 상세 규칙과 체크리스트: `@multi-agent-skill-guide.md`
+- 스킬 정본 위치를 `.agents/skills` 밖으로 옮기거나 다른 tool-specific 폴더에서 모아올 때: `@skill-source-migration.md`
 
 ## Skills
 - `dnl-builder` (`@dnl-builder.md`)

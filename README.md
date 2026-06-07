@@ -184,4 +184,5 @@ If you are an automated agent, read `AGENTS.md` before making changes.
 - [AGENTS.md customization guide](docs/agents-md.md)
 - [DNL-system customization guide](docs/dnl-system.md)
 - [Skills customization guide](docs/skills.md)
+- [Skill source migration guide](docs/skill-source-migration.md)
 - [Repository layout](docs/repository-layout.md)

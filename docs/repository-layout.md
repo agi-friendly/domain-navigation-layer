@@ -39,6 +39,7 @@ Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin w
 Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
 
 Read the [Skills customization guide](skills.md) before adding new skills or changing wrapper behavior.
+If you want a different canonical skill home, read the [Skill source migration guide](skill-source-migration.md) before moving files.
 
 ## DNL-system
 
@@ -95,5 +96,6 @@ Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
 - [AGENTS.md customization guide](agents-md.md)
 - [DNL-system customization guide](dnl-system.md)
 - [Skills customization guide](skills.md)
+- [Skill source migration guide](skill-source-migration.md)
 - [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)

@@ -35,6 +35,7 @@ Read [dnl-config.toml guide](dnl-config.md) when you are ready to adjust scan pa
 Read [AGENTS.md customization guide](agents-md.md) when you are ready to tune the AI entrypoint.
 Read [DNL-system customization guide](dnl-system.md) before changing global DNL operating rules.
 Read [Skills customization guide](skills.md) before adding or pruning reusable agent workflows.
+Read [Skill source migration guide](skill-source-migration.md) if your repository already has `.claude/skills`, `.cursor/skills`, or another canonical skill home.
 
 For an umbrella setup, you might keep:
 
@@ -92,6 +93,7 @@ Avoid building a large hierarchy before the first routing problem is clear.
 - [AGENTS.md customization guide](agents-md.md)
 - [DNL-system customization guide](dnl-system.md)
 - [Skills customization guide](skills.md)
+- [Skill source migration guide](skill-source-migration.md)
 - [Small DNL](small-dnl.md)
 - [Umbrella DNL](umbrella-dnl.md)
 - [Core concept](core-concept.md)

@@ -54,6 +54,8 @@ That keeps one source of truth:
 
 You own your repository after copying or downloading this starter. You can use a different shape. This guide describes the starter's bias: one canonical skill, many thin wrappers when needed.
 
+If your repository already treats another folder as the canonical skill source, read the [Skill source migration guide](skill-source-migration.md) before moving or deleting skill files.
+
 ## Starter Skills
 
 The starter includes three useful skills:
@@ -244,6 +246,8 @@ python3 .agents/skills/dnl-builder/dnl_util.py tag index build
 python3 .agents/skills/dnl-builder/dnl_util.py link index build
 ```
 
+If the repository is changing where canonical skills live, use the [Skill source migration guide](skill-source-migration.md) instead of treating it as a normal skill edit.
+
 ## Small DNL Starting Point
 
 For a Small DNL, keep the starter skills at first:
@@ -302,6 +306,7 @@ Preferences:
 ## Read Next
 
 - [AGENTS.md customization guide](agents-md.md)
+- [Skill source migration guide](skill-source-migration.md)
 - [DNL-system customization guide](dnl-system.md)
 - [Small DNL](small-dnl.md)
 - [Repository layout](repository-layout.md)

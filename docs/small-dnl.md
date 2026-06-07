@@ -84,6 +84,7 @@ The important starter skills are:
 Tool-specific folders such as `.cursor/`, `.claude/`, or `.github/` can wrap these skills, but `.agents/skills/` should stay the canonical source.
 
 For adding, pruning, or wrapping skills, read the [Skills customization guide](skills.md).
+If your existing project already has another canonical skill folder, read the [Skill source migration guide](skill-source-migration.md) before copying this starter's `.agents/skills/`.
 
 ### 4. `AGENTS.md`
 

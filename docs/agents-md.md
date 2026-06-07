@@ -148,6 +148,8 @@ If this starter keeps `.agents/skills/`, tell the agent that this is the canonic
 
 Do not duplicate full skill instructions inside `AGENTS.md`.
 
+If your repository chooses a different canonical skill home, update this section and read the [Skill source migration guide](skill-source-migration.md) before moving files.
+
 ### 5. Public Docs Boundary
 
 Make the human/AI docs boundary explicit.
