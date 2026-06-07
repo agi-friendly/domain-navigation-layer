@@ -77,6 +77,12 @@ Obsidian helps humans think through linked notes.
 DNL helps AI agents navigate linked project knowledge.
 ```
 
+## Bring Your Own Agent
+
+DNL does not require a DNL-specific AI subscription. Bring any agent that can read and write local files.
+
+The DNL is the map. The agent is your choice.
+
 ## Two Ways To Start
 
 Start with one of these shapes. They are intentionally opposite.
