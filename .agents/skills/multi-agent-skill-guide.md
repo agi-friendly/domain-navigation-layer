@@ -4,6 +4,7 @@ status: "draft"
 tags: ["guide-dnl"]
 paths:
   "@skills-portal.md": "{@dnl-root}/.agents/skills/README.md"
+  "@skill-source-migration.md": "{@dnl-root}/docs/skill-source-migration.md"
   "@dnl-builder.md": "{@dnl-root}/.agents/skills/dnl-builder/SKILL.md"
   "@dnl-query.md": "{@dnl-root}/.agents/skills/dnl-query/SKILL.md"
   "@tree.md": "{@dnl-root}/.agents/skills/tree/SKILL.md"
@@ -21,6 +22,7 @@ paths:
 - 신규 스킬 추가/이름 변경 시 지원 중인 래퍼만 함께 동기화합니다.
 - Codex와 Antigravity/Gemini 계열은 repo-local 래퍼 없이 `.agents/skills`를 직접 참조합니다.
 - `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, `.windsurfrules`는 현재 운영 표면이 아니므로 새로 만들지 않습니다.
+- 스킬 정본 위치 자체를 바꾸는 작업은 일반 스킬 수정이 아니라 `@skill-source-migration.md`를 따릅니다.
 
 ## 공통 구조
 ```text

@@ -24,6 +24,8 @@ This repository is a public starter for DNL. It is intentionally small at the to
 - `docs/` holds public explanation and onboarding pages.
 - `DNL-system/` holds authoring, workflow, AI routing, templates, and boundaries.
 
+Read the [AGENTS.md customization guide](agents-md.md) before adapting the AI entrypoint for your own repository.
+
 ## Agent Skill Surface
 
 The canonical skill source is:
@@ -35,6 +37,9 @@ The canonical skill source is:
 Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin wrappers for environments that expect their own skill locations.
 
 Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
+
+Read the [Skills customization guide](skills.md) before adding new skills or changing wrapper behavior.
+If you want a different canonical skill home, read the [Skill source migration guide](skill-source-migration.md) before moving files.
 
 ## DNL-system
 
@@ -49,6 +54,8 @@ It contains:
 - safety boundaries
 
 If you only want to try DNL in a small project, you can start without understanding every file here.
+
+Read the [DNL-system customization guide](dnl-system.md) before changing or pruning this layer.
 
 ## Optional Knowledge Layers
 
@@ -66,8 +73,10 @@ DNL/
 
 ```text
 products/
-teams/
-projects/
+  DNL-product-platform/
+    projects/
+      DNL-webapp/
+      DNL-api-server/
 future/
 ```
 
@@ -81,7 +90,14 @@ In this public starter, it mostly points at `DNL-system/` because the example do
 
 When you add your own DNL tree, update the config so QA and index tools know what to scan.
 
+Read the [dnl-config.toml guide](dnl-config.md) for the field-by-field behavior.
+
 ## Read Next
 
 - [Getting started](getting-started.md)
+- [AGENTS.md customization guide](agents-md.md)
+- [DNL-system customization guide](dnl-system.md)
+- [Skills customization guide](skills.md)
+- [Skill source migration guide](skill-source-migration.md)
+- [dnl-config.toml guide](dnl-config.md)
 - [Core concept](core-concept.md)

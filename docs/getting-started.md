@@ -18,14 +18,24 @@ This repository is a starter kit.
 
 You can clone it, download it as a zip, or copy only the files you need. Delete folders that do not match your workflow.
 
-For a tiny setup, you might keep only:
+For Small DNL, downloading a zip is often the easiest path because you are inserting DNL into an existing project repository.
+
+The minimum operating surface is:
 
 ```text
-README.md
 AGENTS.md
-DNL/
-  README.md
+dnl-config.toml
+DNL-system/
+.agents/skills/
 ```
+
+Then add your project knowledge folder, usually `DNL/README.md` first.
+
+Read [dnl-config.toml guide](dnl-config.md) when you are ready to adjust scan paths, profiles, or required tags.
+Read [AGENTS.md customization guide](agents-md.md) when you are ready to tune the AI entrypoint.
+Read [DNL-system customization guide](dnl-system.md) before changing global DNL operating rules.
+Read [Skills customization guide](skills.md) before adding or pruning reusable agent workflows.
+Read [Skill source migration guide](skill-source-migration.md) if your repository already has `.claude/skills`, `.cursor/skills`, or another canonical skill home.
 
 For an umbrella setup, you might keep:
 
@@ -34,8 +44,11 @@ README.md
 AGENTS.md
 PATHS.md
 DNL-system/
+DNL-Company/
 products/
-projects/
+  DNL-product-platform/
+    projects/
+      DNL-webapp/
 future/
 ```
 
@@ -79,6 +92,11 @@ Avoid building a large hierarchy before the first routing problem is clear.
 
 ## Read Next
 
+- [dnl-config.toml guide](dnl-config.md)
+- [AGENTS.md customization guide](agents-md.md)
+- [DNL-system customization guide](dnl-system.md)
+- [Skills customization guide](skills.md)
+- [Skill source migration guide](skill-source-migration.md)
 - [Small DNL](small-dnl.md)
 - [Umbrella DNL](umbrella-dnl.md)
 - [Core concept](core-concept.md)
