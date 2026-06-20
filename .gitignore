@@ -1,7 +1,6 @@
 # DNL related files
 PATHS.md
 CURRENT_USER*.md
-CURRENT_WORKING/
 
 # IDE related files
 .idea/
