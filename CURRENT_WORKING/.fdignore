@@ -1,0 +1,4 @@
+# Keep CURRENT_WORKING discoverable by fd through directories and README anchors only.
+*
+!*/
+!**/README.md

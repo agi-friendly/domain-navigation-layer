@@ -1,0 +1,3 @@
+# Re-expose local bootstrap files to fd without disabling ignore rules globally.
+!/PATHS.md
+!/CURRENT_USER*.md
