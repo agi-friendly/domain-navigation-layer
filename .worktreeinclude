@@ -1,0 +1,4 @@
+# Copy gitignored local context (paths, current-user) into new worktrees.
+PATHS.md
+CURRENT_USER*.md
+CURRENT_WORKING/
