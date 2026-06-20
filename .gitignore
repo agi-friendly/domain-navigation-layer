@@ -16,10 +16,27 @@ CURRENT_USER*.md
 /.claude/settings.local.json
 /.claude/*.lock
 
-# Byte-compiled / optimized / DLL files
+# Local secrets / environment
+.env
+.env.*
+!.env.example
+.pypirc
+
+# Python runtime cache
 __pycache__/
 *.py[codz]
 *$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
-# Distribution / packaging
+# Python local environments
 .Python
+.venv/
+venv/
+
+# Skill-local generated files
+/.agents/skills/**/reports/
+/.agents/skills/**/.vendor/
+/.agents/skills/**/.deps/
+/.agents/skills/**/vendor/

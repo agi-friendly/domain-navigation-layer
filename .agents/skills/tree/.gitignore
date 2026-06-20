@@ -1,9 +1,0 @@
-# Python runtime cache
-__pycache__/
-*.pyc
-*.pyo
-
-# Local dependency/vendor cache for tree skill
-.vendor/
-.deps/
-vendor/
