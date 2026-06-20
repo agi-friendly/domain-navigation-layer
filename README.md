@@ -164,6 +164,19 @@ future/
 
 The important part is not the exact folder names. The important part is that each document tells the next reader or agent where to go next.
 
+## How DNL Works
+
+DNL works by combining a small routing contract with lightweight validation:
+
+- `AGENTS.md` tells the agent where to start.
+- DNL route documents point to the next useful context.
+- YAML `paths` define stable `@tokens` for documents and source pointers.
+- `dnl-config.toml` tells tools what to scan and which tags are required.
+- `.agents/skills/` gives agents reusable QA, query, and tree-inspection workflows.
+- `qa.py` and generated indexes help catch missing frontmatter, stale scan config, and unresolved internal paths.
+
+Read the mechanics and reliability model: [How DNL Works](docs/how-dnl-works.md).
+
 ## Not Another Note App
 
 Obsidian is great for personal Markdown knowledge bases.
@@ -227,6 +240,7 @@ If you are new here:
 - Start with `README.md` for the 60-second overview.
 - Read `docs/getting-started.md` when you want to try DNL in a project.
 - Read `DNL-example/README.md` or `docs/example-route.md` to see the smallest useful route.
+- Read `docs/how-dnl-works.md` when you want the mechanics, tags, skills, and validation model.
 - Read `docs/small-dnl.md` if you are adding DNL inside one repo.
 - Read `docs/umbrella-dnl.md` if you are building a cross-repository knowledge hub.
 
@@ -243,6 +257,7 @@ If you are an automated agent, read `AGENTS.md` before making changes.
 - [Documentation index](docs/index.md)
 - [Core concept](docs/core-concept.md)
 - [Getting started](docs/getting-started.md)
+- [How DNL Works](docs/how-dnl-works.md)
 - [Example DNL](DNL-example/README.md)
 - [Example Route](docs/example-route.md)
 - [dnl-config.toml guide](docs/dnl-config.md)
