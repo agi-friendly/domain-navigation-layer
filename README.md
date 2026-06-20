@@ -44,8 +44,9 @@ It is designed for AI-first context loading, but it stays useful for humans beca
 
 For one existing project repository, start small.
 
-1. Download this repository as a zip or copy only the pieces you need.
-2. Copy the minimum operating surface into your target repo:
+1. Read the working example in `DNL-example/`.
+2. Download this repository as a zip or copy only the pieces you need.
+3. Copy the minimum operating surface into your target repo:
 
 ```text
 AGENTS.md
@@ -54,34 +55,47 @@ DNL-system/
 .agents/skills/
 ```
 
-3. Add one project knowledge entrypoint:
+4. Choose a project knowledge root name and create the first route there.
 
 ```text
-DNL/README.md
+your-dnl-root/README.md
+your-dnl-root/maps/code-map.md
+your-dnl-root/domains/auth.md
+your-dnl-root/runbooks/login-callback.md
 ```
 
-4. Pick one real routing question:
+`DNL-example/` is the example in this starter. Your project can use `DNL/`, `project-dnl/`, `docs/agent-routes/`, or any other clear name.
+
+5. Update `AGENTS.md` so agents start project navigation from your chosen root.
+
+```text
+Start project navigation from your-dnl-root/README.md.
+Use DNL-system/ only for DNL operating rules and maintenance guidance.
+```
+
+6. Update `dnl-config.toml` so DNL tools scan your chosen root.
+
+```toml
+[scan]
+include = ["DNL-system", "your-dnl-root"]
+
+[paths.internal]
+"dnl-root" = "."
+"DNL-system" = "DNL-system"
+"your-dnl-root" = "your-dnl-root"
+```
+
+7. Pick one real routing question:
 
 ```text
 "The login callback fails. Where should the agent start?"
 ```
 
-5. Add only the Markdown needed for that route:
-
-```text
-DNL/README.md
-DNL/maps/code-map.md
-DNL/domains/auth.md
-DNL/runbooks/login-callback.md
-```
-
-These `DNL/*` files are the first route you create in your target project. This starter does not ship a fake project knowledge tree.
-
-6. Point your AI agent at `AGENTS.md` and tell it to follow the DNL route before searching source code.
+8. Point your AI agent at `AGENTS.md` and tell it to follow the DNL route before searching source code.
 
 Expand only when repeated context-loading pain proves another route is useful.
 
-See the minimal route walkthrough and tiny file sketches: [Example Route](docs/example-route.md).
+See the minimal route walkthrough: [Example Route](docs/example-route.md).
 
 ## Small DNL Or Umbrella DNL
 
@@ -92,7 +106,7 @@ Start with the shape that matches where your knowledge lives.
 | Small DNL | inside one existing project repository | one repo is the main working surface |
 | Umbrella DNL | in a separate knowledge repository | work crosses many repos, products, or domains |
 
-Small DNL is the fastest way to begin. Add a `DNL/README.md` route inside one project and grow from there.
+Small DNL is the fastest way to begin. Add one project route root, such as `DNL/README.md`, and grow from there.
 
 Umbrella DNL is for cross-repository work. The agent starts in the DNL repository, follows product or project routes, then uses `PATHS.md` tokens to reach real source repositories.
 
@@ -126,7 +140,7 @@ At its smallest, it can be a few files:
 
 ```text
 README.md
-DNL/
+your-dnl-root/
   README.md
   maps/
   domains/
@@ -201,7 +215,7 @@ You can:
 - copy only one folder
 - delete the parts you do not need
 - rename folders
-- start from a blank `DNL/README.md`
+- start from a blank project DNL root
 - keep only the AI instructions and authoring rules
 
 This repository is a starter kit, not a framework lock-in.
@@ -212,7 +226,7 @@ If you are new here:
 
 - Start with `README.md` for the 60-second overview.
 - Read `docs/getting-started.md` when you want to try DNL in a project.
-- Read `docs/example-route.md` to see the smallest useful route.
+- Read `DNL-example/README.md` or `docs/example-route.md` to see the smallest useful route.
 - Read `docs/small-dnl.md` if you are adding DNL inside one repo.
 - Read `docs/umbrella-dnl.md` if you are building a cross-repository knowledge hub.
 
@@ -229,6 +243,7 @@ If you are an automated agent, read `AGENTS.md` before making changes.
 - [Documentation index](docs/index.md)
 - [Core concept](docs/core-concept.md)
 - [Getting started](docs/getting-started.md)
+- [Example DNL](DNL-example/README.md)
 - [Example Route](docs/example-route.md)
 - [dnl-config.toml guide](docs/dnl-config.md)
 - [AGENTS.md customization guide](docs/agents-md.md)

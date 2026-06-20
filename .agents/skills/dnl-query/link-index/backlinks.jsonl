@@ -1,5 +1,8 @@
 {"targetPath":".repo-history/GUIDE.md","sources":[{"source":"DNL-system/workflow/README.md","token":"@repo-history-guide.md"},{"source":"DNL-system/workflow/concepts.md","token":"@repo-history-guide.md"},{"source":"DNL-system/workflow/future-to-archive.md","token":"@repo-history-guide.md"}]}
 {"targetPath":"AGENTS.md","sources":[{"source":"DNL-system/ai/context-loading.md","token":"@repo-AGENTS.md"}]}
+{"targetPath":"DNL-example/domains/auth.md","sources":[{"source":"DNL-example/README.md","token":"@auth.md"},{"source":"DNL-example/maps/code-map.md","token":"@auth.md"},{"source":"DNL-example/runbooks/login-callback.md","token":"@auth.md"}]}
+{"targetPath":"DNL-example/maps/code-map.md","sources":[{"source":"DNL-example/README.md","token":"@code-map.md"},{"source":"DNL-example/domains/auth.md","token":"@code-map.md"},{"source":"DNL-example/runbooks/login-callback.md","token":"@code-map.md"}]}
+{"targetPath":"DNL-example/runbooks/login-callback.md","sources":[{"source":"DNL-example/README.md","token":"@login-callback.md"},{"source":"DNL-example/domains/auth.md","token":"@login-callback.md"},{"source":"DNL-example/maps/code-map.md","token":"@login-callback.md"}]}
 {"targetPath":"DNL-system/README.md","sources":[{"source":"DNL-system/ai/context-loading.md","token":"@dnl-system.md"}]}
 {"targetPath":"DNL-system/ai/README.md","sources":[{"source":"DNL-system/README.md","token":"@ai/README.md"}]}
 {"targetPath":"DNL-system/ai/doc-selection-rules.md","sources":[{"source":"DNL-system/workflow/future-to-dnl.md","token":"@doc-selection-rules.md"}]}

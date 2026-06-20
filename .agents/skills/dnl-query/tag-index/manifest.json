@@ -1,27 +1,36 @@
 {
   "schemaVersion": 1,
   "sources": [
-    "DNL-system"
+    "DNL-system",
+    "DNL-example"
   ],
-  "documents": 38,
+  "documents": 42,
   "statusCounts": {
     "active": 0,
-    "draft": 38,
+    "draft": 42,
     "deprecated": 0
   },
   "untaggedDocuments": 3,
   "tags": {
+    "auth": {
+      "file": "tags/auth.jsonl",
+      "count": 3
+    },
     "dnl-builder": {
       "file": "tags/dnl-builder.jsonl",
       "count": 8
     },
+    "example-dnl": {
+      "file": "tags/example-dnl.jsonl",
+      "count": 4
+    },
     "guide-dnl": {
       "file": "tags/guide-dnl.jsonl",
-      "count": 2
+      "count": 3
     },
     "map-dnl": {
       "file": "tags/map-dnl.jsonl",
-      "count": 1
+      "count": 2
     },
     "placeholder": {
       "file": "tags/placeholder.jsonl",
@@ -33,7 +42,7 @@
     },
     "portal-dnl": {
       "file": "tags/portal-dnl.jsonl",
-      "count": 10
+      "count": 11
     },
     "reference-dnl": {
       "file": "tags/reference-dnl.jsonl",
@@ -42,6 +51,10 @@
     "rule-dnl": {
       "file": "tags/rule-dnl.jsonl",
       "count": 15
+    },
+    "runbook-dnl": {
+      "file": "tags/runbook-dnl.jsonl",
+      "count": 1
     },
     "template-dnl": {
       "file": "tags/template-dnl.jsonl",

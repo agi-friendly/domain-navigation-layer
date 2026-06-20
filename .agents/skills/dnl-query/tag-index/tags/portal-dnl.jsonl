@@ -1,3 +1,4 @@
+{"path":"DNL-example/README.md","name":"DNL example project","status":"draft","tags":["portal-dnl","example-dnl"],"description":["This document is a small working example of a DNL route for one project.","Use it to see how an agent can move from an entrypoint to a domain page, runbook, and source map."]}
 {"path":"DNL-system/README.md","name":"DNL system portal","status":"draft","tags":["portal-dnl"],"description":[]}
 {"path":"DNL-system/ai/README.md","name":"ai - AI 운영 포털","status":"draft","tags":["portal-dnl"],"description":[]}
 {"path":"DNL-system/ai/local-context/README.md","name":"Local Context Portal","status":"draft","tags":["portal-dnl"],"description":["This document points to repository-local context guides for path mapping and current-user handoff."]}
