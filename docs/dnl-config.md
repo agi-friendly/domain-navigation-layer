@@ -27,6 +27,19 @@ The important pattern is:
 dnl-config.toml -> dnl-builder tools -> generated indexes -> dnl-query
 ```
 
+## Starter Repository Note
+
+This starter repository scans two roots by default:
+
+```toml
+[scan]
+include = ["DNL-system", "DNL-example"]
+```
+
+`DNL-system/` is the operating layer. `DNL-example/` is the small working example route.
+
+When adapting the starter to a real project, replace or rename `DNL-example/` with your chosen project knowledge root and update this config to match.
+
 ## Small DNL Starting Point
 
 For a Small DNL inserted into one existing project, start with this shape:

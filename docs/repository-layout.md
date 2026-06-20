@@ -7,6 +7,7 @@ This repository is a public starter for DNL. It is intentionally small at the to
 ├── README.md
 ├── AGENTS.md
 ├── docs/
+├── DNL-example/
 ├── DNL-system/
 ├── .agents/
 ├── .claude/
@@ -22,6 +23,7 @@ This repository is a public starter for DNL. It is intentionally small at the to
 - `README.md` is the public landing page for humans.
 - `AGENTS.md` is the working contract for AI agents.
 - `docs/` holds public explanation and onboarding pages.
+- `DNL-example/` holds a tiny working example route.
 - `DNL-system/` holds authoring, workflow, AI routing, templates, and boundaries.
 
 Read the [AGENTS.md customization guide](agents-md.md) before adapting the AI entrypoint for your own repository.
@@ -57,6 +59,12 @@ If you only want to try DNL in a small project, you can start without understand
 
 Read the [DNL-system customization guide](dnl-system.md) before changing or pruning this layer.
 
+## Example Knowledge Layer
+
+`DNL-example/` is the small example included in this starter.
+
+It exists so first-time visitors can see a working route without treating `DNL/` as a required folder name.
+
 ## Optional Knowledge Layers
 
 Real DNL repositories may add their own knowledge tree.
@@ -64,7 +72,7 @@ Real DNL repositories may add their own knowledge tree.
 Examples:
 
 ```text
-DNL/
+your-dnl-root/
   README.md
   maps/
   domains/
@@ -86,7 +94,7 @@ These are not required folders. They are shapes you can choose when your work ne
 
 `dnl-config.toml` defines the scan surface for DNL tooling.
 
-In this public starter, it mostly points at `DNL-system/` because the example domain layers are intentionally not filled in yet.
+In this public starter, it points at `DNL-system/` and `DNL-example/`.
 
 When you add your own DNL tree, update the config so QA and index tools know what to scan.
 

@@ -1,6 +1,8 @@
 # Example Route
 
-This example shows the smallest useful DNL move:
+This page explains the route implemented in `DNL-example/`.
+
+The smallest useful DNL move is:
 
 ```text
 entrypoint -> router -> domain page -> runbook or source path
@@ -18,21 +20,23 @@ An agent receives this task:
 
 Without DNL, the agent may search the whole repository and guess which files matter.
 
-With DNL, the agent follows a route.
+With DNL, the agent follows the example route in `DNL-example/`.
 
 ## Minimal Files
 
-For a Small DNL inside one project, the first route might use:
+The working example in this starter uses:
 
 ```text
 AGENTS.md
-DNL/README.md
-DNL/maps/code-map.md
-DNL/domains/auth.md
-DNL/runbooks/login-callback.md
+DNL-example/README.md
+DNL-example/maps/code-map.md
+DNL-example/domains/auth.md
+DNL-example/runbooks/login-callback.md
 ```
 
-The `DNL/*` paths are files you create in your target project. They are not prefilled example files in this starter repository.
+`DNL-example/` is an example root name, not a required folder name.
+
+When adapting it to a real project, choose your own DNL root name and update `AGENTS.md` plus `dnl-config.toml` to match.
 
 `PATHS.md` is optional when all source code lives in the same repository. Use it when a route needs local source paths outside the DNL repository.
 
@@ -42,10 +46,10 @@ The route can be this small:
 
 ```text
 AGENTS.md
-  -> DNL/README.md
-  -> DNL/domains/auth.md
-  -> DNL/runbooks/login-callback.md
-  -> DNL/maps/code-map.md
+  -> DNL-example/README.md
+  -> DNL-example/domains/auth.md
+  -> DNL-example/runbooks/login-callback.md
+  -> DNL-example/maps/code-map.md
   -> source path or PATHS.md token
 ```
 
@@ -54,62 +58,22 @@ Each step has one job.
 | Step | What it tells the agent |
 | --- | --- |
 | `AGENTS.md` | Start with the DNL before searching source code |
-| `DNL/README.md` | This project has an `auth` domain and login runbooks |
-| `DNL/domains/auth.md` | What "auth" means in this project and which flows matter |
-| `DNL/runbooks/login-callback.md` | What evidence to collect before changing code |
-| `DNL/maps/code-map.md` | Which source files or directories are good entrypoints |
+| `DNL-example/README.md` | The example has an `auth` domain and login runbook |
+| `DNL-example/domains/auth.md` | What "auth" means in the example project and which flows matter |
+| `DNL-example/runbooks/login-callback.md` | What evidence to collect before changing code |
+| `DNL-example/maps/code-map.md` | Which source files or directories are good entrypoints |
 | Source path or token | Where code inspection begins |
 
-## Tiny File Sketches
+## Working Example Files
 
-Keep the first route short. These sketches show the level of detail to aim for.
+The starter includes these files:
 
-`DNL/README.md`:
+- `DNL-example/README.md`
+- `DNL-example/domains/auth.md`
+- `DNL-example/runbooks/login-callback.md`
+- `DNL-example/maps/code-map.md`
 
-```md
-# Project DNL
-
-Start here before searching source code.
-
-- Auth domain: `DNL/domains/auth.md`
-- Login callback runbook: `DNL/runbooks/login-callback.md`
-- Source map: `DNL/maps/code-map.md`
-```
-
-`DNL/domains/auth.md`:
-
-```md
-# Auth Domain
-
-Auth covers sign-in, callback handling, session creation, and logout.
-
-For callback failures, use `DNL/runbooks/login-callback.md` before changing code.
-```
-
-`DNL/runbooks/login-callback.md`:
-
-```md
-# Login Callback Runbook
-
-Before changing code, collect:
-
-- callback URL and query parameters
-- provider error message, if any
-- server log lines for the request
-- session or cookie state after redirect
-```
-
-`DNL/maps/code-map.md`:
-
-```md
-# Code Map
-
-Start code inspection here:
-
-- `src/routes/auth/`
-- `src/services/session/`
-- `tests/auth/`
-```
+Keep your first real route about this small. Add detail only when repeated work proves it is useful.
 
 ## Example Source Pointer
 

@@ -7,6 +7,7 @@ paths:
   "@ai-local-context.md": "{@dnl-root}/DNL-system/ai/local-context/README.md"
   "@paths-md.md": "{@dnl-root}/DNL-system/ai/local-context/paths-md.md"
   "@current-user-md.md": "{@dnl-root}/DNL-system/ai/local-context/current-user-md.md"
+  "@dnl-example.md": "{@dnl-root}/DNL-example/README.md"
   "@skills-readme.md": "{@dnl-root}/.agents/skills/README.md"
   "@multi-agent-skill-guide.md": "{@dnl-root}/.agents/skills/multi-agent-skill-guide.md"
 ---
@@ -27,6 +28,7 @@ paths:
 - Write public-facing documentation in English unless the user explicitly asks for another language.
 - Do not assume any private company or product vocabulary is still valid here.
 - Treat `README.md` and `docs/` as reader-facing public documentation. Load them when the task is about public explanation, onboarding, or README/docs content.
+- Use `@dnl-example.md` only when the task is about examples, onboarding, or the starter route. Do not treat it as private project knowledge.
 - Use `DNL-system/` for AI routing, maintenance rules, workflow guidance, templates, or repository-local context.
 - When a task depends on repository structure, inspect the current tree or the relevant docs instead of assuming hidden files or legacy path maps.
 - Keep changes small, readable, and aligned with the dominant style of the file you are editing.

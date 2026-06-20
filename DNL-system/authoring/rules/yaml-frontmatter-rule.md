@@ -19,7 +19,7 @@ paths:
 ## Scope
 
 This rule applies to DNL markdown documents whose paths are included by `scan.include` in `dnl-config.toml`.
-In this public skeleton, that currently means `DNL-system`.
+In this public starter, that currently means `DNL-system` and `DNL-example`.
 
 - Included: the markdown documents under `scan.include`
 - Excluded: `SKILL.md`, repository-root markdown, documents under hidden directories that start with `.`, and gitignored files

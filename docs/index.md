@@ -8,6 +8,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 
 - [Core concept](core-concept.md): what DNL is, what it is not, and why it is AI-first.
 - [Repository layout](repository-layout.md): what the folders in this starter repository do.
+- [Example DNL](../DNL-example/README.md): a tiny auth/login-callback route that is scanned by the starter config.
 
 ## Start Using DNL
 

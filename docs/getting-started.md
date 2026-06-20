@@ -18,6 +18,8 @@ This repository is a starter kit.
 
 You can clone it, download it as a zip, or copy only the files you need. Delete folders that do not match your workflow.
 
+Read `DNL-example/` first if you want to see a tiny working route before adapting the starter.
+
 For Small DNL, downloading a zip is often the easiest path because you are inserting DNL into an existing project repository.
 
 The minimum operating surface is:
@@ -29,7 +31,9 @@ DNL-system/
 .agents/skills/
 ```
 
-Then add your project knowledge folder, usually `DNL/README.md` first.
+Then add your project knowledge folder, such as `DNL/README.md`, first.
+
+`DNL/` is only an example root name. If you choose a different name, update `AGENTS.md` and `dnl-config.toml` to match.
 
 Read [dnl-config.toml guide](dnl-config.md) when you are ready to adjust scan paths, profiles, or required tags.
 Read [AGENTS.md customization guide](agents-md.md) when you are ready to tune the AI entrypoint.
