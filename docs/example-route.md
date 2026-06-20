@@ -32,6 +32,8 @@ DNL/domains/auth.md
 DNL/runbooks/login-callback.md
 ```
 
+The `DNL/*` paths are files you create in your target project. They are not prefilled example files in this starter repository.
+
 `PATHS.md` is optional when all source code lives in the same repository. Use it when a route needs local source paths outside the DNL repository.
 
 ## The Route
@@ -57,6 +59,57 @@ Each step has one job.
 | `DNL/runbooks/login-callback.md` | What evidence to collect before changing code |
 | `DNL/maps/code-map.md` | Which source files or directories are good entrypoints |
 | Source path or token | Where code inspection begins |
+
+## Tiny File Sketches
+
+Keep the first route short. These sketches show the level of detail to aim for.
+
+`DNL/README.md`:
+
+```md
+# Project DNL
+
+Start here before searching source code.
+
+- Auth domain: `DNL/domains/auth.md`
+- Login callback runbook: `DNL/runbooks/login-callback.md`
+- Source map: `DNL/maps/code-map.md`
+```
+
+`DNL/domains/auth.md`:
+
+```md
+# Auth Domain
+
+Auth covers sign-in, callback handling, session creation, and logout.
+
+For callback failures, use `DNL/runbooks/login-callback.md` before changing code.
+```
+
+`DNL/runbooks/login-callback.md`:
+
+```md
+# Login Callback Runbook
+
+Before changing code, collect:
+
+- callback URL and query parameters
+- provider error message, if any
+- server log lines for the request
+- session or cookie state after redirect
+```
+
+`DNL/maps/code-map.md`:
+
+```md
+# Code Map
+
+Start code inspection here:
+
+- `src/routes/auth/`
+- `src/services/session/`
+- `tests/auth/`
+```
 
 ## Example Source Pointer
 

@@ -75,11 +75,13 @@ DNL/domains/auth.md
 DNL/runbooks/login-callback.md
 ```
 
+These `DNL/*` files are the first route you create in your target project. This starter does not ship a fake project knowledge tree.
+
 6. Point your AI agent at `AGENTS.md` and tell it to follow the DNL route before searching source code.
 
 Expand only when repeated context-loading pain proves another route is useful.
 
-See the minimal route walkthrough: [Example Route](docs/example-route.md).
+See the minimal route walkthrough and tiny file sketches: [Example Route](docs/example-route.md).
 
 ## Small DNL Or Umbrella DNL
 
@@ -184,7 +186,7 @@ You can also build:
 
 - Team DNL: team conventions, recurring workflows, onboarding, runbooks
 - Company DNL: shared glossary, products, teams, systems, architecture maps
-- Personal DNL: private working memory, experiments, reading notes, agent handoffs
+- Personal DNL: local agent handoff routes, active project maps, investigation logs
 
 The hierarchy is yours. DNL does not prescribe it.
 
