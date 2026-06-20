@@ -1,2 +1,3 @@
+{"path":"DNL-example/domains/auth.md","name":"Auth domain","status":"draft","tags":["guide-dnl","auth","example-dnl"],"description":["This document explains the auth domain in a small example project.","Use it before jumping into login callback source code."]}
 {"path":"DNL-system/ai/local-context/current-user-md.md","name":"CURRENT_USER.md Guide","status":"draft","tags":["guide-dnl","reference-dnl"],"description":["This document explains how to draft or maintain CURRENT_USER.md for repository-local handoff context."]}
 {"path":"DNL-system/ai/local-context/paths-md.md","name":"PATHS.md Guide","status":"draft","tags":["guide-dnl","reference-dnl"],"description":["This document explains how PATHS.md maps DNL tokens to real filesystem locations."]}

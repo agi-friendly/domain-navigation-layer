@@ -1,1 +1,2 @@
+{"path":"DNL-example/maps/code-map.md","name":"Example code map","status":"draft","tags":["map-dnl","auth","example-dnl"],"description":["This document maps the example auth route to likely source entrypoints.","The paths are illustrative and should be replaced with real project paths when adapting the example."]}
 {"path":"DNL-system/authoring/rules/dnl-structure.md","name":"dnl-structure","status":"draft","tags":["map-dnl","reference-dnl","dnl-builder","rule-dnl"],"description":[]}
