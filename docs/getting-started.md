@@ -64,6 +64,8 @@ Create one useful route for one real question:
 
 Then add just enough Markdown to route from the entrypoint to the relevant domain page, code map, or runbook.
 
+For a concrete minimal walkthrough, read [Example Route](example-route.md).
+
 ## Step 4. Add Local Paths When Needed
 
 If your DNL points to source repositories outside the DNL folder, add a local `PATHS.md`.
@@ -93,6 +95,7 @@ Avoid building a large hierarchy before the first routing problem is clear.
 ## Read Next
 
 - [dnl-config.toml guide](dnl-config.md)
+- [Example Route](example-route.md)
 - [AGENTS.md customization guide](agents-md.md)
 - [DNL-system customization guide](dnl-system.md)
 - [Skills customization guide](skills.md)

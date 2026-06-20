@@ -12,6 +12,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 ## Start Using DNL
 
 - [Getting started](getting-started.md): choose a starting shape and make your first useful route.
+- [Example Route](example-route.md): see the smallest useful path from agent entrypoint to source pointer.
 - [dnl-config.toml guide](dnl-config.md): configure the DNL tooling scan surface, path tokens, profiles, and required tags.
 - [AGENTS.md customization guide](agents-md.md): customize the AI entrypoint and routing contract.
 - [DNL-system customization guide](dnl-system.md): adapt the DNL operating layer without mixing in project knowledge.

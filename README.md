@@ -5,9 +5,23 @@ AI-first navigation for connected Markdown knowledge.
 AI agents do not need another note app.
 They need a map they can follow.
 
-Domain Navigation Layer (DNL) is a filesystem-native context layer for AI agents. It turns plain Markdown files into a navigable map of domain knowledge, code paths, runbooks, repository links, working notes, and handoff context.
+Domain Navigation Layer (DNL) is a lightweight, filesystem-native context layer for AI agents. It connects Markdown entrypoints, routes, runbooks, local path tokens, and source pointers so an agent can load project knowledge intentionally instead of searching blindly.
 
 DNL is not a required folder hierarchy. It is a way to connect Markdown so an AI agent can move through your knowledge one useful step at a time.
+
+## Who This Is For
+
+DNL is for people who use AI agents on real projects and keep watching the agent lose time on orientation.
+
+Use it when:
+
+- a repository README is useful for humans but too broad for agent routing
+- domain knowledge, code maps, runbooks, and handoff notes are scattered
+- the same investigation starts with the same "where should I look?" question
+- work spans several repositories and the agent needs a stable route between them
+- you want Markdown and Git, not another hosted knowledge product
+
+If your main problem is personal note-taking, a wiki UI, or visual brainstorming, DNL is probably not the first tool to reach for.
 
 ## Why DNL Exists
 
@@ -26,9 +40,85 @@ DNL gives the agent a route before it searches everything.
 
 It is designed for AI-first context loading, but it stays useful for humans because the source of truth is just Markdown and local files.
 
+## Quick Start
+
+For one existing project repository, start small.
+
+1. Download this repository as a zip or copy only the pieces you need.
+2. Copy the minimum operating surface into your target repo:
+
+```text
+AGENTS.md
+dnl-config.toml
+DNL-system/
+.agents/skills/
+```
+
+3. Add one project knowledge entrypoint:
+
+```text
+DNL/README.md
+```
+
+4. Pick one real routing question:
+
+```text
+"The login callback fails. Where should the agent start?"
+```
+
+5. Add only the Markdown needed for that route:
+
+```text
+DNL/README.md
+DNL/maps/code-map.md
+DNL/domains/auth.md
+DNL/runbooks/login-callback.md
+```
+
+6. Point your AI agent at `AGENTS.md` and tell it to follow the DNL route before searching source code.
+
+Expand only when repeated context-loading pain proves another route is useful.
+
+See the minimal route walkthrough: [Example Route](docs/example-route.md).
+
+## Small DNL Or Umbrella DNL
+
+Start with the shape that matches where your knowledge lives.
+
+| Shape | Where it lives | Use it when |
+| --- | --- | --- |
+| Small DNL | inside one existing project repository | one repo is the main working surface |
+| Umbrella DNL | in a separate knowledge repository | work crosses many repos, products, or domains |
+
+Small DNL is the fastest way to begin. Add a `DNL/README.md` route inside one project and grow from there.
+
+Umbrella DNL is for cross-repository work. The agent starts in the DNL repository, follows product or project routes, then uses `PATHS.md` tokens to reach real source repositories.
+
+Read more:
+
+- [Small DNL](docs/small-dnl.md)
+- [Umbrella DNL](docs/umbrella-dnl.md)
+
+## What DNL Is Not
+
+DNL is not:
+
+- a note-taking app
+- a replacement for Obsidian or Notion
+- a strict documentation hierarchy
+- a vector database
+- a magic memory system
+- a general personal knowledge base with AI branding
+
+DNL is:
+
+- a navigation layer
+- a Markdown-based context map
+- a way to make AI agents less blind inside real projects
+
 ## Core Idea
 
-DNL is connected Markdown.
+DNL is connected Markdown for AI navigation.
 
 At its smallest, it can be a few files:
 
@@ -58,7 +148,7 @@ future/
 
 The important part is not the exact folder names. The important part is that each document tells the next reader or agent where to go next.
 
-## Not Another Obsidian
+## Not Another Note App
 
 Obsidian is great for personal Markdown knowledge bases.
 Notion is great for human-facing workspaces.
@@ -85,64 +175,6 @@ DNL helps AI agents navigate linked project knowledge.
 DNL does not require a DNL-specific AI subscription. Bring any agent that can read and write local files.
 
 The DNL is the map. The agent is your choice.
-
-## Two Ways To Start
-
-Start with one of these shapes. They are intentionally opposite.
-
-### 1. Small DNL
-
-Use this when you already have one project repository and want to add a small navigation layer inside it.
-
-Example use:
-
-```text
-your-project/
-  README.md
-  AGENTS.md
-  DNL/
-    README.md
-    maps/
-    domains/
-    runbooks/
-```
-
-This is the lightweight mode. You add only enough Markdown for an AI agent to stop guessing:
-
-- what the project does
-- which modules exist
-- where important code lives
-- how to investigate common failures
-- what the current working context is
-
-Read more: [Small DNL](docs/small-dnl.md)
-
-### 2. Umbrella DNL
-
-Use this when the DNL repository is not a code repository. It is a separate knowledge repository that routes across many real repositories.
-
-Example use:
-
-```text
-workspace-dnl/
-  README.md
-  AGENTS.md
-  PATHS.md
-  DNL-system/
-  DNL-Company/
-  products/
-    DNL-product-platform/
-      projects/
-        DNL-webapp/
-        DNL-api-server/
-  future/
-```
-
-This is the orchestration mode. An agent opens the DNL repository first, then uses the DNL to find the right product, project, domain, runbook, and local source path.
-
-`PATHS.md` can map source tokens such as `{@webapp}`, `{@api-server}`, or `{@docs-site}` to real local repositories on your machine.
-
-Read more: [Umbrella DNL](docs/umbrella-dnl.md)
 
 ## Other Possible Shapes
 
@@ -174,9 +206,17 @@ This repository is a starter kit, not a framework lock-in.
 
 ## Repository Entrypoints
 
-- `README.md` is the public entrypoint for humans.
-- `AGENTS.md` is the entrypoint for AI agents.
-- `docs/` holds public explanation and onboarding pages.
+If you are new here:
+
+- Start with `README.md` for the 60-second overview.
+- Read `docs/getting-started.md` when you want to try DNL in a project.
+- Read `docs/example-route.md` to see the smallest useful route.
+- Read `docs/small-dnl.md` if you are adding DNL inside one repo.
+- Read `docs/umbrella-dnl.md` if you are building a cross-repository knowledge hub.
+
+If you are an AI agent or maintaining this repository:
+
+- `AGENTS.md` is the agent entrypoint and routing contract.
 - `DNL-system/` holds maintenance, authoring, workflow, and AI routing rules.
 - `.agents/skills/` holds reusable skill entrypoints for agents.
 
@@ -187,6 +227,7 @@ If you are an automated agent, read `AGENTS.md` before making changes.
 - [Documentation index](docs/index.md)
 - [Core concept](docs/core-concept.md)
 - [Getting started](docs/getting-started.md)
+- [Example Route](docs/example-route.md)
 - [dnl-config.toml guide](docs/dnl-config.md)
 - [AGENTS.md customization guide](docs/agents-md.md)
 - [DNL-system customization guide](docs/dnl-system.md)
