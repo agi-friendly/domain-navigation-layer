@@ -6,6 +6,9 @@ paths:
   "@markdown-rule.md": "{@DNL-system}/authoring/rules/markdown-rule.md"
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
+  "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
+  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
   "@dnl-builder-qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
   "@dnl-builder/README.md": "{@DNL-system}/authoring/README.md"
 ---
@@ -22,6 +25,7 @@ paths:
 1. 규칙: `@markdown-rule.md`
 2. YAML frontmatter 규칙: `@yaml-frontmatter-rule.md`
 3. 권위/override: `@multi-dnl-authority.md`
+4. 작업이 `future`, `future-to-dnl`, promotion, archive, history 정리를 포함하면 workflow: `@workflow-root.md` → `@future-to-dnl.md` → 필요 시 `@future-to-archive.md`
 
 ---
 
@@ -35,6 +39,7 @@ DNL을 쓰는 AI는 "문서 작성자"에서 멈추지 않고, 다음 AI가 맥�
 - 포털/README는 현재 결론, 문서 역할, 다음 이동 경로만 담는다.
 - 긴 조사 과정, 과거 계획, 비교 근거, 세부 판단은 별도 문서로 분리하고 포털에서 `@토큰`으로 안내한다.
 - `future` 문서는 현재 정본이 아니라 승격 후보와 작업 힌트다. 승격 후 active 문서가 여전히 `future`를 우선 경로로 보게 두면 안 된다.
+- `future` 자료를 정본에 흡수할 때는 authoring보다 먼저 작업 수명주기 경계를 세운다. main/README에는 현재 핵심과 길찾기만 두고, 과거 변경 이력·future 경고·비교 분석은 `@future-to-dnl.md` 기준으로 분리한다.
 - UI 화면 문서는 화면 구조와 의사결정, 서버 도메인 문서는 Controller/Service/Mapper/API/DDL 근거, 설계 결정 문서는 왜 그렇게 했는지를 맡는다.
 - 같은 사실을 여러 곳에 단정하지 말고, source-of-truth 하나와 얇은 cross-link 여러 개로 유지한다.
 
@@ -88,14 +93,15 @@ QA가 문법과 링크를 잡아준다면, semantic stale 검색은 "내용은 �
 
 ## 3) 작업 절차(권장)
 1) 변경 범위와 레이어를 좁힌다(System → Shared layer → Product → Project)
-2) 대상 문서의 역할을 정한다(라우터/정본/배경/future/archive)
-3) 프로그램으로 스캔한다(패턴 검색/잔재 찾기)
-4) 수정한다
-5) 상위 README, 지도, 가이드, cross-link가 새 정본으로 이어지는지 확인한다
-6) **주변 문맥(앞/뒤 문단 흐름) 확인**
-7) semantic stale을 검색한다
-8) 1작업 = 1커밋
-9) QA:
+2) 작업이 `future` 자료 흡수/promotion/archive라면 `@future-to-dnl.md` 체크리스트로 main/배경/archive 경계를 먼저 정한다
+3) 대상 문서의 역할을 정한다(라우터/정본/배경/future/archive)
+4) 프로그램으로 스캔한다(패턴 검색/잔재 찾기)
+5) 수정한다
+6) 상위 README, 지도, 가이드, cross-link가 새 정본으로 이어지는지 확인한다
+7) **주변 문맥(앞/뒤 문단 흐름) 확인**
+8) semantic stale을 검색한다
+9) 1작업 = 1커밋
+10) QA:
    - 포털 기준: `python3 .agents/skills/dnl-builder/qa.py --profile portal`
 
 ---
@@ -106,6 +112,8 @@ QA가 문법과 링크를 잡아준다면, semantic stale 검색은 "내용은 �
 ```text
 You are editing a public DNL repository.
 Before writing, read:
+- DNL-system/workflow/README.md
+- DNL-system/workflow/future-to-dnl.md (required when promoting/absorbing future material)
 - DNL-system/authoring/dnl-authoring-playbook.md
 - DNL-system/authoring/rules/markdown-rule.md
 - DNL-system/authoring/rules/yaml-frontmatter-rule.md
@@ -121,6 +129,7 @@ Rules:
 - Work as a DNL steward, not only as a local document editor.
 - Keep routers/README files light: current truth + next navigation only.
 - Split heavy background, investigation notes, and decision history into load-on-demand docs.
+- For future-to-DNL work, do not place future warnings, historical name drift, or comparison analysis in the main README unless it is only a minimal route to a separate background/history document.
 - After promoting future content, rewire parent README/map/guide docs so active DNL no longer treats future as the priority path.
 - Separate UI screen facts, server-domain facts, and design decisions; use thin cross-links instead of duplicated assertions.
 - Search semantic stale after edits: old paths, old priority wording, missing parent routing, and completion claims without navigation.

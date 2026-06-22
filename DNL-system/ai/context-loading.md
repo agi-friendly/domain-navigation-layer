@@ -13,6 +13,9 @@ paths:
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@dnl-authoring-playbook.md": "{@DNL-system}/authoring/dnl-authoring-playbook.md"
+  "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
+  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
 ---
 
 # Context Loading Rules (3-Layer DNL)
@@ -38,6 +41,7 @@ The default flow is:
 - Do not read every document at once.
 - Do not guess file paths that are not in the repo or `PATHS.md`.
 - If the task is about DNL writing or cleanup, read the system authoring docs first.
+- If the task mentions `future`, DNL promotion, archive, lifecycle, or history cleanup, read the workflow docs before opening target content.
 - If the task is about public-facing README/docs, load the public docs for that task.
 - If the task is about a specific layer, stop at the first layer that answers the question.
 
@@ -55,6 +59,9 @@ The default flow is:
 - `@yaml-frontmatter-rule.md`
 - `@multi-dnl-authority.md`
 - `@dnl-authoring-playbook.md`
+- `@workflow-root.md` when the task involves work lifecycle, future notes, promotion, archive, or history
+- `@future-to-dnl.md` when promoting or absorbing future material into canonical DNL
+- `@future-to-archive.md` when deciding whether raw work bundles can move out of active paths
 
 ### Repository-local context
 

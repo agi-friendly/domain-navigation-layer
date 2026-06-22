@@ -1,7 +1,10 @@
 ---
 name: "workflow - work lifecycle portal"
 status: "draft"
-tags: ["portal-dnl"]
+tags: ["portal-dnl", "workflow-dnl"]
+description:
+  - "This document is the source-of-truth portal for future notes, DNL promotion, archive, and history lifecycle decisions."
+  - "Agents use it before promoting future material into canonical DNL or moving raw work bundles out of active paths."
 paths:
   "@concepts.md": "{@DNL-system}/workflow/concepts.md"
   "@future-authoring-rule.md": "{@DNL-system}/workflow/future-authoring-rule.md"
@@ -37,6 +40,7 @@ The core idea is to separate active work, promoted knowledge, archive material, 
 3. Raw work bundles should not stay in active portals forever.
 4. Repository history and archived bundles are not the same thing.
 5. Keep the current repository's operating history separate from its public docs.
+6. Promoting `future` material into DNL requires both lifecycle rules from workflow and writing rules from authoring.
 
 ## Lifecycle summary
 

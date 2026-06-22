@@ -12,4 +12,4 @@
 {"path":"DNL-system/boundaries/allowed-actions.md","name":"allowed-actions.md # 가능한 작업 범위(조사/설계/문서화/코드탐색 등)","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
 {"path":"DNL-system/boundaries/assumptions.md","name":"assumptions.md # (선택) 기본 가정(접근권한/환경/로그 위치 등) + 모르면 질문 규칙","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
 {"path":"DNL-system/boundaries/forbidden-actions.md","name":"forbidden-actions.md # 금지/주의 작업(임의 정책 변경, 확정 단정, 접근 가정 등)","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/workflow/future-authoring-rule.md","name":"future 작성 규칙","status":"draft","tags":["rule-dnl"],"description":["이 문서는 future 공간에 작업 과정을 '날것의 판단 로그'로 남기는 작성 규칙이다.","무엇을 어떻게 기록할지를 정하며, 정수를 정본으로 올리는 future-to-dnl 규칙과 짝을 이룬다."]}
+{"path":"DNL-system/workflow/future-authoring-rule.md","name":"future 작성 규칙","status":"draft","tags":["rule-dnl","workflow-dnl"],"description":["이 문서는 future 공간에 작업 과정을 '날것의 판단 로그'로 남기는 작성 규칙이다.","무엇을 어떻게 기록할지를 정하며, 정수를 정본으로 올리는 future-to-dnl 규칙과 짝을 이룬다."]}

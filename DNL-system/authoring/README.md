@@ -8,6 +8,9 @@ paths:
   "@rules/markdown-rule.md": "{@DNL-system}/authoring/rules/markdown-rule.md"
   "@rules/yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@rules/multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
+  "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
+  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
   "@dnl-config.toml": "{@dnl-root}/dnl-config.toml"
   "@qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
   "@dnl-util.py": "{@dnl-root}/.agents/skills/dnl-builder/dnl_util.py"
@@ -25,6 +28,7 @@ paths:
 1) 작성 규칙(필수): `@rules/README.md` → `@rules/markdown-rule.md` → `@rules/yaml-frontmatter-rule.md`
 2) 권위/override(필수): `@rules/multi-dnl-authority.md`
 3) 실제 작업 절차: `@dnl-authoring-playbook.md`
+4) `future` 자료 흡수, DNL promotion, archive/history 판단이 있으면 workflow(필수): `@workflow-root.md` → `@future-to-dnl.md` → 필요 시 `@future-to-archive.md`
 
 ---
 
@@ -34,21 +38,24 @@ paths:
 
 DNL의 핵심 가치는 모든 맥락을 보존하되, 한 번에 전부 읽지 않아도 되는 길을 만드는 것입니다. 그래서 좋은 문서는 긴 문서가 아니라, 현재 정본과 다음 이동 경로가 선명한 문서입니다. 내용이 커질수록 README에 더 많이 쌓지 말고, 포털은 얇게 유지한 채 배경·조사·결정 근거를 load-on-demand 문서로 분리합니다.
 
+Authoring은 문서의 작성 규칙을, workflow는 작업 묶음의 수명주기를 정합니다. `future` 자료를 DNL 정본으로 흡수할 때는 두 규칙이 모두 필요하며, main 문서에 과거 변경 이력과 future 경고를 섞지 않는 기준은 `@future-to-dnl.md`를 우선합니다.
+
 문서 하나를 승격하거나 정리했다면 그 파일만 보지 않습니다. 상위 README, 화면 지도, 구현 가이드, future 허브, 관련 서버 도메인 문서까지 따라가며 "다음 AI가 어디서 시작해도 현재 정본으로 도착하는가"를 확인합니다. 이 연결이 끊기면 내용이 맞아도 DNL 작업은 아직 끝난 것이 아닙니다.
 
 ---
 
 ## 작업 루틴(권장)
 1) 변경 범위와 레이어 확정(Shared layer → Product → Project, 있는 레이어만)
-2) 대상 문서 역할 확정(라우터/정본/배경/future/archive)
-3) 문서 수정(규칙 준수: YAML `paths`/@토큰 중심, 로컬 파일링크/HUMAN_LINK 금지)
-4) 라우터 재배선(상위 README/지도/가이드/cross-link가 새 정본을 가리키는지 확인)
-5) semantic stale 검색(옛 경로, 옛 우선순위, future 잔재, 완료 주장과 라우팅 불일치)
-6) QA 실행:
+2) 작업이 `future` 흡수/promotion/archive인지 확인하고, 해당하면 `@future-to-dnl.md` 체크리스트 적용
+3) 대상 문서 역할 확정(라우터/정본/배경/future/archive)
+4) 문서 수정(규칙 준수: YAML `paths`/@토큰 중심, 로컬 파일링크/HUMAN_LINK 금지)
+5) 라우터 재배선(상위 README/지도/가이드/cross-link가 새 정본을 가리키는지 확인)
+6) semantic stale 검색(옛 경로, 옛 우선순위, future 잔재, 완료 주장과 라우팅 불일치)
+7) QA 실행:
    - 포털 기준: `python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all`
    - 전체 기준: `python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all`
    - link-index health summary: `python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary`
-7) 1작업 = 1커밋
+8) 1작업 = 1커밋
 
 ## dnl-config.toml 경계
 

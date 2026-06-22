@@ -10,7 +10,7 @@
     "draft": 42,
     "deprecated": 0
   },
-  "untaggedDocuments": 3,
+  "untaggedDocuments": 0,
   "tags": {
     "auth": {
       "file": "tags/auth.jsonl",
@@ -26,7 +26,7 @@
     },
     "guide-dnl": {
       "file": "tags/guide-dnl.jsonl",
-      "count": 3
+      "count": 5
     },
     "map-dnl": {
       "file": "tags/map-dnl.jsonl",
@@ -46,7 +46,7 @@
     },
     "reference-dnl": {
       "file": "tags/reference-dnl.jsonl",
-      "count": 3
+      "count": 4
     },
     "rule-dnl": {
       "file": "tags/rule-dnl.jsonl",
@@ -59,6 +59,10 @@
     "template-dnl": {
       "file": "tags/template-dnl.jsonl",
       "count": 8
+    },
+    "workflow-dnl": {
+      "file": "tags/workflow-dnl.jsonl",
+      "count": 5
     },
     "yaml-frontmatter": {
       "file": "tags/yaml-frontmatter.jsonl",

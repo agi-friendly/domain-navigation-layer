@@ -54,5 +54,6 @@ It is still human-readable because the content is plain Markdown, versioned with
 
 ## Read Next
 
+- [How DNL Works](how-dnl-works.md)
 - [Getting started](getting-started.md)
 - [Repository layout](repository-layout.md)

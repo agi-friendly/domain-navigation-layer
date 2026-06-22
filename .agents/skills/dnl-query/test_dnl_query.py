@@ -51,12 +51,12 @@ class DnlQueryTest(unittest.TestCase):
                 "path": "docs/sample-dnl/sample-product/sample-project/modules/mail/README.md",
                 "name": "Mail Portal",
                 "status": "draft",
-                "tags": ["portal-dnl", "eml"],
+                "tags": ["portal-dnl", "sample-module"],
                 "description": [],
             },
         ]
         tag_map = {
-            "eml": [entries[3]],
+            "sample-module": [entries[3]],
             "glossary-dnl": [entries[0], entries[2]],
             "i18n": [entries[1]],
             "portal-dnl": [entries[3]],
@@ -178,11 +178,11 @@ class DnlQueryTest(unittest.TestCase):
                 completed.stdout.splitlines(),
                 [
                     "glossary-dnl 2",
-                    "eml 1",
                     "i18n 1",
                     "portal-dnl 1",
                     "reference-dnl 1",
                     "rule-dnl 1",
+                    "sample-module 1",
                 ],
             )
 

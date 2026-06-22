@@ -1,3 +1,4 @@
 {"path":"DNL-system/ai/local-context/current-user-md.md","name":"CURRENT_USER.md Guide","status":"draft","tags":["guide-dnl","reference-dnl"],"description":["This document explains how to draft or maintain CURRENT_USER.md for repository-local handoff context."]}
 {"path":"DNL-system/ai/local-context/paths-md.md","name":"PATHS.md Guide","status":"draft","tags":["guide-dnl","reference-dnl"],"description":["This document explains how PATHS.md maps DNL tokens to real filesystem locations."]}
 {"path":"DNL-system/authoring/rules/dnl-structure.md","name":"dnl-structure","status":"draft","tags":["map-dnl","reference-dnl","dnl-builder","rule-dnl"],"description":[]}
+{"path":"DNL-system/workflow/concepts.md","name":"workflow 개념 정리","status":"draft","tags":["reference-dnl","workflow-dnl"],"description":["이 문서는 future, DNL, archive, history의 의미와 경계를 짧게 정의한다."]}

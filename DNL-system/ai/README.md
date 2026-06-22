@@ -16,6 +16,9 @@ paths:
   "@markdown-rule.md": "{@DNL-system}/authoring/rules/markdown-rule.md"
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
+  "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
+  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
 ---
 
 # ai - AI 운영 포털
@@ -54,6 +57,7 @@ Repository-local path and user handoff notes live under `ai/local-context/` so t
 - `파일링크 금지`
 - `라우팅 개선`
 - `dnl builder`
+- `future`, `future-to-dnl`, promotion, archive, history 정리
 
 읽기 순서는 다음을 따릅니다.
 
@@ -62,9 +66,11 @@ Repository-local path and user handoff notes live under `ai/local-context/` so t
 3. `@yaml-frontmatter-rule.md`
 4. `@multi-dnl-authority.md`
 5. `@dnl-authoring-playbook.md`
-6. 실제로 수정할 대상 문서
+6. 작업이 `future` 자료 흡수, DNL promotion, archive 판단, history 정리를 포함하면 `@workflow-root.md` → `@future-to-dnl.md` → 필요 시 `@future-to-archive.md`
+7. 실제로 수정할 대상 문서
 
 > 목적: DNL 문서 작업을 일반 코드 탐색으로 오인하지 않고, 작성 규칙과 권위 체계를 먼저 고정합니다.
+> workflow는 작업 묶음의 수명주기 정본이고, authoring은 문서 작성 규칙 정본입니다.
 
 ---
 

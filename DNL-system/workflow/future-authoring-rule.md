@@ -1,7 +1,7 @@
 ---
 name: "future 작성 규칙"
 status: "draft"
-tags: ["rule-dnl"]
+tags: ["rule-dnl", "workflow-dnl"]
 description:
   - "이 문서는 future 공간에 작업 과정을 '날것의 판단 로그'로 남기는 작성 규칙이다."
   - "무엇을 어떻게 기록할지를 정하며, 정수를 정본으로 올리는 future-to-dnl 규칙과 짝을 이룬다."
@@ -67,7 +67,7 @@ paths:
 - **날것이라고 무질서하면 안 된다.** 나중에 `@future-to-dnl.md`로 정수를 추출할 수 있도록 "구조화된 날것"으로 남긴다.
 - 대화 말투·잡담은 정제하되, **판단의 솔직함(불확실·실패·번복)은 지운다 ≠ 정제한다**. 솔직함은 유지한다.
 - 포털(README)에는 "현재 판단"(무엇이 확정/미확정인지)과 읽는 순서를 둔다.
-- 경로/링크는 markdown 로컬 링크 대신 YAML `paths` + `@토큰`을 쓴다(회사 markdown 규칙 준수).
+- 경로/링크는 markdown 로컬 링크 대신 YAML `paths` + `@토큰`을 쓴다(DNL 작성 규칙 준수).
 
 ### 남기는 것 / 남기지 않는 것
 
@@ -102,7 +102,7 @@ archive  → 원본 날것 묶음을 보관소로 옮긴다             (@future
 - 확정과 추정을 섞지 않고 `UNVERIFIED`를 표시했는가
 - 다른 PC·다른 AI가 이 기록만 읽고 작업을 이어갈 수 있는가
 - 나중에 `@future-to-dnl.md`로 정수를 뽑아낼 수 있을 만큼 구조화돼 있는가
-- frontmatter·링크가 회사 작성 규칙(`status: draft`, `paths`+`@토큰`)을 지키는가
+- frontmatter·링크가 DNL 작성 규칙(`status: draft`, `paths`+`@토큰`)을 지키는가
 - 비밀정보·순수 잡담을 남기지 않았는가
 
 ---

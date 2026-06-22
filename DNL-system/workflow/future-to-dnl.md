@@ -1,11 +1,15 @@
 ---
 name: "future -> DNL 승격 가이드"
 status: "draft"
-tags: []
+tags: ["guide-dnl", "workflow-dnl"]
+description:
+  - "이 문서는 future에 쌓인 작업 자료를 현재 DNL 정본으로 흡수하는 기준과 완료 조건을 설명한다."
+  - "main README에는 현재 핵심과 길찾기만 두고, 과거 배경과 비교 분석은 보조 문서로 분리하게 한다."
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
   "@concepts.md": "{@DNL-system}/workflow/concepts.md"
   "@future-authoring-rule.md": "{@DNL-system}/workflow/future-authoring-rule.md"
+  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@doc-selection-rules.md": "{@DNL-system}/ai/doc-selection-rules.md"
@@ -15,6 +19,20 @@ paths:
 
 이 문서는 `future`에 쌓인 작업 자료를 DNL 정본으로 흡수할 때의 기준을 정리한다.
 `future`에 무엇을 어떻게 남기는지는 `@future-authoring-rule.md`를 따르고, 이 문서는 그 다음 단계인 "정수만 정본으로 올리기"를 다룬다.
+
+---
+
+## AI 빠른 체크리스트
+
+작업 지시나 소스 문서에 `future`, `future-to-dnl`, promotion, 흡수, archive, history가 보이면 아래를 먼저 적용한다.
+
+1. `@workflow-root.md`와 이 문서를 authoring 규칙과 함께 읽는다.
+2. future 문서는 현재 정본이 아니라 source material로 본다.
+3. 현재 구현, 현재 문서, 현재 DNL로 검증한 내용만 정본에 올린다.
+4. main README/포털에는 현재 핵심과 다음 이동 경로만 둔다.
+5. 과거 변경 이력, 오래된 이름 경고, future와 현재의 비교 분석은 별도 보조 문서나 future/history 쪽으로 분리한다.
+6. 상위 README, 지도, 가이드가 새 정본을 가리키게 재배선한다.
+7. 재배선이 끝난 뒤 raw future 묶음을 `@future-to-archive.md` 기준으로 archive 이동할지 판단한다.
 
 ---
 
@@ -54,10 +72,10 @@ paths:
 
 ### 2. 올릴 레이어를 정한다
 
-- Company-level
-  - 여러 제품/프로젝트에 공통으로 적용되는 workflow 원칙
+- Shared layer
+  - 여러 domain/product/project에 공통으로 적용되는 workflow 원칙
 - Product-level
-  - 특정 시리즈 전체에 공통인 운영 방식
+  - 특정 product 또는 product family 전체에 공통인 운영 방식
 - Project-level
   - 특정 프로젝트 문맥에서만 유효한 작업 기준
 
@@ -67,9 +85,9 @@ paths:
 
 ### 3. future 내용을 현재 코드로 검증하고 정본 내용을 추출한다
 
-future는 작성 시점(과거)의 기록이라 현재 코드와 다를 수 있다.
-추출 전 반드시 현재 소스코드로 검증한다. **소스코드가 정답지이고, future는 "왜 이렇게 했는지"의 힌트로만 쓴다.**
-future와 현재 코드가 다르면 현재 코드를 정본으로 적고, 그 차이는 배경 문서에 "과거 분석 시점과 다름"으로 남긴다.
+future는 작성 시점(과거)의 기록이라 현재 구현이나 문서와 다를 수 있다.
+추출 전 반드시 현재 source, runtime behavior, 또는 현재 DNL로 검증한다. **현재 확인 가능한 기준이 정답지이고, future는 "왜 이렇게 했는지"의 힌트로만 쓴다.**
+future와 현재 기준이 다르면 현재 기준을 정본으로 적고, 그 차이는 배경 문서에 "과거 분석 시점과 다름"으로 남긴다.
 
 그대로 복사하지 말고 아래만 추출한다.
 
@@ -103,11 +121,11 @@ future와 현재 코드가 다르면 현재 코드를 정본으로 적고, 그 �
 - 보조 문서 개수는 고정이 아니다. README 1개로 충분할 수도, 3·10·20개로 나뉠 수도 있다. **배경이 따로 읽을 만큼 실할 때만 분리**하고, 사소하면 main에 1~2줄로 둔다(과분할 금지).
 - 보조 문서 파일명은 영문을 권장한다(예: `design-notes.md`).
 
-#### 화면(UI) 문서와 서버 문서의 역할 분리
+#### 화면/인터페이스 문서와 구현 문서의 역할 분리
 
-- 화면(screens) 문서는 **화면에서 결정·관찰되는 것**만 단정한다. 화면 코드로 확인되지 않는 서버 동작(삭제/전량 교체, 검증, 저장 규칙, 상태 전이 등)은 단정하지 말고, `{@DNL-mail-api-server}/domain/<개념>` 서버 도메인 문서로 `@*-server-domain` 토큰을 추가해 링크한다.
-- 역할 분리: **UI 문서 = 화면 결정 / 서버 문서 = Controller·Service·Mapper·DDL 정본.** 같은 사실을 양쪽에 중복 서술하지 않는다.
-- WHY: 화면 코드로만 검증한 사실과 서버가 실제로 하는 일을 한 문장에 섞으면, 화면 문서가 검증하지 못한 서버 동작을 단정하게 되어 stale·오류의 출처가 된다.
+- 화면/인터페이스 문서는 **해당 표면에서 결정·관찰되는 것**만 단정한다. 그 표면에서 확인되지 않는 backend/domain 동작(검증, 저장 규칙, 상태 전이 등)은 단정하지 말고, 별도 domain/implementation 문서로 `backend-domain.md` 같은 명확한 문서를 추가해 링크한다.
+- 역할 분리: **interface 문서 = 사용자 또는 호출 표면에서 확인되는 결정 / implementation 문서 = 실제 처리 규칙과 저장 근거.** 같은 사실을 양쪽에 중복 서술하지 않는다.
+- WHY: 한 표면에서만 검증한 사실과 실제 구현 전체가 하는 일을 한 문장에 섞으면, 문서가 검증하지 못한 동작을 단정하게 되어 stale·오류의 출처가 된다.
 - `paths` 값은 상대경로(`"README.md"`)가 아니라 `{@변수}/...` 논리 경로를 쓴다(`@yaml-frontmatter-rule.md` 준수).
 
 ---
@@ -139,10 +157,10 @@ future와 현재 코드가 다르면 현재 코드를 정본으로 적고, 그 �
 - 상위 DNL과 충돌하지 않는가
 - `future`를 현재 정본으로 보던 문서가 재배선되었는가
 - raw bundle 없이도 이해 가능한가
-- future를 그대로 베끼지 않고 현재 소스코드로 검증했는가
+- future를 그대로 베끼지 않고 현재 source/runtime/docs 기준으로 검증했는가
 - main은 현재 핵심만 담고, 과거 배경은 별도 문서로 분리했는가(또는 분리할 만큼 실하지 않아 1~2줄로 두었는가)
 - 약한 AI가 main만 읽어도 현재 상태를 오독하지 않는가
-- 화면 코드 밖의 서버 동작을 단정하지 않고 서버 도메인(`@*-server-domain`)으로 링크했는가
+- 인터페이스 문서가 확인할 수 없는 backend/domain 동작을 단정하지 않고 별도 domain/implementation 문서로 링크했는가
 - `paths`가 상대경로 없이 `{@변수}/...` 논리 경로로 작성됐는가
 
 ---
@@ -151,10 +169,10 @@ future와 현재 코드가 다르면 현재 코드를 정본으로 적고, 그 �
 
 leaf 문서를 쓴 것만으로는 "승격 완료"가 아니다. 한 범위(예: 화면 그룹)의 승격은 아래가 모두 끝나야 완료다.
 
-1. **leaf 문서 작성**: 각 대상의 README(+필요 시 design-notes)를 현재 코드로 검증해 작성.
+1. **leaf 문서 작성**: 각 대상의 README(+필요 시 design-notes)를 현재 source/runtime/docs 기준으로 검증해 작성.
 2. **상위 README 재배선**: 그 범위를 `future` 우선에서 정본(screens 등) 우선으로 바꾸고, 상위 포털이 정본을 가리키게 한다.
-3. **aggregate map/guide stale scan**: 같은 범위를 다루는 map/guide(파일 구조·화면 매핑·구현 레시피 등)에서 옛 경로·잔재(`view/config/mng`, 컴포넌트 개수 등)를 코드 기준으로 교정한다.
-4. **서버 도메인 gap 기록**: UI가 단정할 수 없는 서버 동작은 `@*-server-domain`으로 위임하고, 대응 서버 도메인 문서가 없으면 gap으로 남긴다.
+3. **aggregate map/guide stale scan**: 같은 범위를 다루는 map/guide(파일 구조·화면 매핑·구현 레시피 등)에서 옛 경로·잔재(`legacy/path/example`, 오래된 component count 등)를 현재 기준으로 교정한다.
+4. **domain/implementation gap 기록**: interface 문서가 단정할 수 없는 backend/domain 동작은 별도 domain/implementation 문서로 위임하고, 대응 문서가 없으면 gap으로 남긴다.
 5. **archive 가능 여부 판단**: 참조 재배선이 끝났으면 원자료 `future` 묶음을 archive로 옮길 수 있는지 판단한다(`future-to-archive` 가이드).
 
 ---

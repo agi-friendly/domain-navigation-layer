@@ -1,7 +1,10 @@
 ---
 name: "future -> archive 이동 가이드"
 status: "draft"
-tags: []
+tags: ["guide-dnl", "workflow-dnl"]
+description:
+  - "이 문서는 future 작업 묶음을 active 경로에서 분리해 raw archive로 옮기는 기준을 설명한다."
+  - "DNL promotion과 참조 재배선이 끝난 뒤 archive 가능 여부를 판단할 때 사용한다."
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
   "@concepts.md": "{@DNL-system}/workflow/concepts.md"
