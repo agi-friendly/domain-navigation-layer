@@ -108,6 +108,8 @@ dnl-config.toml
 -> dnl-query lookup
 ```
 
+Generated index directories are local build artifacts. Rebuild them when they are missing or stale, but do not commit them.
+
 For example, if you create `DNL/` but forget to add it to `scan.include`, full QA and generated indexes will not see it.
 
 ## Skills

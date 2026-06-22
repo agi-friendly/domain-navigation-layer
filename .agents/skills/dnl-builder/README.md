@@ -120,6 +120,7 @@ YAML 필수 필드, field order, status/tag/token 형식, 숨김 디렉토리와
 기본 출력 위치는 `.agents/skills/dnl-query/tag-index/`입니다.
 `dnl-builder`는 index를 만들고 갱신하며, `dnl-query`는 생성된 index를 읽습니다.
 index 대상 범위는 `dnl-config.toml`의 `scan.include`, `scan.exclude`를 따릅니다.
+index 파일은 git에 커밋하지 않는 로컬 생성물입니다.
 
 - 전체 재생성:
   - `python3 .agents/skills/dnl-builder/dnl_util.py tag index build`
@@ -138,6 +139,7 @@ index 대상 범위는 `dnl-config.toml`의 `scan.include`, `scan.exclude`를 �
 
 link index는 YAML `paths` 선언과 본문 `@토큰` 사용 관계를 색인합니다.
 기본 출력 위치는 `.agents/skills/dnl-query/link-index/`입니다.
+index 파일은 git에 커밋하지 않는 로컬 생성물입니다.
 첫 구현은 health-check report 기반이며, unresolved/unused/missing token을 바로 QA fail로 올리지 않습니다.
 
 - 전체 재생성:

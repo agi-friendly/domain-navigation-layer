@@ -81,7 +81,8 @@ link index 생성/최신성 확인은 `.agents/skills/dnl-builder/dnl_util.py li
 
 ## index가 없을 때
 
-아래 명령으로 index를 생성합니다.
+tag/link index는 git에 커밋하지 않는 로컬 생성물입니다.
+index가 없거나 최신성이 의심되면 아래 명령으로 생성합니다.
 
 ```bash
 python3 .agents/skills/dnl-builder/dnl_util.py tag index build

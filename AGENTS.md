@@ -20,6 +20,7 @@ paths:
 - `@paths-md.md` and `@current-user-md.md` if the task depends on local context details.
 - If the task mentions a skill, use `.agents/skills/{skill}/SKILL.md` as the source of truth.
 - Read `@skills-readme.md` and `@multi-agent-skill-guide.md` only when you need the shared skill catalog or wrapper-maintenance rules.
+- Generated `dnl-query` tag/link indexes are local build artifacts. If they are missing or stale, rebuild them with `dnl-builder`; do not commit generated index files.
 
 ---
 
