@@ -8,4 +8,4 @@
 {"path":"DNL-system/templates/README.md","name":"templates - 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
 {"path":"DNL-system/templates/outputs/README.md","name":"templates/outputs - 산출물 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
 {"path":"DNL-system/templates/requests/README.md","name":"templates/requests - 요청 템플릿 포털","status":"draft","tags":["portal-dnl"],"description":[]}
-{"path":"DNL-system/workflow/README.md","name":"workflow - work lifecycle portal","status":"draft","tags":["portal-dnl"],"description":[]}
+{"path":"DNL-system/workflow/README.md","name":"workflow - work lifecycle portal","status":"draft","tags":["portal-dnl","workflow-dnl"],"description":["This document is the source-of-truth portal for future notes, DNL promotion, archive, and history lifecycle decisions.","Agents use it before promoting future material into canonical DNL or moving raw work bundles out of active paths."]}

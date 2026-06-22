@@ -5,9 +5,9 @@
     "DNL-example"
   ],
   "documents": 42,
-  "links": 120,
+  "links": 136,
   "backlinks": 44,
   "unresolvedPaths": 0,
-  "unusedPathTokens": 39,
+  "unusedPathTokens": 40,
   "missingPathTokens": 0
 }
