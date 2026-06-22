@@ -15,6 +15,7 @@ AI를 `DNL-system/authoring`의 정본 규칙/플레이북으로 먼저 보내�
 - 현재 파일이 맞는지만 보지 말고, 상위 README/지도/가이드가 새 정본으로 이어지는지 확인합니다.
 - README와 포털 문서는 현재 정본과 다음 이동 경로만 얇게 유지하고, 긴 배경/조사/판단 근거는 필요할 때 여는 보조 문서로 분리합니다.
 - `future` 문서는 힌트입니다. 현재 DNL로 승격한 뒤에는 active 문서가 `future`를 우선 경로로 보지 않게 재배선합니다.
+- 작업이 `future`, `future-to-dnl`, promotion, archive, history 정리를 포함하면 `DNL-system/workflow`를 반드시 함께 읽습니다.
 - UI 문서, 서버 도메인 문서, 설계 결정 문서의 source-of-truth를 나누고 중복 단정을 피합니다.
 - QA 통과만으로 끝내지 말고, 옛 경로/옛 우선순위/상위 라우터 누락 같은 semantic stale도 검색합니다.
 
@@ -32,16 +33,20 @@ AI를 `DNL-system/authoring`의 정본 규칙/플레이북으로 먼저 보내�
 3. `DNL-system/authoring/rules/yaml-frontmatter-rule.md`
 4. `DNL-system/authoring/rules/multi-dnl-authority.md`
 5. `DNL-system/authoring/dnl-authoring-playbook.md`
-6. 필요한 경우 `.agents/skills/dnl-builder/README.md`
+6. `DNL-system/workflow/README.md`
+7. 작업이 `future`, `future-to-dnl`, promotion, archive, history 정리를 포함하면 `DNL-system/workflow/future-to-dnl.md`
+8. archive 이동 판단이 포함되면 `DNL-system/workflow/future-to-archive.md`
+9. 필요한 경우 `.agents/skills/dnl-builder/README.md`
 
 ## 기본 작업 순서
 
 1. 정본 규칙 문서를 읽고 변경 범위와 레이어를 좁힙니다.
-2. 대상 문서의 역할을 정합니다: 라우터, 정본, 배경, future, archive.
-3. 대상 DNL 문서를 수정합니다.
-4. 상위 README, 관련 지도/가이드, cross-link가 새 정본을 가리키는지 확인합니다.
-5. 주변 문맥과 semantic stale을 다시 확인합니다.
-6. QA를 실행합니다.
+2. future 자료 흡수 작업이면 `future-to-dnl` 체크리스트로 main/배경/archive 경계를 먼저 정합니다.
+3. 대상 문서의 역할을 정합니다: 라우터, 정본, 배경, future, archive.
+4. 대상 DNL 문서를 수정합니다.
+5. 상위 README, 관련 지도/가이드, cross-link가 새 정본을 가리키는지 확인합니다.
+6. 주변 문맥과 semantic stale을 다시 확인합니다.
+7. QA를 실행합니다.
 
 ## QA 실행 (자주 쓰는 것만)
 
@@ -52,7 +57,7 @@ AI를 `DNL-system/authoring`의 정본 규칙/플레이북으로 먼저 보내�
 # 전체 스캔
 python3 .agents/skills/dnl-builder/qa.py
 
-# 포털(회사+제품+핵심 프로젝트)만
+# 설정된 포털 범위만
 python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all
 ```
 

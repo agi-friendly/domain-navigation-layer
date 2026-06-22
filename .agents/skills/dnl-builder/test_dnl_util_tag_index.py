@@ -79,10 +79,10 @@ exclude = []
                 root,
                 "docs/sample-dnl/README.md",
                 name="Sample Portal",
-                tags='["portal-dnl", "eml"]',
+                tags='["portal-dnl", "sample-module"]',
                 description="This document describes the sample DNL portal.",
             )
-            self.write_doc(root, "docs/sample-dnl/doc.md", name="Mail", tags='["eml"]')
+            self.write_doc(root, "docs/sample-dnl/doc.md", name="Mail", tags='["sample-module"]')
             self.write_doc(root, "docs/sample-dnl/empty-tags.md", name="No Tag")
 
             completed = self.run_util(root, "tag", "index", "build")
@@ -90,7 +90,7 @@ exclude = []
             index_dir = root / ".agents/skills/dnl-query/tag-index"
             manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
             all_docs = self.read_jsonl(index_dir / "all-docs.jsonl")
-            eml_docs = self.read_jsonl(index_dir / "tags/eml.jsonl")
+            eml_docs = self.read_jsonl(index_dir / "tags/sample-module.jsonl")
             portal_docs = self.read_jsonl(index_dir / "tags/portal-dnl.jsonl")
 
             self.assertEqual(completed.returncode, 0, completed.stderr)
@@ -103,7 +103,7 @@ exclude = []
                 {"active": 0, "draft": 3, "deprecated": 0},
             )
             self.assertEqual(manifest["untaggedDocuments"], 1)
-            self.assertEqual(manifest["tags"]["eml"]["count"], 2)
+            self.assertEqual(manifest["tags"]["sample-module"]["count"], 2)
             self.assertEqual(manifest["tags"]["portal-dnl"]["count"], 1)
             self.assertEqual([entry["path"] for entry in all_docs], ["docs/sample-dnl/README.md", "docs/sample-dnl/doc.md", "docs/sample-dnl/empty-tags.md"])
             self.assertEqual([entry["path"] for entry in eml_docs], ["docs/sample-dnl/README.md", "docs/sample-dnl/doc.md"])
@@ -182,7 +182,7 @@ exclude = ["archive"]
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_scan_config(root)
-            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["eml"]')
+            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["sample-module"]')
             build = self.run_util(root, "tag", "index", "build")
             self.assertEqual(build.returncode, 0, build.stderr)
 
@@ -207,16 +207,16 @@ paths: {}
 
             self.assertEqual(update.returncode, 0, update.stderr)
             self.assertIn("action=updated", update.stdout)
-            self.assertNotIn("eml", manifest["tags"])
+            self.assertNotIn("sample-module", manifest["tags"])
             self.assertEqual(manifest["tags"]["org"]["count"], 1)
             self.assertEqual([entry["path"] for entry in org_docs], ["docs/sample-dnl/doc.md"])
-            self.assertFalse((index_dir / "tags/eml.jsonl").exists())
+            self.assertFalse((index_dir / "tags/sample-module.jsonl").exists())
 
     def test_index_update_removes_deleted_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_scan_config(root)
-            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["eml"]')
+            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["sample-module"]')
             build = self.run_util(root, "tag", "index", "build")
             self.assertEqual(build.returncode, 0, build.stderr)
             doc.unlink()
@@ -237,7 +237,7 @@ paths: {}
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_scan_config(root)
-            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["eml"]')
+            doc = self.write_doc(root, "docs/sample-dnl/doc.md", tags='["sample-module"]')
             build = self.run_util(root, "tag", "index", "build")
             self.assertEqual(build.returncode, 0, build.stderr)
 
@@ -267,7 +267,7 @@ paths: {}
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_scan_config(root)
-            self.write_doc(root, "docs/sample-dnl/doc.md", tags='["eml"]')
+            self.write_doc(root, "docs/sample-dnl/doc.md", tags='["sample-module"]')
             self.write_doc(root, "docs/sample-dnl/.hidden/doc.md", tags='["hidden"]')
             self.write_doc(root, ".agents/skills/sample/README.md", tags='["skill"]')
             self.write_doc(root, ".agents/skills/sample/SKILL.md", tags='["skill"]')
@@ -283,7 +283,7 @@ paths: {}
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_scan_config(root)
-            self.write_doc(root, "docs/sample-dnl/doc.md", tags='["eml"]')
+            self.write_doc(root, "docs/sample-dnl/doc.md", tags='["sample-module"]')
             self.write_doc(root, ".agents/skills/sample/README.md", tags='["skill"]')
 
             completed = self.run_util(root, "tag", "index", "build")

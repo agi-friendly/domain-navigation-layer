@@ -1,7 +1,9 @@
 ---
 name: "workflow 개념 정리"
 status: "draft"
-tags: []
+tags: ["reference-dnl", "workflow-dnl"]
+description:
+  - "이 문서는 future, DNL, archive, history의 의미와 경계를 짧게 정의한다."
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
   "@future-authoring-rule.md": "{@DNL-system}/workflow/future-authoring-rule.md"

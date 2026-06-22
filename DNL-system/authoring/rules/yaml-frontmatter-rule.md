@@ -41,7 +41,7 @@ frontmatter 필드 순서는 아래를 기준으로 한다.
 ---
 name: "샘플 화면"
 status: "draft"
-tags: ["portal-dnl", "screen", "eml"]
+tags: ["portal-dnl", "screen", "sample-module"]
 description:
   - "이 문서는 샘플 화면의 구조와 주요 진입점을 설명한다."
 paths:
@@ -70,7 +70,7 @@ paths:
 예시:
 
 ```yaml
-name: "전자우편 화면 지도"
+name: "샘플 화면 지도"
 ```
 
 ## status
@@ -173,11 +173,11 @@ tags: ["portal-dnl", "screen", "troubleshooting"]
 모듈 태그는 반복 사용해도 된다.
 화면, API, 장애, 지도 문서를 모듈 단위로 다시 필터링할 때 도움이 되면 사용한다.
 
-- `eml`
-- `org`
-- `mmo`
-- `ptl`
-- `prj`
+- `sample-module`
+- `sample-auth`
+- `sample-billing`
+- `sample-workflow`
+- `sample-admin`
 
 ### 기술/주제 태그
 

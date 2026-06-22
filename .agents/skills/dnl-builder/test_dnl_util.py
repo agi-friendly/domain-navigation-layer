@@ -63,7 +63,7 @@ exclude = []
                 "--dir",
                 "docs/sample-dnl",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
             )
 
@@ -85,7 +85,7 @@ exclude = []
                 "--path",
                 "docs/sample-dnl",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
                 "--write",
             )
@@ -96,14 +96,14 @@ exclude = []
                 "--path",
                 "docs/sample-dnl",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
                 "--write",
             )
 
             self.assertEqual(first.returncode, 0, first.stderr)
             self.assertEqual(second.returncode, 0, second.stderr)
-            self.assertIn('tags: ["eml"]', doc.read_text(encoding="utf-8"))
+            self.assertIn('tags: ["sample-module"]', doc.read_text(encoding="utf-8"))
             self.assertIn("changed=1", first.stdout)
             self.assertIn("already_tagged=1", second.stdout)
             self.assertIn("changed=0", second.stdout)
@@ -121,14 +121,14 @@ exclude = []
                 "--path",
                 "docs/sample-dnl",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
                 "--write",
             )
 
             self.assertEqual(completed.returncode, 0, completed.stderr)
             self.assertIn(
-                'tags: ["portal-dnl", "eml"]',
+                'tags: ["portal-dnl", "sample-module"]',
                 doc.read_text(encoding="utf-8"),
             )
 
@@ -170,13 +170,13 @@ exclude = []
                 "--path",
                 ".",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
                 "--write",
             )
 
             self.assertEqual(completed.returncode, 0, completed.stderr)
-            self.assertIn('tags: ["eml"]', editable.read_text(encoding="utf-8"))
+            self.assertIn('tags: ["sample-module"]', editable.read_text(encoding="utf-8"))
             self.assertIn("tags: []", hidden.read_text(encoding="utf-8"))
             self.assertIn("tags: []", hidden_skill_readme.read_text(encoding="utf-8"))
             self.assertIn("tags: []", skill.read_text(encoding="utf-8"))
@@ -203,13 +203,13 @@ exclude = []
                 "--path",
                 ".",
                 "--tag",
-                "eml",
+                "sample-module",
                 "--recursive",
                 "--write",
             )
 
             self.assertEqual(completed.returncode, 0, completed.stderr)
-            self.assertIn('tags: ["eml"]', configured.read_text(encoding="utf-8"))
+            self.assertIn('tags: ["sample-module"]', configured.read_text(encoding="utf-8"))
             self.assertIn("tags: []", default_scope.read_text(encoding="utf-8"))
 
 

@@ -28,6 +28,8 @@ paths:
 
 문서가 길어질수록 더 많이 설명하지 말고 더 잘 나눕니다. 포털/README는 현재 결론과 다음 경로만 남기고, 조사 근거·비교표·이전 계획은 필요할 때 여는 보조 문서로 분리합니다.
 
+`future` 자료를 DNL 정본으로 흡수하는 작업은 단순 작성 작업이 아니라 작업 수명주기 변경입니다. 이 경우 authoring 규칙만 읽지 말고 `DNL-system/workflow/README.md`와 `DNL-system/workflow/future-to-dnl.md`를 함께 읽어야 합니다.
+
 ## DNL 문서 작업 시 권장 읽기 순서
 
 1. `DNL-system/authoring/README.md`
@@ -35,17 +37,21 @@ paths:
 3. `DNL-system/authoring/rules/yaml-frontmatter-rule.md`
 4. `DNL-system/authoring/rules/multi-dnl-authority.md`
 5. `DNL-system/authoring/dnl-authoring-playbook.md`
-6. `.agents/skills/dnl-builder/README.md`
+6. `DNL-system/workflow/README.md`
+7. `future`, `future-to-dnl`, promotion, archive, history 정리가 작업에 포함되면 `DNL-system/workflow/future-to-dnl.md`
+8. archive 이동 판단이 포함되면 `DNL-system/workflow/future-to-archive.md`
+9. `.agents/skills/dnl-builder/README.md`
 
 ## 권장 작업 루틴
 
 1. 작업이 DNL 문서화/라우팅/README 정리인지 먼저 판단합니다.
 2. DNL 작업이면 정본 규칙 문서를 먼저 읽고, 변경 범위와 레이어를 좁힙니다.
-3. 대상 문서의 역할을 정합니다: 라우터, 정본, 배경, future, archive.
-4. 대상 문서를 수정합니다.
-5. 상위 README, 관련 지도/가이드, cross-link가 새 정본을 가리키는지 확인합니다.
-6. 옛 경로, 옛 우선순위, 완료 주장과 실제 라우팅 불일치 같은 semantic stale을 검색합니다.
-7. QA를 실행하고, 리포트를 보고 필요한 정리를 마칩니다.
+3. future 자료 흡수 작업이면 `future-to-dnl` 체크리스트로 main/배경/archive 경계를 먼저 정합니다.
+4. 대상 문서의 역할을 정합니다: 라우터, 정본, 배경, future, archive.
+5. 대상 문서를 수정합니다.
+6. 상위 README, 관련 지도/가이드, cross-link가 새 정본을 가리키는지 확인합니다.
+7. 옛 경로, 옛 우선순위, 완료 주장과 실제 라우팅 불일치 같은 semantic stale을 검색합니다.
+8. QA를 실행하고, 리포트를 보고 필요한 정리를 마칩니다.
 
 ## dnl-config.toml
 

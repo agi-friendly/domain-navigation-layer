@@ -113,8 +113,8 @@ paths:
 - 이미지 파일 이름은 소문자 kebab-case 사용
 - 이미지 설명은 이미지 파일 이름으로 작성
 - 예시
-  - ✅ `![메일 작성 화면](assets/compose-main.png)`
-  - ❌ `![메일 작성 화면](assets/Compose-Main.png)`
+  - ✅ `![샘플 작성 화면](assets/compose-main.png)`
+  - ❌ `![샘플 작성 화면](assets/Compose-Main.png)`
 
 ## 파일, 폴더 명 규칙
 - 소문자 kebab-case 사용
