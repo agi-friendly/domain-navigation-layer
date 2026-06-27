@@ -55,6 +55,13 @@ DNL-system/
 .agents/skills/
 ```
 
+If you want the active work lifecycle, also create:
+
+```text
+working/
+.working-archive/
+```
+
 4. Choose a project knowledge root name and create the first route there.
 
 ```text
@@ -153,13 +160,14 @@ At its largest, it can be an umbrella knowledge repository that routes across ma
 README.md
 PATHS.md
 DNL-system/
-DNL-Company/
+DNL-shared/
 products/
   DNL-product-platform/
     projects/
       DNL-webapp/
       DNL-api-server/
-future/
+working/
+.working-archive/
 ```
 
 The important part is not the exact folder names. The important part is that each document tells the next reader or agent where to go next.
@@ -174,6 +182,7 @@ DNL works by combining a small routing contract with lightweight validation:
 - `dnl-config.toml` tells tools what to scan and which tags are required.
 - `.agents/skills/` gives agents reusable QA, query, and tree-inspection workflows.
 - `qa.py` and generated indexes help catch missing frontmatter, stale scan config, and unresolved internal paths.
+- `working/` keeps active source material separate from canonical DNL until it is promoted.
 
 Read the mechanics and reliability model: [How DNL Works](docs/how-dnl-works.md).
 
@@ -190,7 +199,7 @@ DNL is for a different job:
 - Stable handoff notes
 - Runbooks and code pointers
 - Local path mapping through `PATHS.md`
-- Work lifecycle from rough notes to reusable knowledge
+- Work lifecycle from `working/` source material to reusable DNL knowledge
 
 A useful shorthand:
 
@@ -212,7 +221,7 @@ Small DNL and Umbrella DNL are only starting points.
 You can also build:
 
 - Team DNL: team conventions, recurring workflows, onboarding, runbooks
-- Company DNL: shared glossary, products, teams, systems, architecture maps
+- Shared DNL: shared glossary, products, teams, systems, architecture maps
 - Personal DNL: local agent handoff routes, active project maps, investigation logs
 
 The hierarchy is yours. DNL does not prescribe it.
@@ -248,6 +257,8 @@ If you are an AI agent or maintaining this repository:
 
 - `AGENTS.md` is the agent entrypoint and routing contract.
 - `DNL-system/` holds maintenance, authoring, workflow, and AI routing rules.
+- `working/` is the optional shared active work area.
+- `.working-archive/` stores completed raw work bundles outside active routes.
 - `.agents/skills/` holds reusable skill entrypoints for agents.
 
 If you are an automated agent, read `AGENTS.md` before making changes.

@@ -9,6 +9,7 @@ Start with the root [README](../README.md), then choose the page that matches yo
 - [Core concept](core-concept.md): what DNL is, what it is not, and why it is AI-first.
 - [How DNL Works](how-dnl-works.md): the route flow, YAML tokens, config surface, skills, and validation model.
 - [Repository layout](repository-layout.md): what the folders in this starter repository do.
+- [Work lifecycle](../DNL-system/workflow/README.md): where active source material lives, when it becomes DNL, and where raw bundles are archived.
 - [Example DNL](../DNL-example/README.md): a tiny auth/login-callback route that is scanned by the starter config.
 
 ## Start Using DNL

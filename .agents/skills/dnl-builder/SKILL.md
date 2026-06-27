@@ -1,32 +1,35 @@
 ---
 name: dnl-builder
-description: DNL 문서 작업 시 DNL-system/authoring 정본으로 라우팅하고 QA까지 수행하는 스킬
+description: Route DNL document work through DNL-system authoring/workflow rules, then run QA.
 ---
 
 # DNL Builder
 
-이 스킬은 `.agents/skills/dnl-builder/qa.py`만 실행하는 도구가 아니라,
-AI를 `DNL-system/authoring`의 정본 규칙/플레이북으로 먼저 보내는 브리지입니다.
+This skill is not only a wrapper around `.agents/skills/dnl-builder/qa.py`.
+It is a bridge that sends agents to the canonical DNL-system authoring and workflow rules before they edit DNL documents.
 
-## 기본 자세: DNL 총괄담당자
+## Steward posture
 
-이 스킬을 쓰는 AI는 한 문서의 작성자가 아니라, DNL 전체의 탐색 품질을 책임지는 총괄담당자처럼 행동합니다.
+Act as a steward of the whole navigation layer, not only as the editor of one file.
 
-- 현재 파일이 맞는지만 보지 말고, 상위 README/지도/가이드가 새 정본으로 이어지는지 확인합니다.
-- README와 포털 문서는 현재 정본과 다음 이동 경로만 얇게 유지하고, 긴 배경/조사/판단 근거는 필요할 때 여는 보조 문서로 분리합니다.
-- `future` 문서는 힌트입니다. 현재 DNL로 승격한 뒤에는 active 문서가 `future`를 우선 경로로 보지 않게 재배선합니다.
-- 작업이 `future`, `future-to-dnl`, promotion, archive, history 정리를 포함하면 `DNL-system/workflow`를 반드시 함께 읽습니다.
-- UI 문서, 서버 도메인 문서, 설계 결정 문서의 source-of-truth를 나누고 중복 단정을 피합니다.
-- QA 통과만으로 끝내지 말고, 옛 경로/옛 우선순위/상위 라우터 누락 같은 semantic stale도 검색합니다.
+- Check whether parent README files, maps, and guides route to the new canonical document.
+- Keep portal documents light: current truth and next routes only.
+- Move long background, investigations, and decision notes into load-on-demand documents when needed.
+- Treat `working/` as source material, not canonical DNL.
+- After promotion, active DNL should not treat raw working bundles as the priority path.
+- If the task includes `working`, `working-to-dnl`, promotion, archive, or history cleanup, read workflow docs as well as authoring docs.
+- Do not stop at green QA. Search semantic stale text such as old paths, old priority wording, or missing parent routes.
 
-## 이 스킬을 먼저 써야 하는 경우
+## Use this skill first when
 
-- DNL 문서를 새로 작성할 때
-- DNL 문서를 수정/리팩터링할 때
-- `README.md`, YAML frontmatter, `@토큰`, 로컬 파일링크/HUMAN_LINK 제거 작업을 할 때
-- 작업 후 DNL 문서 품질을 점검할 때
+- creating a DNL document
+- editing or refactoring a DNL document
+- changing README routing
+- editing YAML frontmatter, `paths`, or `@tokens`
+- removing local Markdown file links or `HUMAN_LINK` patterns from canonical DNL docs
+- checking DNL document quality after edits
 
-## 필수 읽기 순서
+## Required reading order
 
 1. `DNL-system/authoring/README.md`
 2. `DNL-system/authoring/rules/markdown-rule.md`
@@ -34,36 +37,44 @@ AI를 `DNL-system/authoring`의 정본 규칙/플레이북으로 먼저 보내�
 4. `DNL-system/authoring/rules/multi-dnl-authority.md`
 5. `DNL-system/authoring/dnl-authoring-playbook.md`
 6. `DNL-system/workflow/README.md`
-7. 작업이 `future`, `future-to-dnl`, promotion, archive, history 정리를 포함하면 `DNL-system/workflow/future-to-dnl.md`
-8. archive 이동 판단이 포함되면 `DNL-system/workflow/future-to-archive.md`
-9. 필요한 경우 `.agents/skills/dnl-builder/README.md`
+7. If the work includes `working`, `working-to-dnl`, promotion, archive, or history cleanup: `DNL-system/workflow/working-to-dnl.md`
+8. If archive movement is involved: `DNL-system/workflow/working-to-archive.md`
+9. When needed: `.agents/skills/dnl-builder/README.md`
 
-## 기본 작업 순서
+## Basic workflow
 
-1. 정본 규칙 문서를 읽고 변경 범위와 레이어를 좁힙니다.
-2. future 자료 흡수 작업이면 `future-to-dnl` 체크리스트로 main/배경/archive 경계를 먼저 정합니다.
-3. 대상 문서의 역할을 정합니다: 라우터, 정본, 배경, future, archive.
-4. 대상 DNL 문서를 수정합니다.
-5. 상위 README, 관련 지도/가이드, cross-link가 새 정본을 가리키는지 확인합니다.
-6. 주변 문맥과 semantic stale을 다시 확인합니다.
-7. QA를 실행합니다.
+1. Read canonical authoring and workflow rules.
+2. Narrow the target layer and document role.
+3. If promoting working material, apply the `working-to-dnl` checklist first.
+4. Edit the target DNL document.
+5. Rewire parent README, maps, guides, and cross-links.
+6. Search for semantic stale text.
+7. Run QA.
 
-## QA 실행 (자주 쓰는 것만)
+## QA commands
 
-> **Windows:** `python -X utf8 .agents/skills/dnl-builder/qa.py ...`
-> **macOS/Linux:** `python3 .agents/skills/dnl-builder/qa.py ...`
+macOS/Linux:
 
 ```bash
-# 전체 스캔
 python3 .agents/skills/dnl-builder/qa.py
-
-# 설정된 포털 범위만
 python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all
 ```
 
-리포트: `.agents/skills/dnl-builder/reports/qa-report.md` (gitignored)
+Windows:
 
-## 상세 문서
+```bash
+python -X utf8 .agents/skills/dnl-builder/qa.py
+```
 
-- 작업 절차, 체크 항목, 실패 정책: `.agents/skills/dnl-builder/README.md`
-- 정본 작성 규칙과 플레이북: `DNL-system/authoring/`
+Report path:
+
+```text
+.agents/skills/dnl-builder/reports/qa-report.md
+```
+
+The report directory is gitignored.
+
+## More details
+
+- Workflow and quality guide: `.agents/skills/dnl-builder/README.md`
+- Canonical writing rules: `DNL-system/authoring/`

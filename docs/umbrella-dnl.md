@@ -2,7 +2,7 @@
 
 Umbrella DNL is the multi-repository shape.
 
-Use it when the DNL repository is not the source repository itself. It is a separate knowledge hub that routes agents across products, projects, source repositories, working notes, and local paths.
+Use it when the DNL repository is not the source repository itself. It is a separate knowledge hub that routes agents across products, projects, source repositories, working material, and local paths.
 
 Small DNL helps one repository stop feeling blind.
 Umbrella DNL helps a whole workspace stop feeling scattered.
@@ -47,7 +47,7 @@ The agent starts in the Umbrella DNL, then follows the route:
 ```text
 AGENTS.md
   -> DNL-system/README.md
-  -> DNL-Company/README.md
+  -> DNL-shared/README.md
   -> products/DNL-product-*/README.md
   -> products/DNL-product-*/projects/DNL-*/README.md
   -> PATHS.md token
@@ -67,7 +67,7 @@ workspace-dnl/
   PATHS.md
   dnl-config.toml
   DNL-system/
-  DNL-Company/
+  DNL-shared/
   products/
     DNL-product-platform/
       README.md
@@ -80,7 +80,8 @@ workspace-dnl/
           README.md
         DNL-api-server/
           README.md
-  future/
+  working/
+  .working-archive/
 ```
 
 You do not need every folder on day one.
@@ -94,7 +95,7 @@ workspace-dnl/
   PATHS.md
   dnl-config.toml
   DNL-system/
-  DNL-Company/
+  DNL-shared/
   products/
     DNL-product-platform/
       README.md
@@ -112,7 +113,7 @@ For Umbrella DNL, use `DNL-` prefixes for DNL document layers.
 Recommended:
 
 ```text
-DNL-Company/
+DNL-shared/
 products/
   DNL-product-platform/
     projects/
@@ -160,7 +161,7 @@ Good product-level documents:
 - version policy
 - migration plans
 - product-level runbooks
-- future design notes
+- working material promotion routes
 
 Example:
 
@@ -278,13 +279,13 @@ For an Umbrella DNL, include the DNL knowledge layers:
 
 ```toml
 [scan]
-include = ["DNL-system", "DNL-Company", "products"]
-exclude = [".git", ".repo-history", "CURRENT_WORKING"]
+include = ["DNL-system", "DNL-shared", "products"]
+exclude = [".git", "CURRENT_WORKING", "working", ".working-archive", ".repo-history"]
 
 [paths.internal]
 "dnl-root" = "."
 "DNL-system" = "DNL-system"
-"DNL-Company" = "DNL-Company"
+"DNL-shared" = "DNL-shared"
 "DNL-product-platform" = "products/DNL-product-platform"
 "DNL-webapp" = "products/DNL-product-platform/projects/DNL-webapp"
 "DNL-api-server" = "products/DNL-product-platform/projects/DNL-api-server"
@@ -328,7 +329,7 @@ Start with one real cross-repository question:
 A first Umbrella route might be:
 
 ```text
-DNL-Company/README.md
+DNL-shared/README.md
   -> products/DNL-product-platform/README.md
   -> products/DNL-product-platform/projects/DNL-webapp/README.md
   -> products/DNL-product-platform/projects/DNL-api-server/README.md
@@ -346,10 +347,11 @@ Use this as a placement guide:
 | Layer | Put here |
 | --- | --- |
 | `DNL-system/` | DNL operating rules, AI loading, authoring, workflow, templates |
-| `DNL-Company/` | company-wide glossary, product map, team map, cross-product entrypoints |
+| `DNL-shared/` | shared glossary, product map, team map, cross-product entrypoints |
 | `DNL-product-*` | product ecosystem, shared architecture, infra, DDL, project boundaries |
 | `DNL-project-*` or `DNL-<repo>` | one repository or deployable unit |
-| `future/` | rough ideas, investigation notes, not-yet-promoted design work |
+| `working/` | active source material, investigation notes, not-yet-promoted design work |
+| `.working-archive/` | completed raw working bundles that should not be default routes |
 | `PATHS.md` | local machine paths and source repository mappings |
 
 The names can change. The responsibility boundaries matter more than the exact folder names.
@@ -404,9 +406,11 @@ The product layer is where cross-project knowledge belongs. If several projects 
 
 Use `PATHS.md` for machine-specific paths.
 
-### Treating Future As Current Truth
+### Treating Working As Current Truth
 
-Use `future/` for rough work. When it becomes stable knowledge, promote it into the appropriate company, product, or project DNL route.
+Use `working/` for rough source material. When it becomes stable knowledge, promote it into the appropriate company, product, or project DNL route.
+
+After promotion and route rewiring, move completed raw bundles into `.working-archive/` when they still have reference value.
 
 ## Read Next
 

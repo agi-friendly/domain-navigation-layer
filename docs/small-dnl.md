@@ -49,7 +49,7 @@ DNL-system/
 
 This is where DNL tooling starts.
 
-It defines the repository name, scan surface, path tokens, QA profiles, and tag requirements. If a future DNL UI exists, this file is a natural place for that UI to discover the DNL project.
+It defines the repository name, scan surface, path tokens, QA profiles, and tag requirements. If a DNL UI is added later, this file is a natural place for that UI to discover the DNL project.
 
 For the full field-by-field reference, read the [dnl-config.toml guide](dnl-config.md).
 
@@ -58,7 +58,7 @@ For a Small DNL, make sure your project knowledge folder is included:
 ```toml
 [scan]
 include = ["DNL-system", "DNL"]
-exclude = [".git", ".repo-history"]
+exclude = [".git", "working", ".working-archive", ".repo-history"]
 ```
 
 That is the first config change most Small DNL projects need.
@@ -156,7 +156,7 @@ It should answer:
 - what the main domains are
 - where code maps live
 - where runbooks live
-- where current work or future notes should go
+- where current working notes should go
 
 `DNL/maps/code-map.md` connects domain words to code locations.
 
@@ -218,7 +218,8 @@ Grow the DNL only when repeated work proves the need.
 
 Good next additions:
 
-- `DNL/future/` for rough design notes and not-yet-promoted knowledge
+- `working/` for rough design notes and not-yet-promoted source material
+- `.working-archive/` for completed raw bundles
 - `DNL/glossary/` for project-specific terms
 - `DNL/screens/` when UI flows are important
 - `DNL/apis/` when API contracts are central

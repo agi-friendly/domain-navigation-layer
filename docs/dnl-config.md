@@ -51,7 +51,7 @@ name = "your-project-dnl"
 
 [scan]
 include = ["DNL-system", "DNL"]
-exclude = [".git", "node_modules", ".repo-history", "target", "dist", "build"]
+exclude = [".git", "node_modules", "working", ".working-archive", ".repo-history", "target", "dist", "build"]
 
 [paths.internal]
 "dnl-root" = "."
@@ -77,7 +77,6 @@ readme_dirs = [
   "maps",
   "domains",
   "runbooks",
-  "future",
   "glossary",
 ]
 
@@ -124,7 +123,7 @@ This is the most important section.
 ```toml
 [scan]
 include = ["DNL-system", "DNL"]
-exclude = [".git", "node_modules", ".repo-history"]
+exclude = [".git", "node_modules", "working", ".working-archive", ".repo-history"]
 ```
 
 `include` is the list of repository-relative files or folders that DNL tooling should scan.
@@ -147,6 +146,7 @@ Important details:
 - `SKILL.md` files are excluded by policy even when they appear under an included folder.
 - Root-level public docs such as `README.md` and `docs/` can stay outside `scan.include` if they are reader-facing docs rather than canonical DNL documents.
 - Once a folder is in `scan.include`, its Markdown files are expected to follow DNL frontmatter and link rules.
+- `working/` and `.working-archive/` are normally excluded because they are source material and raw archive storage, not canonical DNL.
 
 For Small DNL, the key move is:
 

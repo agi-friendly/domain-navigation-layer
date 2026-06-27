@@ -15,7 +15,7 @@ class DnlYamlHeaderTest(unittest.TestCase):
 name: "Workflow"
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
-  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
+  "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
 ---
 
 # Workflow
@@ -28,7 +28,7 @@ paths:
             header.paths,
             {
                 "@workflow-root.md": "{@DNL-system}/workflow/README.md",
-                "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md",
+                "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md",
             },
         )
         self.assertEqual(header.errors, [])
@@ -144,7 +144,7 @@ paths: {}
     def test_parse_legacy_single_line_path_entries(self) -> None:
         lines = [
             "- [PATH] `@workflow-root.md` : {@DNL-system}/workflow/README.md",
-            "- [PATH] `@future-to-dnl.md` : {@DNL-system}/workflow/future-to-dnl.md",
+            "- [PATH] `@working-to-dnl.md` : {@DNL-system}/workflow/working-to-dnl.md",
             "",
             "# Workflow",
         ]
@@ -155,7 +155,7 @@ paths: {}
             [(entry.token, entry.path, entry.line_index, entry.multiline) for entry in entries],
             [
                 ("@workflow-root.md", "{@DNL-system}/workflow/README.md", 0, False),
-                ("@future-to-dnl.md", "{@DNL-system}/workflow/future-to-dnl.md", 1, False),
+                ("@working-to-dnl.md", "{@DNL-system}/workflow/working-to-dnl.md", 1, False),
             ],
         )
 
