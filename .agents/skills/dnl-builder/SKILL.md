@@ -17,7 +17,7 @@ Act as a steward of the whole navigation layer, not only as the editor of one fi
 - Move long background, investigations, and decision notes into load-on-demand documents when needed.
 - Treat `working/` as source material, not canonical DNL.
 - After promotion, active DNL should not treat raw working bundles as the priority path.
-- If the task includes `working`, `working-to-dnl`, promotion, archive, or history cleanup, read workflow docs as well as authoring docs.
+- If the task includes `working`, promotion, archive, or history cleanup, read workflow docs as well as authoring docs and choose the matching lifecycle rule.
 - Do not stop at green QA. Search semantic stale text such as old paths, old priority wording, or missing parent routes.
 
 ## Use this skill first when
@@ -37,9 +37,10 @@ Act as a steward of the whole navigation layer, not only as the editor of one fi
 4. `DNL-system/authoring/rules/multi-dnl-authority.md`
 5. `DNL-system/authoring/dnl-authoring-playbook.md`
 6. `DNL-system/workflow/README.md`
-7. If the work includes `working`, `working-to-dnl`, promotion, archive, or history cleanup: `DNL-system/workflow/working-to-dnl.md`
-8. If archive movement is involved: `DNL-system/workflow/working-to-archive.md`
-9. When needed: `.agents/skills/dnl-builder/README.md`
+7. If the work creates, registers, or edits a working bundle: `DNL-system/workflow/working-authoring-rule.md`
+8. If the work promotes or absorbs working material into canonical DNL: `DNL-system/workflow/working-to-dnl.md`
+9. If archive movement is involved: `DNL-system/workflow/working-to-archive.md`
+10. When needed: `.agents/skills/dnl-builder/README.md`
 
 ## Basic workflow
 

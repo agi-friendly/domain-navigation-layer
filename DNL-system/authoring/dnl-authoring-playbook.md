@@ -7,6 +7,7 @@ paths:
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
   "@dnl-builder-qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
@@ -25,7 +26,10 @@ Read:
 1. `@markdown-rule.md`
 2. `@yaml-frontmatter-rule.md`
 3. `@multi-dnl-authority.md`
-4. If the work includes `working`, `working-to-dnl`, promotion, archive, or history cleanup: `@workflow-root.md` -> `@working-to-dnl.md` -> when needed `@working-to-archive.md`
+4. If the work includes `working`, promotion, archive, or history cleanup: read `@workflow-root.md`, then choose the specific rule:
+   - `@working-authoring-rule.md` for creating, registering, or editing working bundles
+   - `@working-to-dnl.md` for promotion or absorption into canonical DNL
+   - `@working-to-archive.md` for archive movement decisions
 
 ## 0.5. DNL steward lens
 
@@ -92,7 +96,7 @@ If a lower layer must override a higher layer, it must explicitly declare the ov
 ## 3. Recommended workflow
 
 1. Narrow the target layer.
-2. If the task promotes or archives working material, apply `@working-to-dnl.md` first.
+2. If the task touches working lifecycle, choose the matching workflow rule first.
 3. Decide the document role: router, canonical guide, background, working source material, or archive.
 4. Search for stale paths or wording before editing.
 5. Edit the target document.
@@ -109,6 +113,7 @@ You are editing a public DNL repository.
 
 Before writing, read:
 - DNL-system/workflow/README.md
+- DNL-system/workflow/working-authoring-rule.md (required when creating/editing working bundles)
 - DNL-system/workflow/working-to-dnl.md (required when promoting/absorbing working material)
 - DNL-system/authoring/dnl-authoring-playbook.md
 - DNL-system/authoring/rules/markdown-rule.md

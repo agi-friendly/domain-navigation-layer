@@ -9,6 +9,7 @@ paths:
   "@rules/yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@rules/multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
   "@dnl-config.toml": "{@dnl-root}/dnl-config.toml"
@@ -28,7 +29,10 @@ Use this directory for how DNL documents are written, validated, and kept cohere
 1. Writing rules: `@rules/README.md` -> `@rules/markdown-rule.md` -> `@rules/yaml-frontmatter-rule.md`
 2. Authority and overrides: `@rules/multi-dnl-authority.md`
 3. Practical writing flow: `@dnl-authoring-playbook.md`
-4. If the work includes `working/` material, DNL promotion, archive, or history decisions: `@workflow-root.md` -> `@working-to-dnl.md` -> when needed `@working-to-archive.md`
+4. If the work includes `working/` lifecycle decisions: `@workflow-root.md`, then:
+   - use `@working-authoring-rule.md` for working bundle creation, registration, or editing
+   - use `@working-to-dnl.md` for promotion or absorption into canonical DNL
+   - use `@working-to-archive.md` for archive movement decisions
 
 ## Steward lens
 
@@ -51,7 +55,7 @@ Both are required when promoting working material.
 ## Recommended routine
 
 1. Decide the target layer: System, shared/team, product/domain, or project.
-2. If the task promotes or archives working material, apply `@working-to-dnl.md` first.
+2. If the task touches working lifecycle, choose the matching workflow rule before editing target documents.
 3. Decide the document role: router, canonical guide, background note, working source material, or archive.
 4. Edit the document according to authoring rules.
 5. Rewire parent README, maps, guides, and cross-links.

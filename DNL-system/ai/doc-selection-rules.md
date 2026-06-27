@@ -9,6 +9,7 @@ paths:
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@dnl-authoring-playbook.md": "{@DNL-system}/authoring/dnl-authoring-playbook.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
 ---
@@ -41,6 +42,8 @@ When the prompt includes any of these signals, read workflow before opening lowe
 
 - `workflow`
 - `working`
+- `create working bundle`
+- `register working item`
 - `archive`
 - `history`
 - `promote into DNL`
@@ -51,8 +54,9 @@ When the prompt includes any of these signals, read workflow before opening lowe
 Read in this order:
 
 1. `DNL-system/workflow/README.md`
-2. `DNL-system/workflow/working-to-dnl.md` when promotion or absorption is involved
-3. `DNL-system/workflow/working-to-archive.md` when archive movement is involved
+2. `DNL-system/workflow/working-authoring-rule.md` when creating, registering, or editing a working bundle
+3. `DNL-system/workflow/working-to-dnl.md` when promotion or absorption is involved
+4. `DNL-system/workflow/working-to-archive.md` when archive movement is involved
 
 This is a lifecycle question first. The target domain layer comes after the workflow rule is fixed.
 

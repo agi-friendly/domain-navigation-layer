@@ -24,7 +24,7 @@ Promotion means extracting the reusable knowledge, verifying it against current 
 
 ## Quick checklist for agents
 
-If a task mentions `working`, `working-to-dnl`, promotion, absorption, archive, or history:
+If a task mentions `working-to-dnl`, promotion, absorption, or turning working material into maintained DNL:
 
 1. Read `@workflow-root.md` and this document together with authoring rules.
 2. Treat `working/` as source material, not current truth.
@@ -36,6 +36,8 @@ If a task mentions `working`, `working-to-dnl`, promotion, absorption, archive, 
 8. Move background, historical drift, and working-vs-current comparison into load-on-demand docs when needed.
 9. Rewire parent README, maps, guides, and cross-links to point at the new canonical DNL.
 10. After rewiring, decide whether the raw working bundle should move to `.working-archive/` using `@working-to-archive.md`.
+
+If the task is only creating, registering, or editing a working bundle, use `@working-authoring-rule.md` instead of this promotion checklist.
 
 ## When to promote
 

@@ -14,6 +14,7 @@ paths:
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@dnl-authoring-playbook.md": "{@DNL-system}/authoring/dnl-authoring-playbook.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
 ---
@@ -62,6 +63,7 @@ Default flow:
 - `@multi-dnl-authority.md`
 - `@dnl-authoring-playbook.md`
 - `@workflow-root.md` when the task involves working material, promotion, archive, lifecycle, or history
+- `@working-authoring-rule.md` when creating, registering, or editing a working bundle
 - `@working-to-dnl.md` when promoting or absorbing working material into canonical DNL
 - `@working-to-archive.md` when deciding whether raw working bundles can move out of active paths
 

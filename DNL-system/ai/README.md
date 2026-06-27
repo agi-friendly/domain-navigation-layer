@@ -17,6 +17,7 @@ paths:
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
 ---
@@ -63,7 +64,10 @@ Read in this order:
 3. `@yaml-frontmatter-rule.md`
 4. `@multi-dnl-authority.md`
 5. `@dnl-authoring-playbook.md`
-6. If the work includes working material, DNL promotion, archive decisions, or history cleanup: `@workflow-root.md` -> `@working-to-dnl.md` -> when needed `@working-to-archive.md`
+6. If the work includes working lifecycle decisions, read `@workflow-root.md`, then choose the specific rule:
+   - creating, registering, or editing a working bundle: `@working-authoring-rule.md`
+   - promoting or absorbing working material into canonical DNL: `@working-to-dnl.md`
+   - moving completed raw bundles out of active paths: `@working-to-archive.md`
 7. The document that will actually be changed
 
 Purpose: do not treat DNL maintenance as ordinary source search. First fix the authoring rules, authority model, and lifecycle boundary.

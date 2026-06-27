@@ -32,8 +32,8 @@ Do not leave raw `working/` material looking like the current source of truth af
 Keep portal documents light.
 If a document is growing because it contains investigation notes, comparison tables, or decision background, split that material into load-on-demand documents.
 
-Promoting `working/` material into DNL is a lifecycle change, not just a writing task.
-Read `DNL-system/workflow/README.md` and `DNL-system/workflow/working-to-dnl.md` together with authoring rules.
+Working lifecycle changes are not just writing tasks.
+Read `DNL-system/workflow/README.md`, then choose the specific rule for working bundle authoring, DNL promotion, or archive movement.
 
 ## Recommended reading order
 
@@ -43,15 +43,16 @@ Read `DNL-system/workflow/README.md` and `DNL-system/workflow/working-to-dnl.md`
 4. `DNL-system/authoring/rules/multi-dnl-authority.md`
 5. `DNL-system/authoring/dnl-authoring-playbook.md`
 6. `DNL-system/workflow/README.md`
-7. If the work includes `working`, `working-to-dnl`, promotion, archive, or history cleanup: `DNL-system/workflow/working-to-dnl.md`
-8. If archive movement is involved: `DNL-system/workflow/working-to-archive.md`
-9. `.agents/skills/dnl-builder/README.md`
+7. If the work creates, registers, or edits a working bundle: `DNL-system/workflow/working-authoring-rule.md`
+8. If the work promotes or absorbs working material into canonical DNL: `DNL-system/workflow/working-to-dnl.md`
+9. If archive movement is involved: `DNL-system/workflow/working-to-archive.md`
+10. `.agents/skills/dnl-builder/README.md`
 
 ## Recommended routine
 
 1. Decide whether the task is DNL document maintenance.
 2. Read canonical rules first.
-3. If working material is being promoted, apply the `working-to-dnl` checklist.
+3. If the task touches working lifecycle, choose the matching workflow rule before editing target documents.
 4. Decide the target document role: router, canonical guide, background, working source material, or archive.
 5. Edit the target document.
 6. Rewire parent README files, maps, guides, and cross-links.

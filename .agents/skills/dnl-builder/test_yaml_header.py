@@ -40,7 +40,7 @@ status: "draft"
 tags: ["portal-dnl", "workflow"]
 description:
   - "이 문서는 DNL 작업 흐름을 설명한다."
-  - "AI가 future 문서를 정본 DNL로 승격할 때 참고한다."
+  - "AI가 working material을 정본 DNL로 승격할 때 참고한다."
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
 ---
@@ -56,7 +56,7 @@ paths:
             getattr(header, "description", None),
             [
                 "이 문서는 DNL 작업 흐름을 설명한다.",
-                "AI가 future 문서를 정본 DNL로 승격할 때 참고한다.",
+                "AI가 working material을 정본 DNL로 승격할 때 참고한다.",
             ],
         )
         self.assertEqual(header.errors, [])
