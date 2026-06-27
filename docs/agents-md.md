@@ -98,7 +98,7 @@ For Umbrella DNL:
 ```md
 - Treat this repository as an umbrella knowledge hub, not a source repository.
 - Use `PATHS.md` for local repository mappings when needed.
-- Route through products, projects, teams, or future notes only after the target layer is clear.
+- Route through products, projects, teams, or working notes only after the target layer is clear.
 ```
 
 ### 2. Path Tokens

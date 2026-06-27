@@ -1,9 +1,0 @@
-{"path":"DNL-system/boundaries/allowed-actions.md","name":"allowed-actions.md # 가능한 작업 범위(조사/설계/문서화/코드탐색 등)","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/boundaries/assumptions.md","name":"assumptions.md # (선택) 기본 가정(접근권한/환경/로그 위치 등) + 모르면 질문 규칙","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/boundaries/forbidden-actions.md","name":"forbidden-actions.md # 금지/주의 작업(임의 정책 변경, 확정 단정, 접근 가정 등)","status":"draft","tags":["rule-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/outputs/fix-plan.md","name":"fix-plan.md # 수정 계획 표준(영향범위/리스크/테스트/롤백)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/outputs/investigation-report.md","name":"investigation-report.md # 조사 리포트 표준(요약/가설/증거/다음 액션)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/outputs/pr-description.md","name":"pr-description.md # PR 설명 표준(변경점/이유/테스트/주의사항)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/requests/bug-investigation.md","name":"Bug Investigation Request Template","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/requests/design-review.md","name":"design-review.md # \\\"설계/구조 검토해줘\\\" 템플릿(목표/제약/대안/결정 포인트)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}
-{"path":"DNL-system/templates/requests/doc-improvement.md","name":"doc-improvement.md # \\\"DNL 개선해줘\\\" 템플릿(대상/문제/원하는 형태/금지사항)","status":"draft","tags":["template-dnl","placeholder"],"description":[]}

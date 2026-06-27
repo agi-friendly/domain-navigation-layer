@@ -4,7 +4,7 @@ name = "domain-navigation-layer"
 
 [scan]
 include = ["DNL-system", "DNL-example"]
-exclude = [".git", "CURRENT_WORKING", ".repo-history", "DNL-system/history"]
+exclude = [".git", "CURRENT_WORKING", "working", ".working-archive", ".repo-history", "DNL-system/history"]
 
 [paths.internal]
 "dnl-root" = "."

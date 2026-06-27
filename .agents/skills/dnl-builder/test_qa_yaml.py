@@ -432,22 +432,22 @@ paths:
         completed = self.run_qa(
             {
                 "dnl-config.toml": """[profiles]
-portal = ["DNL-Company", "products/README.md", "products/gw8-series/projects/DNL-demo"]
+portal = ["DNL-shared", "sample-products/README.md", "sample-products/sample-product/projects/example-app"]
 
 [portal]
 readme_dirs = ["maps"]
 """,
-                "DNL-Company/README.md": """---
-name: "Company"
+                "DNL-shared/README.md": """---
+name: "Shared"
 status: "draft"
 tags: ["portal-dnl"]
 paths:
-  "@maps.md": "{@dnl-root}/DNL-Company/maps/README.md"
+  "@maps.md": "{@dnl-root}/DNL-shared/maps/README.md"
 ---
 
-# Company
+# Shared
 """,
-                "DNL-Company/maps/README.md": """---
+                "DNL-shared/maps/README.md": """---
 name: "Maps"
 status: "draft"
 tags: ["portal-dnl"]
@@ -455,29 +455,29 @@ tags: ["portal-dnl"]
 
 # Maps
 """,
-                "products/README.md": """---
-name: "Products"
+                "sample-products/README.md": """---
+name: "Sample Products"
 status: "draft"
 tags: ["portal-dnl"]
 ---
 
-# Products
+# Sample Products
 """,
-                "products/gw8-series/projects/DNL-demo/README.md": """---
-name: "Demo Project"
+                "sample-products/sample-product/projects/example-app/README.md": """---
+name: "Example App"
 status: "draft"
 tags: ["portal-dnl"]
 ---
 
-# Demo Project
+# Example App
 """,
-                "products/gw8-series/projects/DNL-other/README.md": """---
-name: "Other Project"
+                "sample-products/sample-product/projects/other-app/README.md": """---
+name: "Other App"
 status: "draft"
 tags: ["portal-dnl"]
 ---
 
-# Other Project
+# Other App
 """,
             },
             include=None,

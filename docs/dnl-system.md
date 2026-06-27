@@ -141,15 +141,15 @@ Customize `DNL-system/workflow/` when your repository needs a clearer lifecycle.
 
 Good reasons:
 
-- You use `future/` for rough design notes.
-- You need rules for promoting notes into stable DNL docs.
+- You use `working/` for rough design notes and active source material.
+- You need rules for promoting working material into stable DNL docs.
 - You need archive rules.
 - You need repository history separate from public docs.
 
 The useful question is:
 
 ```text
-Is this note active work, reusable knowledge, archived material, or repository history?
+Is this material active work, reusable knowledge, archived raw material, or repository history?
 ```
 
 If the answer is unclear often, improve workflow docs.

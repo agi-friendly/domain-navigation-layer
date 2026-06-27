@@ -48,12 +48,13 @@ README.md
 AGENTS.md
 PATHS.md
 DNL-system/
-DNL-Company/
+DNL-shared/
 products/
   DNL-product-platform/
     projects/
       DNL-webapp/
-future/
+working/
+.working-archive/
 ```
 
 ## Step 3. Write The First Route
@@ -92,7 +93,8 @@ Good first additions:
 - `maps/`
 - `domains/`
 - `runbooks/`
-- `future/`
+- `working/`
+- `.working-archive/`
 
 Avoid building a large hierarchy before the first routing problem is clear.
 

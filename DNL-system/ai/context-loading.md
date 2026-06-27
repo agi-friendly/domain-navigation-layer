@@ -14,36 +14,39 @@ paths:
   "@multi-dnl-authority.md": "{@DNL-system}/authoring/rules/multi-dnl-authority.md"
   "@dnl-authoring-playbook.md": "{@DNL-system}/authoring/dnl-authoring-playbook.md"
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
-  "@future-to-dnl.md": "{@DNL-system}/workflow/future-to-dnl.md"
-  "@future-to-archive.md": "{@DNL-system}/workflow/future-to-archive.md"
+  "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
+  "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
+  "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
 ---
 
 # Context Loading Rules (3-Layer DNL)
 
 This document explains how an agent should load context in a layered DNL repository.
-The default flow is:
+
+Default flow:
 
 1. Start from the repository `@repo-AGENTS.md`.
-2. Read the system/maintenance portal at `@dnl-system.md`.
-3. Read repository-local context docs when the task depends on path mappings or current-user handoff.
-4. Load public reader docs only when the task asks about public explanation, onboarding, or README/docs content.
-5. Load company, product, or project docs only after the target layer is known.
+2. Read the system portal at `@dnl-system.md`.
+3. Read repository-local context docs only when the task depends on path mapping or current-user handoff.
+4. Load public reader docs only for public explanation, onboarding, or README/docs work.
+5. Load deeper domain layers only after the target layer is known.
 
 ## Purpose
 
-- Keep the agent from loading too much at once.
-- Force hierarchical navigation instead of random search.
-- Keep reader-facing public docs separate from AI operating docs.
-- Make the next document obvious before opening the current one.
+- Keep agents from loading everything at once.
+- Prefer hierarchical navigation over random search.
+- Keep public reader docs separate from AI operating docs.
+- Make each opened document point to the next useful document.
 
 ## Required rules
 
 - Do not read every document at once.
-- Do not guess file paths that are not in the repo or `PATHS.md`.
-- If the task is about DNL writing or cleanup, read the system authoring docs first.
-- If the task mentions `future`, DNL promotion, archive, lifecycle, or history cleanup, read the workflow docs before opening target content.
-- If the task is about public-facing README/docs, load the public docs for that task.
-- If the task is about a specific layer, stop at the first layer that answers the question.
+- Do not guess file paths that are not in the repository or local context.
+- If the task is about DNL writing or cleanup, read the authoring docs first.
+- If the task mentions `working`, DNL promotion, archive, lifecycle, or history cleanup, read workflow docs before opening target content.
+- Treat `working/` as source material, not canonical DNL.
+- If the task is about public-facing README/docs, load public docs for that task.
+- If one layer answers the question, stop there.
 
 ## Recommended loading order
 
@@ -59,9 +62,10 @@ The default flow is:
 - `@yaml-frontmatter-rule.md`
 - `@multi-dnl-authority.md`
 - `@dnl-authoring-playbook.md`
-- `@workflow-root.md` when the task involves work lifecycle, future notes, promotion, archive, or history
-- `@future-to-dnl.md` when promoting or absorbing future material into canonical DNL
-- `@future-to-archive.md` when deciding whether raw work bundles can move out of active paths
+- `@workflow-root.md` when the task involves working material, promotion, archive, lifecycle, or history
+- `@working-authoring-rule.md` when creating, registering, or editing a working bundle
+- `@working-to-dnl.md` when promoting or absorbing working material into canonical DNL
+- `@working-to-archive.md` when deciding whether raw working bundles can move out of active paths
 
 ### Repository-local context
 
@@ -71,11 +75,15 @@ The default flow is:
 
 ### Optional domain layers
 
-When a repository has deeper domain layers, use placeholder names such as `example-company`, `sample-product`, and `sample-project` in examples.
+When a repository has deeper domain layers, use public-safe placeholder names in examples:
+
+- `example-company`
+- `sample-product`
+- `sample-project`
 
 ## Output requirement
 
-When you summarize your work, list the documents you actually read and label them by layer.
+When summarizing work, list the documents actually read and label them by layer.
 
 Example:
 

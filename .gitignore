@@ -40,3 +40,5 @@ venv/
 /.agents/skills/**/.vendor/
 /.agents/skills/**/.deps/
 /.agents/skills/**/vendor/
+/.agents/skills/dnl-query/tag-index/
+/.agents/skills/dnl-query/link-index/

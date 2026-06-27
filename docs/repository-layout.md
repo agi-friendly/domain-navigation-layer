@@ -9,6 +9,8 @@ This repository is a public starter for DNL. It is intentionally small at the to
 ├── docs/
 ├── DNL-example/
 ├── DNL-system/
+├── working/
+├── .working-archive/
 ├── .agents/
 ├── .claude/
 ├── .cursor/
@@ -25,6 +27,8 @@ This repository is a public starter for DNL. It is intentionally small at the to
 - `docs/` holds public explanation and onboarding pages.
 - `DNL-example/` holds a tiny working example route.
 - `DNL-system/` holds authoring, workflow, AI routing, templates, and boundaries.
+- `working/` holds shared active source material before DNL promotion.
+- `.working-archive/` stores completed raw work bundles outside active routes.
 
 Read the [AGENTS.md customization guide](agents-md.md) before adapting the AI entrypoint for your own repository.
 
@@ -85,7 +89,8 @@ products/
     projects/
       DNL-webapp/
       DNL-api-server/
-future/
+working/
+.working-archive/
 ```
 
 These are not required folders. They are shapes you can choose when your work needs them.

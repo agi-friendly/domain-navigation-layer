@@ -13,7 +13,8 @@ A DNL document should answer one of these questions:
 - Which project or module owns this topic?
 - Which source files or repositories matter?
 - Which runbook should be used for this failure?
-- Where should rough working notes be promoted after they become reusable?
+- Where should rough working notes live before they become reusable?
+- When should rough working notes be promoted after they become reusable?
 
 DNL works best when each page has one job and points to the next useful page.
 
@@ -26,7 +27,8 @@ DNL can use a few simple pieces:
 - local links for public reader documentation
 - YAML path tokens for agent-oriented DNL documents
 - `PATHS.md` for local repository path mapping
-- `future` areas for active investigation and design work
+- `working/` for active investigation and design source material
+- `.working-archive/` for completed raw bundles
 - authoring rules to keep the layer coherent over time
 
 You do not need all of these on day one.
@@ -45,6 +47,9 @@ short entrypoint
 -> domain or module page
 -> source path, runbook, or working note
 ```
+
+`working/` is intentionally not canonical DNL.
+It gives people and agents a simple place for active source material while keeping promoted DNL documents cleaner.
 
 ## AI-first, Human-readable
 

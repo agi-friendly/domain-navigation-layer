@@ -1,8 +1,0 @@
-{"path":"DNL-system/authoring/dnl-authoring-playbook.md","name":"DNL Authoring Playbook (for AI-assisted writing)","status":"draft","tags":["playbook-dnl","dnl-builder"],"description":[]}
-{"path":"DNL-system/authoring/rules/dnl-structure.md","name":"dnl-structure","status":"draft","tags":["map-dnl","reference-dnl","dnl-builder","rule-dnl"],"description":[]}
-{"path":"DNL-system/authoring/rules/markdown-rule.md","name":"작성 규칙","status":"draft","tags":["rule-dnl","dnl-builder"],"description":[]}
-{"path":"DNL-system/authoring/rules/multi-dnl-authority.md","name":"multi-dnl-authority","status":"draft","tags":["rule-dnl","dnl-builder"],"description":[]}
-{"path":"DNL-system/authoring/rules/review-severity-policy.md","name":"Review Severity Policy","status":"draft","tags":["rule-dnl","dnl-builder"],"description":[]}
-{"path":"DNL-system/authoring/rules/yaml-frontmatter-rule.md","name":"YAML frontmatter 작성 규칙","status":"draft","tags":["rule-dnl","yaml-frontmatter","dnl-builder"],"description":["이 문서는 DNL markdown 상단 YAML frontmatter의 필드 순서, 상태, 태그, 설명, 경로 선언 규칙을 설명한다."]}
-{"path":"DNL-system/authoring/rules/you-are-dnl-qa-bot.md","name":"Summary","status":"draft","tags":["template-dnl","dnl-builder","rule-dnl"],"description":[]}
-{"path":"DNL-system/templates/requests/dnl-doc-create.md","name":"DNL Document Creation Request Template","status":"draft","tags":["template-dnl","dnl-builder"],"description":[]}

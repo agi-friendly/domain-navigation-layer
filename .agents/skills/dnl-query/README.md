@@ -168,6 +168,7 @@ python3 .agents/skills/dnl-query/dnl_query.py missing-tokens --under docs --form
 
 기본 index 위치는 `@tag-index`입니다.
 link 조회 명령은 `@link-index`를 읽습니다.
+index 파일은 git에 커밋하지 않는 로컬 생성물입니다.
 index가 없거나 최신성이 의심되면 아래 명령을 사용합니다.
 
 ```bash

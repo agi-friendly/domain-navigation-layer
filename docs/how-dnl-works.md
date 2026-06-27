@@ -108,7 +108,13 @@ dnl-config.toml
 -> dnl-query lookup
 ```
 
+Generated index directories are local build artifacts. Rebuild them when they are missing or stale, but do not commit them.
+
 For example, if you create `DNL/` but forget to add it to `scan.include`, full QA and generated indexes will not see it.
+
+`working/` and `.working-archive/` are usually excluded from the scan.
+They hold active source material and archived raw bundles, not canonical DNL.
+Promote reusable knowledge through the workflow rules before relying on it as maintained navigation.
 
 ## Skills
 
@@ -175,6 +181,7 @@ The value of DNL is that the agent starts from a better route and can verify the
 ## Read Next
 
 - [dnl-config.toml guide](dnl-config.md)
+- [Work lifecycle](../DNL-system/workflow/README.md)
 - [Skills customization guide](skills.md)
 - [Example Route](example-route.md)
 - [Getting started](getting-started.md)
