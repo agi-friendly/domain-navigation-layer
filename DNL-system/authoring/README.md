@@ -88,6 +88,10 @@ YAML required fields, field order, allowed statuses, tag/token formats, hidden-d
   - `python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive`
 - Add a tag, write:
   - `python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive --write`
+- Move one DNL markdown document, dry-run:
+  - `python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference`
+- Move one DNL markdown document and rewrite backlink YAML paths:
+  - `python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference --write`
 - Rebuild tag index:
   - `python3 .agents/skills/dnl-builder/dnl_util.py tag index build`
 - Check tag index freshness:
@@ -98,6 +102,13 @@ YAML required fields, field order, allowed statuses, tag/token formats, hidden-d
   - `python3 .agents/skills/dnl-builder/dnl_util.py link index check`
 - Update one tag-index file:
   - `python3 .agents/skills/dnl-builder/dnl_util.py tag index update --path docs/sample-dnl/sample-module/README.md`
+
+The move command only supports a single `.md` file.
+`--to` must already be a DNL directory; automatic directory creation and rename targets are intentionally unsupported.
+The command accepts repo-relative paths and `[paths.internal]` token paths.
+Before writing, it rebuilds the link index and plans YAML `paths` backlink updates.
+After `--write`, it refreshes both link and tag indexes.
+If the source document contains local Markdown links or images, move assets and update references manually first.
 
 ## Link health routine
 
