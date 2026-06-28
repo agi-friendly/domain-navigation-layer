@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 
-from dnl_util_core.commands import link, tag
+from dnl_util_core.commands import link, mv, tag
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -18,6 +18,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers = parser.add_subparsers(dest="command", required=True)
     link.register(subparsers)
+    mv.register(subparsers)
     tag.register(subparsers)
     return parser
 

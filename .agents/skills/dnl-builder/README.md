@@ -121,12 +121,19 @@ Examples:
 ```bash
 python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs --tag guide-dnl --recursive
 python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs --tag guide-dnl --recursive --write
+python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference
+python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference --write
 python3 .agents/skills/dnl-builder/dnl_util.py tag index build
 python3 .agents/skills/dnl-builder/dnl_util.py tag index check
 python3 .agents/skills/dnl-builder/dnl_util.py tag index update --path docs/index.md
 python3 .agents/skills/dnl-builder/dnl_util.py link index build
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
 ```
+
+The `mv` command moves one `.md` document at a time.
+`--to` must be an existing DNL directory; the command does not create directories or rename files.
+It accepts repo-relative paths and `[paths.internal]` token paths, refreshes the link index before planning, rewrites YAML `paths` backlinks, and refreshes link/tag indexes after `--write`.
+If the source document contains local Markdown links or images, move assets and update references manually before using the command.
 
 Generated tag and link indexes are local build artifacts.
 Do not commit `.agents/skills/dnl-query/tag-index/` or `.agents/skills/dnl-query/link-index/`.

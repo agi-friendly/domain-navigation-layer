@@ -75,6 +75,22 @@ Report path:
 
 The report directory is gitignored.
 
+## Common utilities
+
+```bash
+# Dry-run one-document DNL markdown move
+python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference
+
+# Move the file and rewrite backlink YAML paths
+python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference --write
+```
+
+`mv` supports one `.md` file at a time.
+`--to` must be an existing DNL directory.
+Directory creation and rename targets are not supported.
+The command accepts repo-relative paths and `[paths.internal]` token paths.
+It rejects sources with local Markdown links or images because asset movement is not automated.
+
 ## More details
 
 - Workflow and quality guide: `.agents/skills/dnl-builder/README.md`
