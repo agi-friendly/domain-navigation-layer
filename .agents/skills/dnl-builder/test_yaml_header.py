@@ -39,8 +39,8 @@ name: "Workflow"
 status: "draft"
 tags: ["portal-dnl", "workflow"]
 description:
-  - "이 문서는 DNL 작업 흐름을 설명한다."
-  - "AI가 working material을 정본 DNL로 승격할 때 참고한다."
+  - "This document explains the DNL workflow."
+  - "Refer to it when an AI promotes working material into canonical DNL."
 paths:
   "@workflow-root.md": "{@DNL-system}/workflow/README.md"
 ---
@@ -55,8 +55,8 @@ paths:
         self.assertEqual(
             getattr(header, "description", None),
             [
-                "이 문서는 DNL 작업 흐름을 설명한다.",
-                "AI가 working material을 정본 DNL로 승격할 때 참고한다.",
+                "This document explains the DNL workflow.",
+                "Refer to it when an AI promotes working material into canonical DNL.",
             ],
         )
         self.assertEqual(header.errors, [])
@@ -65,7 +65,7 @@ paths:
         text = """---
 name: "Workflow"
 description:
-  - "description은 status와 tags 뒤에 위치해야 한다."
+  - "description must come after status and tags."
 status: "review"
 tags: ["Portal-DNL", "bad tag", "portal-dnl", "portal-dnl"]
 paths:

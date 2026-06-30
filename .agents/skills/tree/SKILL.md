@@ -1,6 +1,6 @@
 ---
 name: tree
-description: python으로 트리 구조 분석 가이드 (Windows tree 명령어 대체)
+description: Guide for analyzing tree structure with Python (a replacement for the Windows tree command).
 ---
 
 # DNL Tree Generator

@@ -1,20 +1,20 @@
 ---
-name: "DNL Tree Generator — 상세 문서"
+name: "DNL Tree Generator — Detailed Docs"
 status: "draft"
 tags: ["portal-dnl"]
 paths: {}
 ---
 
-# DNL Tree Generator — 상세 문서
+# DNL Tree Generator — Detailed Docs
 
-`.agents/skills/tree/tree.py`는 DNL 탐색용 트리 생성 도구입니다.
-Windows/macOS/Linux에서 동일하게 동작하며, `.gitignore`를 반영한 경량 트리/JSON 출력을 제공합니다.
+`.agents/skills/tree/tree.py` is a tree generator for DNL navigation.
+It behaves the same on Windows/macOS/Linux and produces a lightweight tree/JSON output that respects `.gitignore`.
 
-## 설치
+## Installation
 
-Python 3.10+ 권장. 최초 1회 의존성 설치.
+Python 3.10+ recommended. Install dependencies once.
 
-**권장 (로컬 설치):**
+**Recommended (local install):**
 
 ```bash
 # macOS/Linux
@@ -24,33 +24,33 @@ python3 -m pip install --upgrade --target .agents/skills/tree/.vendor -r .agents
 python -m pip install --upgrade --target .agents/skills/tree/.vendor -r .agents/skills/tree/requirements.txt
 ```
 
-`tree.py`는 실행 시 `.vendor`를 자동 로딩하므로 별도 활성화 없이 동작합니다.
+`tree.py` auto-loads `.vendor` at runtime, so it works without any separate activation.
 
-**전역 설치(선택):**
+**Global install (optional):**
 
 ```bash
 python3 -m pip install -r .agents/skills/tree/requirements.txt
 ```
 
-`pathspec`이 없으면 fallback 매칭으로 동작하므로, `.gitignore` 정확도가 중요하면 설치를 권장합니다.
+Without `pathspec` it falls back to a simpler matching, so installing it is recommended when `.gitignore` accuracy matters.
 
-## 옵션
+## Options
 
-| 옵션 | 기본값 | 설명 |
+| Option | Default | Description |
 |------|--------|------|
-| `--root PATH` | `.` | 탐색 시작 경로 |
-| `--files` | `False` | 파일까지 포함 |
-| `--depth N` | `5` | 최대 깊이 (`-1` 무제한) |
-| `--hidden` | `False` | 숨김 파일/폴더 포함 |
-| `--ignore PATTERN` | 반복 가능 | 추가 제외 패턴 |
-| `--no-gitignore` | `False` | `.gitignore` 기반 제외 비활성화 |
-| `--no-readme-title` | `False` | README H1 추출 비활성화 |
-| `--json` | `False` | JSON 모드 출력 |
-| `--ascii` | `False` | 트리 라인을 ASCII로 강제 |
-| `--absolute-path` | `False` | 절대 경로 출력 |
-| `--out FILE` | 없음 | UTF-8 파일로 저장 |
+| `--root PATH` | `.` | Path to start exploring from |
+| `--files` | `False` | Include files as well |
+| `--depth N` | `5` | Maximum depth (`-1` for unlimited) |
+| `--hidden` | `False` | Include hidden files/folders |
+| `--ignore PATTERN` | repeatable | Additional exclude pattern |
+| `--no-gitignore` | `False` | Disable `.gitignore`-based exclusion |
+| `--no-readme-title` | `False` | Disable README H1 extraction |
+| `--json` | `False` | JSON-mode output |
+| `--ascii` | `False` | Force tree lines to ASCII |
+| `--absolute-path` | `False` | Output absolute paths |
+| `--out FILE` | none | Save to a UTF-8 file |
 
-## 출력 예시 (텍스트)
+## Output example (text)
 
 ```text
 domain-navigation-layer/ [3 dirs, 0 files]
@@ -63,7 +63,7 @@ domain-navigation-layer/ [3 dirs, 0 files]
     └── tree/ [0 dirs, 4 files]
 ```
 
-## 출력 예시 (JSON)
+## Output example (JSON)
 
 ```json
 {
@@ -86,43 +86,43 @@ domain-navigation-layer/ [3 dirs, 0 files]
 }
 ```
 
-## DNL 활용 팁
+## DNL usage tips
 
-트리 결과를 프롬프트에 함께 제공하면 AI가 필요한 문서만 빠르게 라우팅할 수 있습니다.
+Providing the tree output alongside the prompt lets the AI quickly route to only the documents it needs.
 
 ```bash
 python3 .agents/skills/tree/tree.py --root docs --files --depth 3 > dnl-tree.txt
 # Paste the tree into the prompt when you want the agent to pick the relevant docs quickly.
 ```
 
-## 스모크 테스트
+## Smoke test
 
 ```bash
 python3 .agents/skills/tree/test_tree.py
 ```
 
-## Windows 인코딩 상세
+## Windows encoding details
 
-PowerShell 기본 인코딩이 cp949일 때 한글/이모지 포함 트리 출력 시 에러 발생:
+When PowerShell's default encoding is cp949, printing a tree that contains Korean or emoji raises an error:
 
 ```text
 UnicodeEncodeError: 'cp949' codec can't encode character ...
 ```
 
-**권장:** `-X utf8` 플래그로 실행
+**Recommended:** run with the `-X utf8` flag
 
 ```powershell
 python -X utf8 .agents/skills/tree/tree.py --root docs --files --depth 3 --ascii
 ```
 
-**세션 단위 대안:**
+**Session-level alternative:**
 
 ```powershell
 $env:PYTHONUTF8 = "1"
 python .agents/skills/tree/tree.py --root docs --files --depth 3 --ascii
 ```
 
-**`Get-Content`도 깨지는 경우:**
+**If `Get-Content` is also garbled:**
 
 ```powershell
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)

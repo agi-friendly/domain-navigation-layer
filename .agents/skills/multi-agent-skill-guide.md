@@ -13,18 +13,18 @@ paths:
 # Multi-Agent Skill Guide
 
 
-이 문서는 여러 AI 에이전트가 `.agents/skills` 정본 스킬을 일관되게 사용하도록 하기 위한 운영 가이드입니다.
+This document is an operational guide for keeping multiple AI agents consistent in how they use the canonical `.agents/skills` skills.
 
-## 핵심 원칙
-- 스킬 정본은 항상 `.agents/skills/{skill-name}` 입니다.
-- 에이전트별 `*/skills/{skill-name}/SKILL.md`는 필수 구조가 아니라, 필요한 도구만 유지하는 라우팅 래퍼입니다.
-- 래퍼는 짧게 유지하고, 상세 지침은 정본 스킬 문서에만 둡니다.
-- 신규 스킬 추가/이름 변경 시 지원 중인 래퍼만 함께 동기화합니다.
-- Codex와 Antigravity/Gemini 계열은 repo-local 래퍼 없이 `.agents/skills`를 직접 참조합니다.
-- `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, `.windsurfrules`는 현재 운영 표면이 아니므로 새로 만들지 않습니다.
-- 스킬 정본 위치 자체를 바꾸는 작업은 일반 스킬 수정이 아니라 `@skill-source-migration.md`를 따릅니다.
+## Core principles
+- The canonical skill is always `.agents/skills/{skill-name}`.
+- Each agent's `*/skills/{skill-name}/SKILL.md` is not a required structure but a routing wrapper that keeps only the tools it needs.
+- Keep wrappers short, and keep detailed instructions only in the canonical skill document.
+- When adding or renaming a skill, sync only the wrappers that are currently supported.
+- Codex and the Antigravity/Gemini family reference `.agents/skills` directly, without repo-local wrappers.
+- `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, and `.windsurfrules` are not active surfaces today, so do not create new ones.
+- Changing the canonical location of a skill is not an ordinary skill edit; follow `@skill-source-migration.md` instead.
 
-## 공통 구조
+## Common structure
 ```text
 .agents/skills/
   <skill-name>/
@@ -36,40 +36,40 @@ paths:
 .cursor/skills/<skill-name>/SKILL.md
 ```
 
-## 스킬 실행 흐름 (모든 AI 공통)
-1. 루트 `AGENTS.md`를 먼저 읽습니다.
-2. `README.md`와 `docs/`는 public explanation, onboarding, README/docs 작업일 때만 읽습니다.
-3. 현재 AI에 유지 중인 래퍼 `SKILL.md`가 있으면 짧은 라우터로만 사용합니다.
-4. 정본 `.agents/skills/{skill}/SKILL.md`를 읽습니다.
-5. 필요 시 정본 스킬의 스크립트/참조 파일만 추가로 읽습니다.
+## Skill execution flow (common to all AIs)
+1. Read the root `AGENTS.md` first.
+2. Read `README.md` and `docs/` only for public explanation, onboarding, or README/docs work.
+3. If a wrapper `SKILL.md` is maintained for the current AI, use it only as a short router.
+4. Read the canonical `.agents/skills/{skill}/SKILL.md`.
+5. When needed, read only the scripts/reference files of the canonical skill in addition.
 
-## 신규 스킬 추가 체크리스트
-1. `.agents/skills/{skill-name}/SKILL.md`를 생성합니다.
-2. `@skills-portal.md`의 Skills 목록에 항목을 추가합니다.
-3. 필요한 경우 아래 지원 래퍼 경로에 동일한 이름으로 `SKILL.md`를 생성합니다.
+## Checklist for adding a new skill
+1. Create `.agents/skills/{skill-name}/SKILL.md`.
+2. Add an entry to the Skills list in `@skills-portal.md`.
+3. If needed, create a `SKILL.md` with the same name at the supported wrapper paths below.
    - `.claude/skills/{skill-name}/SKILL.md`
    - `.github/skills/{skill-name}/SKILL.md`
    - `.cursor/skills/{skill-name}/SKILL.md`
-4. 래퍼 내용은 정본 스킬로 연결하는 최소 지시만 유지합니다.
-5. Codex, Antigravity/Gemini, Kiro, Windsurf용 repo-local 파일은 만들지 않습니다.
+4. Keep the wrapper content to the minimum instructions needed to route to the canonical skill.
+5. Do not create repo-local files for Codex, Antigravity/Gemini, Kiro, or Windsurf.
 
-## 기존 스킬 수정 체크리스트
-1. 정본 `.agents/skills/{skill-name}/SKILL.md`를 먼저 수정합니다.
-2. 필요할 때만 지원 중인 래퍼의 설명(`name`, `description`)을 동기화합니다.
-3. 경로/명칭이 바뀌었다면 지원 중인 래퍼 경로만 함께 수정합니다.
+## Checklist for editing an existing skill
+1. Edit the canonical `.agents/skills/{skill-name}/SKILL.md` first.
+2. Sync the wrapper metadata (`name`, `description`) only when needed.
+3. If a path or name changed, update only the supported wrapper paths along with it.
 
-## 권장 검증 명령
-구조 확인:
+## Recommended verification commands
+Check structure:
 ```bash
 python .agents/skills/tree/tree.py --root . --depth 3 --hidden --ascii
 ```
 
-DNL 링크 품질 확인:
+Check DNL link quality:
 ```bash
 python .agents/skills/dnl-builder/qa.py --profile links --fail-on all
 ```
 
-## 래퍼 템플릿
+## Wrapper template
 ```markdown
 ---
 name: <skill-name>
