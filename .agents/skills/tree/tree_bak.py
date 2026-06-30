@@ -51,14 +51,14 @@ def tree_lines(
             lines.append(prefix + "└── [PermissionError]")
             return
 
-        # hidden 처리
+        # handle hidden entries
         if not show_hidden:
             entries = [e for e in entries if not e.name.startswith(".")]
 
-        # ignore 처리(이름 기준)
+        # handle ignore (by name)
         entries = [e for e in entries if not should_ignore(e.name, ignore)]
 
-        # 폴더 먼저, 그 다음 파일 (보기 좋게)
+        # directories first, then files (for readability)
         dirs = sorted([e for e in entries if e.is_dir()], key=lambda x: x.name.lower())
         files = sorted([e for e in entries if e.is_file()], key=lambda x: x.name.lower())
 

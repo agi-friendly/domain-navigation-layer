@@ -12,124 +12,124 @@ paths:
 
 # .agents/skills/dnl-query
 
-`dnl-query`는 DNL 문서를 수정하지 않고 조회하는 스킬입니다.
-생성된 tag index를 읽어 태그, 상태, 이름, 경로 조건으로 필요한 DNL 문서를 빠르게 찾습니다.
+`dnl-query` is a read-only skill for browsing DNL documents without editing them.
+It reads the generated tag index to quickly find the DNL documents you need by tag, status, name, and path.
 
-## 역할
+## Role
 
-- 태그 목록과 count 확인
-- 특정 태그를 가진 DNL 문서 조회
-- `status`, `name`, path prefix 조건으로 문서 후보 좁히기
-- link index 기반 outbound/inbound link 조회
-- unresolved internal path 후보 확인
-- AI가 후속 작업에 쓰기 좋은 `paths`, `jsonl`, `json` 출력 제공
+- Check the tag list and counts
+- Query DNL documents with a specific tag
+- Narrow document candidates by `status`, `name`, and path prefix
+- Query outbound/inbound links from the link index
+- Inspect unresolved internal path candidates
+- Provide `paths`, `jsonl`, and `json` output that is easy for an AI to use in follow-up work
 
-## 책임 경계
+## Responsibility boundaries
 
-- 찾기: `@dnl-query.py`
-- 구조 보기: `@tree.md`
-- 작성/정비/검증/index 갱신: `@dnl-builder.md`
+- Find: `@dnl-query.py`
+- View structure: `@tree.md`
+- Author/maintain/validate/refresh index: `@dnl-builder.md`
 
-`dnl-query`는 index를 읽기만 합니다.
-tag index 생성/최신성 확인/파일 1개 갱신은 `dnl-builder`의 `tag index` 명령이 담당합니다.
-link index 생성/최신성 확인은 `dnl-builder`의 `link index` 명령이 담당합니다.
+`dnl-query` only reads the index.
+Building a tag index, checking its freshness, or refreshing a single file is handled by `dnl-builder`'s `tag index` command.
+Building a link index and checking its freshness is handled by `dnl-builder`'s `link index` command.
 
-## 기본 명령
+## Basic commands
 
 ```bash
-# 태그 목록과 count
+# Tag list and counts
 python3 .agents/skills/dnl-query/dnl_query.py tags
 
-# 특정 태그 문서 목록
+# Documents with a specific tag
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl
 
-# 경로만 출력
+# Print paths only
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl --format paths
 
-# AI 후속 처리용 JSONL
+# JSONL for AI follow-up processing
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl --format jsonl
 
-# 문서가 선언한 outbound link 조회
+# Query outbound links declared by a document
 python3 .agents/skills/dnl-query/dnl_query.py links --path docs/index.md
 
-# 특정 문서를 참조하는 source 문서 조회
+# Query source documents that reference a given document
 python3 .agents/skills/dnl-query/dnl_query.py backlinks --path DNL-system/README.md
 
-# 내부 target 미해결 후보 조회
+# Query unresolved internal target candidates
 python3 .agents/skills/dnl-query/dnl_query.py unresolved
 
-# 미해결 후보를 source 디렉토리별로 요약
+# Summarize unresolved candidates by source directory
 python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
 
-# 선언됐지만 본문에서 쓰이지 않은 path token 후보
+# Path tokens declared but never used in the body
 python3 .agents/skills/dnl-query/dnl_query.py unused
 
-# 본문에 있지만 YAML paths에 없는 파일형/path형 token 후보
+# File/path-like token candidates in the body but missing from YAML paths
 python3 .agents/skills/dnl-query/dnl_query.py missing-tokens
 ```
 
-## 필터
+## Filters
 
 ```bash
-# 여러 태그를 모두 가진 문서
+# Documents that have all of several tags
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl --tag reference-dnl
 
-# 상태 필터
+# Status filter
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag rule-dnl --status draft
 
-# 하위 경로 필터
+# Subpath filter
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag rule-dnl --under docs
 
-# name 부분 검색
+# Partial name search
 python3 .agents/skills/dnl-query/dnl_query.py docs --name "OIDC"
 
-# unresolved source 범위 축소
+# Narrow the unresolved source scope
 python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary --under docs --depth 3
 ```
 
-필터는 AND 조건으로 조합됩니다.
+Filters combine as AND conditions.
 
-## 추천 태그
+## Recommended tags
 
-AI가 어떤 태그로 시작할지 모를 때는 아래 기준으로 먼저 조회합니다.
-현재 index에 존재하는 전체 태그와 count는 `python3 .agents/skills/dnl-query/dnl_query.py tags`가 정본입니다.
+When the AI is unsure which tag to start with, query by the criteria below first.
+The full set of tags and counts in the current index is authoritatively given by `python3 .agents/skills/dnl-query/dnl_query.py tags`.
 
-### 구조/탐색
+### Structure/navigation
 
-| 태그 | 먼저 찾을 때 |
+| Tag | Look here first for |
 | --- | --- |
-| `portal-dnl` | README/진입점/하위 문서 라우팅 |
-| `map-dnl` | 모듈, 화면, 패키지, 소스 연결 지도 |
-| `glossary-dnl` | 용어, 약어, 화면명, 공통 명칭 |
-| `rule-dnl` | 작성 규칙, 판단 규칙, 개발 규칙 |
-| `template-dnl` | 요청/출력 템플릿 |
+| `portal-dnl` | README / entry points / child document routing |
+| `map-dnl` | Maps linking modules, screens, packages, and source |
+| `glossary-dnl` | Terms, abbreviations, screen names, common naming |
+| `rule-dnl` | Authoring rules, decision rules, development rules |
+| `template-dnl` | Request/output templates |
 
-### 작업 성격
+### Work type
 
-| 태그 | 먼저 찾을 때 |
+| Tag | Look here first for |
 | --- | --- |
-| `guide-dnl` | 사용법, 작성법, 통합 가이드 |
-| `playbook-dnl` | 반복 작업 절차 |
-| `runbook-dnl` | 운영/장애 대응 절차 |
-| `reference-dnl` | 빠르게 확인하는 참조 문서 |
-| `troubleshooting-dnl` | 문제 해결, 흔한 실수, 증상별 대응 |
+| `guide-dnl` | How-to, authoring guides, integration guides |
+| `playbook-dnl` | Procedures for repeated work |
+| `runbook-dnl` | Operations / incident-response procedures |
+| `reference-dnl` | Reference docs for quick lookups |
+| `troubleshooting-dnl` | Problem solving, common mistakes, symptom-based responses |
 
-### 주제/기술
+### Topic/tech
 
-| 태그 | 먼저 찾을 때 |
+| Tag | Look here first for |
 | --- | --- |
-| `auth` | 인증, 권한, OIDC, JWT, 세션 |
-| `api` | API 계약, client/server 연동 |
-| `sql` | DB, DDL, mapper, query |
-| `i18n` | 다국어, 메시지 키, paraglide |
-| `svelte` | Svelte/SvelteKit 규칙과 문제 해결 |
-| `migration` | 버전 전환, legacy-to-new, 포팅 |
-| `important` | 사용자나 AI가 우선 확인해야 하는 핵심 문서 |
+| `auth` | Authentication, authorization, OIDC, JWT, sessions |
+| `api` | API contracts, client/server integration |
+| `sql` | DB, DDL, mappers, queries |
+| `i18n` | Localization, message keys, paraglide |
+| `svelte` | Svelte/SvelteKit rules and troubleshooting |
+| `migration` | Version transitions, legacy-to-new, porting |
+| `important` | Key documents the user or AI should check first |
 
-### 모듈 예시
+### Module examples
 
-모듈 태그는 반복 사용해도 됩니다.
-특정 업무 모듈의 문서만 빠르게 좁힐 때 사용합니다.
+Module tags can be reused freely.
+Use them to quickly narrow down to documents for a specific business module.
 
 ```bash
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag guide-dnl --format paths
@@ -137,50 +137,50 @@ python3 .agents/skills/dnl-query/dnl_query.py docs --tag reference-dnl --format 
 python3 .agents/skills/dnl-query/dnl_query.py docs --tag portal-dnl --format paths
 ```
 
-## 출력 포맷
+## Output formats
 
 - `text`: `path | status | name`
-- `paths`: path만 1줄 1개
-- `jsonl`: 1줄 1개 JSON
-- `json`: JSON 배열
+- `paths`: one path per line
+- `jsonl`: one JSON object per line
+- `json`: a JSON array
 
-## Link health 조회
+## Link health query
 
-link health는 먼저 요약으로 문제가 많은 영역을 찾고, 그 다음 상세 record를 좁혀 봅니다.
+For link health, find the most problematic areas with a summary first, then narrow down to detailed records.
 
 ```bash
-# source directory별 unresolved count
+# Unresolved counts per source directory
 python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
 
-# 특정 범위만 보기
+# View a specific scope only
 python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary --under docs --depth 3
 
-# 상세 후보 확인
+# Inspect detailed candidates
 python3 .agents/skills/dnl-query/dnl_query.py unresolved --under docs --format jsonl
 python3 .agents/skills/dnl-query/dnl_query.py unused --under docs --format jsonl
 python3 .agents/skills/dnl-query/dnl_query.py missing-tokens --under docs --format jsonl
 ```
 
-`unresolved`는 target 경로가 resolve되지 않는 후보, `unused`는 YAML `paths`에 선언됐지만 본문에서 쓰이지 않은 token 후보,
-`missing-tokens`는 본문에 있지만 YAML `paths`에 없는 파일형/path형 token 후보입니다.
+`unresolved` lists candidates whose target path does not resolve, `unused` lists token candidates declared in YAML `paths` but never used in the body,
+and `missing-tokens` lists file/path-like token candidates in the body but missing from YAML `paths`.
 
 ## Index
 
-기본 index 위치는 `@tag-index`입니다.
-link 조회 명령은 `@link-index`를 읽습니다.
-index 파일은 git에 커밋하지 않는 로컬 생성물입니다.
-index가 없거나 최신성이 의심되면 아래 명령을 사용합니다.
+The default index location is `@tag-index`.
+The link query commands read `@link-index`.
+Index files are local artifacts that are not committed to git.
+If an index is missing or its freshness is in doubt, use the commands below.
 
 ```bash
-# tag index 전체 재생성
+# Rebuild the entire tag index
 python3 .agents/skills/dnl-builder/dnl_util.py tag index build
 
-# tag index 최신성 확인
+# Check the tag index freshness
 python3 .agents/skills/dnl-builder/dnl_util.py tag index check
 
-# link index 전체 재생성
+# Rebuild the entire link index
 python3 .agents/skills/dnl-builder/dnl_util.py link index build
 
-# link index 최신성 확인
+# Check the link index freshness
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
 ```

@@ -13,28 +13,28 @@ paths:
 # Agents Skills Portal
 
 
-## 목적
-- 이 디렉토리는 스킬의 정본(Source of Truth)입니다.
-- 모든 AI는 최종적으로 `.agents/skills/{skill}/SKILL.md`를 읽습니다.
-- 에이전트별 `skills/*/SKILL.md`는 도구 호환을 위한 짧은 라우팅 래퍼입니다.
-- Codex와 Antigravity/Gemini 계열은 repo-local 래퍼 없이 `.agents/skills`를 직접 참조합니다.
-- `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, `.windsurfrules`는 현재 운영 표면이 아니므로 새로 만들지 않습니다.
+## Purpose
+- This directory is the source of truth for skills.
+- Every AI ultimately reads `.agents/skills/{skill}/SKILL.md`.
+- Each agent's `skills/*/SKILL.md` is a short routing wrapper kept only for tool compatibility.
+- Codex and the Antigravity/Gemini family reference `.agents/skills` directly, without repo-local wrappers.
+- `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, and `.windsurfrules` are not active surfaces today, so do not create new ones.
 
-## 공통 사용 순서
-1. 루트 `AGENTS.md`를 먼저 읽습니다.
-2. `README.md`와 `docs/`는 public explanation, onboarding, README/docs 작업일 때만 읽습니다.
-3. 현재 AI에 유지 중인 래퍼 파일이 있으면(`<agent>/skills/{skill}/SKILL.md`) 짧은 라우터로만 사용합니다.
-4. 정본 스킬 문서(`.agents/skills/{skill}/SKILL.md`)를 읽고 필요한 스크립트/참조만 추가 로딩합니다.
-5. 스크립트 실행/수정은 항상 `.agents/skills/{skill}` 기준 경로로 수행합니다.
+## Common usage order
+1. Read the root `AGENTS.md` first.
+2. Read `README.md` and `docs/` only for public explanation, onboarding, or README/docs work.
+3. If a wrapper file is maintained for the current AI (`<agent>/skills/{skill}/SKILL.md`), use it only as a short router.
+4. Read the canonical skill document (`.agents/skills/{skill}/SKILL.md`) and load only the scripts/references you need.
+5. Always run and edit scripts using paths relative to `.agents/skills/{skill}`.
 
-## 멀티 에이전트 가이드
-- 상세 규칙과 체크리스트: `@multi-agent-skill-guide.md`
-- 스킬 정본 위치를 `.agents/skills` 밖으로 옮기거나 다른 tool-specific 폴더에서 모아올 때: `@skill-source-migration.md`
+## Multi-agent guide
+- Detailed rules and checklists: `@multi-agent-skill-guide.md`
+- Moving a skill's canonical location outside `.agents/skills`, or collecting it from another tool-specific folder: `@skill-source-migration.md`
 
 ## Skills
 - `dnl-builder` (`@dnl-builder.md`)
-  - DNL 작성/정비 정본 문서(`DNL-system/authoring`)로 라우팅하고 QA를 제공.
+  - Routes to the canonical DNL authoring/maintenance docs (`DNL-system/authoring`) and provides QA.
 - `dnl-query` (`@dnl-query.md`)
-  - 생성된 tag index를 읽어 tag/name/status/path 조건으로 DNL 문서를 조회.
+  - Reads the generated tag index to query DNL documents by tag/name/status/path.
 - `tree` (`@tree.md`)
-  - Python 기반 트리 구조 분석 도구(Windows `tree` 대체).
+  - Python-based tree structure analyzer (a replacement for Windows `tree`).
