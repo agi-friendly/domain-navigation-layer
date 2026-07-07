@@ -47,6 +47,9 @@ Do not archive when:
 - promotion is incomplete
 - another human or agent still needs the bundle in active work
 - the bundle should be deleted instead of preserved
+- the bundle has `Type: recurring` and the recurring mission is still active
+  - a completed batch is not a completed mission
+  - archive only after mission retirement is represented by `DNL Status: promoted`
 
 ## After archive movement
 

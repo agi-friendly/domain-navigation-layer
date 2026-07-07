@@ -25,6 +25,7 @@ The core idea is to separate active work, promoted knowledge, archived raw bundl
 
 - How to treat `working/` as shared source material
 - How to write lightweight working bundles without over-structuring them
+- How bundle Type changes the lifecycle interpretation of `DNL Status`
 - When to promote repeatable knowledge into canonical DNL
 - When to move raw work bundles into `.working-archive/`
 - How to keep repository history separate from archived raw bundles
@@ -42,11 +43,12 @@ The core idea is to separate active work, promoted knowledge, archived raw bundl
 1. `working/` is a shared active work area, not canonical DNL.
 2. A working bundle only needs `working/{working-name}/README.md` as its minimum rule.
 3. `working/README.md` is a human-facing active work index.
-4. DNL holds reusable, stable knowledge.
-5. Raw working bundles should not stay in active portals forever after promotion.
-6. `.working-archive/` stores raw bundles; history explains why important changes happened.
-7. `archived` is not a `DNL Status` value. Archive state is represented by location.
-8. Promoting working material into DNL requires both lifecycle rules from workflow and writing rules from authoring.
+4. Working bundles use `Type` to separate `domain-work`, `dnl-internal`, and `recurring` lifecycles.
+5. DNL holds reusable, stable knowledge.
+6. Raw working bundles should not stay in active portals forever after promotion.
+7. `.working-archive/` stores raw bundles; history explains why important changes happened.
+8. `archived` is not a `DNL Status` value. Archive state is represented by location.
+9. Promoting working material into DNL requires both lifecycle rules from workflow and writing rules from authoring.
 
 ## Lifecycle summary
 

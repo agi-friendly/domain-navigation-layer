@@ -1,5 +1,5 @@
 ---
-name: "templates - 템플릿 포털"
+name: "templates - template portal"
 status: "draft"
 tags: ["portal-dnl"]
 paths:
@@ -7,7 +7,9 @@ paths:
   "@outputs/README.md": "{@DNL-system}/templates/outputs/README.md"
 ---
 
-# templates - 템플릿 포털
+# templates - template portal
 
+This directory contains reusable templates for requests and outputs.
 
-> 이 디렉토리는 사람이든 AI든 **짧은 입력으로 일을 정확히 시키고**, 결과를 일정한 포맷으로 받기 위한 템플릿 모음입니다.
+Use request templates to give agents enough structure without overloading the prompt.
+Use output templates when the result should follow a predictable review format.
