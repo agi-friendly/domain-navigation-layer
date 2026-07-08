@@ -161,6 +161,10 @@ After promotion and rewiring:
 - remove or demote it from the active `working/README.md` index when appropriate
 - decide whether to move it into `.working-archive/`
 
+Exception: if the bundle has `Type: recurring`, ordinary batch promotion does not set the whole bundle to `promoted`.
+Record the cursor and batch log, then return the bundle to `not-ready`.
+Use `promoted` only when the recurring mission itself has retired.
+
 ## Good promotion result
 
 A good promotion means:
