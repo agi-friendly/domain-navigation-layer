@@ -1,50 +1,32 @@
 ---
 name: tree
-description: Guide for analyzing tree structure with Python (a replacement for the Windows tree command).
+description: Use when an agent needs a cross-platform directory tree view after narrowing the DNL search area.
 ---
 
-# DNL Tree Generator
+# DNL Tree Tool
 
-`.agents/skills/tree/tree.py` is a lightweight tree explorer for DNL navigation.
-It prints directory and JSON views while respecting `.gitignore`.
+Use this skill when a candidate DNL area is already narrowed and you need a quick directory map.
+The executable tool is `scripts/dnl/tree.py`; the detailed guide is `scripts/dnl/tree.md`.
+The legacy `.agents/skills/tree/tree.py` path is a compatibility shim only.
 
-## Common commands
-
-> **Windows:** `python -X utf8 .agents/skills/tree/tree.py ...`
-> **macOS/Linux:** `python3 .agents/skills/tree/tree.py ...`
+## Common Commands
 
 ```bash
-# Folder structure only
-python3 .agents/skills/tree/tree.py --root docs
+# Folder structure only.
+python3 scripts/dnl/tree.py --root docs --depth 3 --ascii
 
-# Include files
-python3 .agents/skills/tree/tree.py --root docs --files
+# Include files and line counts.
+python3 scripts/dnl/tree.py --root DNL-system --depth 2 --files --ascii
 
-# Public docs exploration pattern
-python3 .agents/skills/tree/tree.py --root docs --depth 3 --files --ascii
+# JSON output for downstream scripts.
+python3 scripts/dnl/tree.py --root docs --depth 3 --files --json
 ```
 
-## Output example (text)
+## Usage Boundary
 
-```text
-domain-navigation-layer/ [3 dirs, 0 files]
-├── docs/ [0 dirs, 4 files]
-│   ├── README.md [23 lines] # public landing page
-│   └── core-concept.md [17 lines]
-├── DNL-system/ [1 dirs, 0 files]
-│   └── authoring/ [1 dirs, 2 files]
-└── .agents/skills/ [1 dirs, 0 files]
-    └── tree/ [0 dirs, 4 files]
-```
+- Narrow the search first with DNL routing or `dnl-query`.
+- Run tree only inside the narrowed subtree.
+- Use `--depth 3` to `--depth 5` for normal exploration.
+- Do not start with broad repository-wide trees unless the user explicitly asks for a repository map.
 
-## Windows encoding note
-
-If PowerShell garbles Korean or emoji text, always use `-X utf8`.
-
-```powershell
-python -X utf8 .agents/skills/tree/tree.py --root docs --files --depth 3 --ascii
-```
-
-## Details
-
-See `.agents/skills/tree/README.md` for the full option list, output examples, and usage notes.
+Read `scripts/dnl/tree.md` for installation, options, output examples, and Windows UTF-8 notes.

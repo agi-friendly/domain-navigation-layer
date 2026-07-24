@@ -1,8 +1,14 @@
 from __future__ import annotations
 
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS_DNL = REPO_ROOT / "scripts" / "dnl"
+sys.path.insert(0, str(SCRIPTS_DNL))
 
 from tree import DEFAULT_IGNORES, IgnoreMatcher, build_tree, format_tree_text, load_gitignore_patterns
 
@@ -15,6 +21,23 @@ def find_child(node_name: str, children: list) -> object | None:
 
 
 class TreeSkillSmokeTest(unittest.TestCase):
+    def test_legacy_skill_path_shims_to_script_tool(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "README.md").write_text("# Compatibility Root\n", encoding="utf-8")
+            script = REPO_ROOT / ".agents" / "skills" / "tree" / "tree.py"
+
+            completed = subprocess.run(
+                [sys.executable, str(script), "--root", str(root), "--depth", "1", "--ascii"],
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                check=False,
+            )
+
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertIn("Compatibility Root", completed.stdout)
+
     def test_directory_readme_h1_is_extracted(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

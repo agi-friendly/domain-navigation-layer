@@ -13,12 +13,13 @@ paths:
 # Multi-Agent Skill Guide
 
 
-This document is an operational guide for keeping multiple AI agents consistent in how they use the canonical `.agents/skills` skills.
+This document keeps multiple AI agents consistent in how they activate skills and run shared DNL tooling.
 
 ## Core principles
 - The canonical skill is always `.agents/skills/{skill-name}`.
 - Each agent's `*/skills/{skill-name}/SKILL.md` is not a required structure but a routing wrapper that keeps only the tools it needs.
-- Keep wrappers short, and keep detailed instructions only in the canonical skill document.
+- Keep wrappers and canonical `SKILL.md` files short.
+- Keep detailed portable tool instructions beside the executable under `scripts/dnl/{tool}.md`.
 - When adding or renaming a skill, sync only the wrappers that are currently supported.
 - Codex and the Antigravity/Gemini family reference `.agents/skills` directly, without repo-local wrappers.
 - `.codex`, `.antigravity`, `GEMINI.md`, `.kiro`, and `.windsurfrules` are not active surfaces today, so do not create new ones.
@@ -29,7 +30,10 @@ This document is an operational guide for keeping multiple AI agents consistent 
 .agents/skills/
   <skill-name>/
     SKILL.md
-    (scripts/references/assets...)
+
+scripts/dnl/
+  <tool>.py
+  <tool>.md
 
 .claude/skills/<skill-name>/SKILL.md
 .github/skills/<skill-name>/SKILL.md
@@ -41,7 +45,7 @@ This document is an operational guide for keeping multiple AI agents consistent 
 2. Read `README.md` and `docs/` only for public explanation, onboarding, or README/docs work.
 3. If a wrapper `SKILL.md` is maintained for the current AI, use it only as a short router.
 4. Read the canonical `.agents/skills/{skill}/SKILL.md`.
-5. When needed, read only the scripts/reference files of the canonical skill in addition.
+5. When needed, read only the referenced script-side guide, builder-local utility, or supporting file.
 
 ## Checklist for adding a new skill
 1. Create `.agents/skills/{skill-name}/SKILL.md`.
@@ -56,12 +60,13 @@ This document is an operational guide for keeping multiple AI agents consistent 
 ## Checklist for editing an existing skill
 1. Edit the canonical `.agents/skills/{skill-name}/SKILL.md` first.
 2. Sync the wrapper metadata (`name`, `description`) only when needed.
-3. If a path or name changed, update only the supported wrapper paths along with it.
+3. If an implementation or detailed guide changed, update `scripts/dnl` and official command examples together.
+4. If a skill path or name changed, update only the supported wrapper paths along with it.
 
 ## Recommended verification commands
 Check structure:
 ```bash
-python .agents/skills/tree/tree.py --root . --depth 3 --hidden --ascii
+python scripts/dnl/tree.py --root . --depth 3 --hidden --ascii
 ```
 
 Check DNL link quality:

@@ -10,6 +10,8 @@ paths:
   "@dnl-example.md": "{@dnl-root}/DNL-example/README.md"
   "@skills-readme.md": "{@dnl-root}/.agents/skills/README.md"
   "@multi-agent-skill-guide.md": "{@dnl-root}/.agents/skills/multi-agent-skill-guide.md"
+  "@dnl-query-tool.md": "{@dnl-root}/scripts/dnl/query.md"
+  "@dnl-tree-tool.md": "{@dnl-root}/scripts/dnl/tree.md"
 ---
 
 # Before answering:
@@ -20,6 +22,8 @@ paths:
 - `@paths-md.md` and `@current-user-md.md` if the task depends on local context details.
 - If the task mentions a skill, use `.agents/skills/{skill}/SKILL.md` as the source of truth.
 - Read `@skills-readme.md` and `@multi-agent-skill-guide.md` only when you need the shared skill catalog or wrapper-maintenance rules.
+- Use `scripts/dnl/query.py` and `scripts/dnl/tree.py` as the official portable executables. Their detailed guides are `@dnl-query-tool.md` and `@dnl-tree-tool.md`.
+- Treat retained executables under `.agents/skills/dnl-query` and `.agents/skills/tree` as compatibility shims only.
 - Generated `dnl-query` tag/link indexes are local build artifacts. If they are missing or stale, rebuild them with `dnl-builder`; do not commit generated index files.
 
 ---
