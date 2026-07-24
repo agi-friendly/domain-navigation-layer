@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import shlex
 import subprocess
 import sys
 import tempfile
@@ -11,7 +10,7 @@ from pathlib import Path
 
 class DnlQueryTest(unittest.TestCase):
     def run_query(self, root: Path, *args: str) -> subprocess.CompletedProcess[str]:
-        script = Path(__file__).resolve().parent / "dnl_query.py"
+        script = Path(__file__).resolve().parents[2] / "scripts" / "dnl" / "query.py"
         return subprocess.run(
             [sys.executable, str(script), "--root", str(root), *args],
             text=True,
@@ -197,6 +196,23 @@ class DnlQueryTest(unittest.TestCase):
             tags = json.loads(completed.stdout)
             self.assertEqual(tags[0], {"tag": "glossary-dnl", "count": 2})
 
+    def test_legacy_skill_path_shims_to_script_tool(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_index(root)
+            script = Path(__file__).resolve().parents[2] / ".agents" / "skills" / "dnl-query" / "dnl_query.py"
+
+            completed = subprocess.run(
+                [sys.executable, str(script), "--root", str(root), "tags"],
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                check=False,
+            )
+
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertIn("glossary-dnl 2", completed.stdout)
+
     def test_docs_lists_documents_for_tag_in_text_paths_and_jsonl_formats(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -310,6 +326,48 @@ class DnlQueryTest(unittest.TestCase):
             self.assertEqual(paths.stdout.splitlines(), ["docs/sample-dnl/README.md"])
             self.assertEqual(json.loads(jsonl.stdout)["targetPath"], "DNL-system/ai/README.md")
 
+    def test_deps_outputs_script_friendly_dependency_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_link_index(root)
+
+            completed = self.run_query(
+                root,
+                "deps",
+                "--path",
+                "docs/sample-dnl/README.md",
+                "--format",
+                "json",
+            )
+
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            plan = json.loads(completed.stdout)
+            self.assertEqual(plan["path"], "docs/sample-dnl/README.md")
+            self.assertEqual(plan["counts"]["outboundLinks"], 2)
+            self.assertEqual(plan["counts"]["backlinks"], 0)
+            self.assertEqual(plan["counts"]["unresolvedOutboundLinks"], 1)
+            self.assertEqual(
+                [entry["token"] for entry in plan["outboundLinks"]],
+                ["@ai/README.md", "@missing.md"],
+            )
+            self.assertEqual(plan["backlinks"], [])
+
+            target_completed = self.run_query(
+                root,
+                "deps",
+                "--path",
+                "DNL-system/ai/README.md",
+                "--format",
+                "json",
+            )
+
+            self.assertEqual(target_completed.returncode, 0, target_completed.stderr)
+            target_plan = json.loads(target_completed.stdout)
+            self.assertEqual(target_plan["counts"]["outboundLinks"], 0)
+            self.assertEqual(target_plan["counts"]["backlinks"], 1)
+            self.assertEqual(target_plan["backlinks"][0]["source"], "docs/sample-dnl/README.md")
+            self.assertEqual(target_plan["backlinks"][0]["token"], "@ai/README.md")
+
     def test_unresolved_lists_unresolved_link_records(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -421,26 +479,31 @@ class DnlQueryTest(unittest.TestCase):
                     "token": f"@unused-{index}.md",
                     "targetPath": f"docs/sample-dnl/unused-{index}.md",
                 }
-                for index in range(50)
+                for index in range(10_000)
             ]
             (index_dir / "unused-paths.jsonl").write_text(self.jsonl(unused), encoding="utf-8")
-            script = Path(__file__).resolve().parent / "dnl_query.py"
-            command = (
-                f"{shlex.quote(sys.executable)} {shlex.quote(str(script))} "
-                f"--root {shlex.quote(str(root))} unused | head -1"
-            )
+            script = Path(__file__).resolve().parents[2] / "scripts" / "dnl" / "query.py"
 
-            completed = subprocess.run(
-                ["/bin/sh", "-c", command],
+            process = subprocess.Popen(
+                [sys.executable, str(script), "--root", str(root), "unused"],
                 text=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                check=False,
             )
 
-            self.assertEqual(completed.returncode, 0, completed.stderr)
-            self.assertNotIn("BrokenPipeError", completed.stderr)
-            self.assertNotIn("Traceback", completed.stderr)
+            self.assertIsNotNone(process.stdout)
+            self.assertIsNotNone(process.stderr)
+
+            first_line = process.stdout.readline()
+            process.stdout.close()
+            stderr = process.stderr.read()
+            process.stderr.close()
+            returncode = process.wait(timeout=10)
+
+            self.assertTrue(first_line)
+            self.assertEqual(returncode, 0, stderr)
+            self.assertNotIn("BrokenPipeError", stderr)
+            self.assertNotIn("Traceback", stderr)
 
 
 if __name__ == "__main__":

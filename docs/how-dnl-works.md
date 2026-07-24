@@ -131,7 +131,7 @@ The starter includes:
 In one line:
 
 ```text
-AGENTS.md routes. DNL-system governs. DNL explains. Skills execute.
+AGENTS.md routes. DNL-system governs. DNL explains. Skills guide. Scripts execute.
 ```
 
 ## Reliability Model
@@ -153,7 +153,7 @@ python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-sum
 python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all --json-summary
 python3 .agents/skills/dnl-builder/dnl_util.py tag index check
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
-python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
+python3 scripts/dnl/query.py unresolved-summary
 ```
 
 If indexes are stale, rebuild them:

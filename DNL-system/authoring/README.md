@@ -123,11 +123,11 @@ Use this flow:
 3. Read the health summary.
    - `python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary`
 4. Narrow suspicious areas.
-   - `python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary`
+   - `python3 scripts/dnl/query.py unresolved-summary`
 5. Inspect detailed candidates.
-   - `python3 .agents/skills/dnl-query/dnl_query.py unresolved --format jsonl`
-   - `python3 .agents/skills/dnl-query/dnl_query.py unused --format jsonl`
-   - `python3 .agents/skills/dnl-query/dnl_query.py missing-tokens --format jsonl`
+   - `python3 scripts/dnl/query.py unresolved --format jsonl`
+   - `python3 scripts/dnl/query.py unused --format jsonl`
+   - `python3 scripts/dnl/query.py missing-tokens --format jsonl`
 
 Currently `unresolved`, `unused`, and `missing-tokens` are health signals.
 Review them before deciding whether a policy change or document cleanup is needed.

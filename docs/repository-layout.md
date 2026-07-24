@@ -12,6 +12,8 @@ This repository is a public starter for DNL. It is intentionally small at the to
 ├── working/
 ├── .working-archive/
 ├── .agents/
+├── scripts/
+├── tests/
 ├── .claude/
 ├── .cursor/
 ├── .github/
@@ -32,9 +34,9 @@ This repository is a public starter for DNL. It is intentionally small at the to
 
 Read the [AGENTS.md customization guide](agents-md.md) before adapting the AI entrypoint for your own repository.
 
-## Agent Skill Surface
+## Tooling Surfaces
 
-The canonical skill source is:
+The canonical agent behavior source is:
 
 ```text
 .agents/skills/
@@ -43,6 +45,21 @@ The canonical skill source is:
 Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin wrappers for environments that expect their own skill locations.
 
 Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
+
+Portable DNL executables and their detailed guides live here:
+
+```text
+scripts/dnl/
+  query.py
+  query.md
+  tree.py
+  tree.md
+  requirements.txt
+```
+
+Portable tests live under `tests/dnl/`.
+The retained `tree.py` and `dnl_query.py` files under `.agents/skills` are compatibility shims, not the official executable surface.
+Builder-specific QA, index, tag, and document-move maintenance remains under `.agents/skills/dnl-builder`.
 
 Read the [Skills customization guide](skills.md) before adding new skills or changing wrapper behavior.
 If you want a different canonical skill home, read the [Skill source migration guide](skill-source-migration.md) before moving files.

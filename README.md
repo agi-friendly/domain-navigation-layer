@@ -53,6 +53,7 @@ AGENTS.md
 dnl-config.toml
 DNL-system/
 .agents/skills/
+scripts/dnl/
 ```
 
 If you want the active work lifecycle, also create:
@@ -180,7 +181,8 @@ DNL works by combining a small routing contract with lightweight validation:
 - DNL route documents point to the next useful context.
 - YAML `paths` define stable `@tokens` for documents and source pointers.
 - `dnl-config.toml` tells tools what to scan and which tags are required.
-- `.agents/skills/` gives agents reusable QA, query, and tree-inspection workflows.
+- `.agents/skills/` gives agents reusable behavior guides and builder-specific maintenance workflows.
+- `scripts/dnl/` gives people and agents the official portable query and tree executables.
 - `qa.py` and generated indexes help catch missing frontmatter, stale scan config, and unresolved internal paths.
 - `working/` keeps active source material separate from canonical DNL until it is promoted.
 
@@ -259,7 +261,9 @@ If you are an AI agent or maintaining this repository:
 - `DNL-system/` holds maintenance, authoring, workflow, and AI routing rules.
 - `working/` is the optional shared active work area.
 - `.working-archive/` stores completed raw work bundles outside active routes.
-- `.agents/skills/` holds reusable skill entrypoints for agents.
+- `.agents/skills/` holds reusable behavior entrypoints and compatibility shims for agents.
+- `scripts/dnl/` holds portable executables and detailed command guides.
+- `tests/dnl/` verifies the portable tooling surface.
 
 If you are an automated agent, read `AGENTS.md` before making changes.
 

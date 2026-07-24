@@ -12,6 +12,8 @@ paths:
   "@docs-skills.md": "{@dnl-root}/docs/skills.md"
   "@docs-skill-source-migration.md": "{@dnl-root}/docs/skill-source-migration.md"
   "@docs-repository-layout.md": "{@dnl-root}/docs/repository-layout.md"
+  "@dnl-query-tool.md": "{@dnl-root}/scripts/dnl/query.md"
+  "@dnl-tree-tool.md": "{@dnl-root}/scripts/dnl/tree.md"
   "@ai/README.md": "{@DNL-system}/ai/README.md"
   "@authoring/README.md": "{@DNL-system}/authoring/README.md"
   "@workflow/README.md": "{@DNL-system}/workflow/README.md"
@@ -30,6 +32,15 @@ This directory holds the maintenance guidance that keeps the documentation layer
 - Lifecycle and archival flow: `@workflow/README.md`
 - Reusable request and output templates: `@templates/README.md`
 - Safety boundaries: `@boundaries/README.md`
+
+## Portable tooling
+
+- Query generated DNL indexes: `@dnl-query-tool.md`
+- Inspect a scoped directory tree: `@dnl-tree-tool.md`
+
+`DNL-system` defines the rules.
+`scripts/dnl` is the official executable and detailed-guide surface for people and agents.
+`.agents/skills` provides thin agent behavior guides, compatibility shims, and builder-only maintenance tools that have not been extracted into a portable core.
 
 ## Public reader docs
 

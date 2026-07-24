@@ -292,8 +292,7 @@ python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-sum
 python3 .agents/skills/dnl-builder/dnl_util.py tag index check
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
 python3 -m unittest discover -s .agents/skills/dnl-builder -p 'test_*.py'
-python3 -m unittest discover -s .agents/skills/dnl-query -p 'test_*.py'
-python3 -m unittest discover -s .agents/skills/tree -p 'test_*.py'
+python3 -m unittest discover -s tests/dnl -p 'test_*.py'
 ```
 
 If you moved the canonical skill home away from `.agents/skills`, update these commands before running them.

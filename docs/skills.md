@@ -1,19 +1,22 @@
 # Skills Customization Guide
 
-`.agents/skills/` is the reusable tool surface for a DNL repository.
+`.agents/skills/` is the reusable agent behavior surface for a DNL repository.
+Portable executables and their detailed guides live under `scripts/dnl/`.
 
-If DNL gives an agent a map, skills give the agent reusable tools.
+If DNL gives an agent a map, skills tell the agent when and how to use repeatable workflows.
+Scripts provide the shared executable surface for people and agents.
 
 Use this rule:
 
 ```text
 DNL-system defines the rules.
-.agents/skills gives agents reusable execution tools.
+scripts/dnl provides portable executables and detailed guides.
+.agents/skills provides agent behavior guides and compatibility shims.
 ```
 
 ## What Skills Are For
 
-Use skills for work that an agent may need to repeat:
+Use skills to trigger and guide work that an agent may need to repeat:
 
 - writing or reviewing DNL documents
 - running DNL QA
@@ -23,7 +26,7 @@ Use skills for work that an agent may need to repeat:
 - building project-specific maps
 - checking release, migration, or deployment steps
 
-A skill should make a repeatable workflow easier to trigger, easier to verify, and easier to reuse across agent tools.
+A skill should make a repeatable workflow easier to trigger, route, verify, and reuse across agent tools.
 
 ## Canonical Skill Source
 
@@ -41,7 +44,9 @@ Tool-specific folders can wrap that source:
 .github/skills/
 ```
 
-Those wrapper folders exist because different tools may expect different local paths. The starter's default preference is to keep wrappers thin and put the real instructions in `.agents/skills/{skill-name}/SKILL.md`.
+Those wrapper folders exist because different tools may expect different local paths.
+The starter keeps wrappers thin and puts the canonical agent behavior in `.agents/skills/{skill-name}/SKILL.md`.
+For portable DNL tools, `SKILL.md` routes to the executable and detailed guide under `scripts/dnl/`.
 
 That keeps one source of truth:
 
@@ -62,9 +67,9 @@ The starter includes three useful skills:
 
 | Skill | Purpose |
 | --- | --- |
-| `dnl-builder` | Routes agents to DNL authoring rules and runs DNL QA/index tooling |
-| `dnl-query` | Searches DNL documents through generated tag and link indexes |
-| `tree` | Shows scoped repository structure without dumping the whole project |
+| `dnl-builder` | Routes agents to DNL authoring rules and owns builder-specific QA/index/tag/move maintenance |
+| `dnl-query` | Routes agents to the portable read-only query tool |
+| `tree` | Routes agents to the portable scoped directory tree tool |
 
 For a Small DNL, these are usually enough at first.
 
@@ -77,13 +82,15 @@ Use these boundaries:
 | `AGENTS.md` | Tells the agent where to start |
 | `DNL-system/` | Defines DNL operating and authoring rules |
 | `DNL/`, `products/`, `projects/` | Stores project or domain knowledge |
-| `.agents/skills/` | Provides reusable workflows, scripts, and tool instructions |
+| `scripts/dnl/` | Provides portable executables and detailed command guides |
+| `.agents/skills/` | Provides thin behavior guides, compatibility shims, and builder-only maintenance |
+| `tests/dnl/` | Verifies portable query/tree behavior and compatibility shims |
 | `.claude/`, `.cursor/`, `.github/` | Optional wrappers for specific agent tools |
 
 The same idea in one line:
 
 ```text
-AGENTS.md routes. DNL-system governs. DNL explains. Skills execute.
+AGENTS.md routes. DNL-system governs. DNL explains. Skills guide. Scripts execute.
 ```
 
 ## When To Customize Skills
@@ -93,7 +100,7 @@ Customize `.agents/skills/` when repeated agent work needs a clearer tool or pro
 Good reasons:
 
 - Agents repeatedly run the wrong QA command.
-- Agents need a standard way to inspect a project tree.
+- Agents need a standard trigger and boundary for inspecting a project tree.
 - Agents need a script to generate or refresh a map.
 - Agents need a domain-specific checklist before editing.
 - Humans and agents keep repeating the same prompt or terminal sequence.
@@ -114,7 +121,8 @@ A useful skill usually answers:
 - What counts as verification?
 - What should it do if the command fails?
 
-The skill can include scripts, examples, templates, or reference files.
+The skill can include examples, templates, references, or builder-specific maintenance scripts.
+Portable DNL commands shared with humans should live under `scripts/dnl/`.
 
 Common shape:
 
@@ -128,6 +136,23 @@ Common shape:
 ```
 
 Keep `SKILL.md` focused on triggering and operating the skill. Put longer examples or implementation notes in supporting files.
+When the workflow uses a portable DNL executable, put the detailed guide beside it under `scripts/dnl/`.
+
+## Portable DNL Tool Pattern
+
+Use this pattern for a command intended for people and agents:
+
+```text
+scripts/dnl/<tool>.py
+scripts/dnl/<tool>.md
+tests/dnl/test_<tool>.py
+.agents/skills/<skill>/SKILL.md
+```
+
+The skill activates the behavior.
+The script executes it.
+The script-side guide owns options and examples.
+The test belongs to the portable tooling surface.
 
 ## Gentle Placement Hints
 
@@ -135,11 +160,17 @@ Once you copy this starter, the repository is yours. These are not hard rules, j
 
 Skills are usually best for:
 
-- repeatable procedures
-- tool commands
+- repeatable behavior triggers
+- routing to canonical rules or tools
 - generated indexes
 - verification routines
 - reusable prompts with a clear trigger
+
+Scripts are usually best for:
+
+- portable commands used by people and agents
+- command-line options and stable output formats
+- cross-platform execution logic
 
 DNL documents are usually best for:
 
@@ -225,7 +256,7 @@ Prefer not to copy the full skill body into every wrapper unless you intentional
 Use this order:
 
 1. Update `.agents/skills/<skill-name>/SKILL.md`.
-2. Update supporting scripts or examples.
+2. Update `scripts/dnl` when the portable implementation or detailed guide changes.
 3. Update `.agents/skills/README.md` if the skill list changed.
 4. Update wrappers only if the name, description, or path changed.
 5. Run the skill's own verification.
@@ -237,6 +268,7 @@ For the starter DNL skills, useful checks include:
 python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
 python3 .agents/skills/dnl-builder/dnl_util.py tag index check
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 -m unittest discover -s tests/dnl
 ```
 
 If a generated index is stale, rebuild it:
@@ -256,6 +288,8 @@ For a Small DNL, keep the starter skills at first:
 .agents/skills/dnl-builder/
 .agents/skills/dnl-query/
 .agents/skills/tree/
+scripts/dnl/
+tests/dnl/
 ```
 
 Then add a custom skill only after a real repeated workflow appears.

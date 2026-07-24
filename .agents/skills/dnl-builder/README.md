@@ -10,9 +10,10 @@ paths:
 
 # .agents/skills/dnl-builder
 
-This directory is the executable support surface for DNL document work.
+This directory is the builder-specific maintenance surface for DNL document work.
 The canonical rules live in `DNL-system/authoring` and `DNL-system/workflow`.
-This skill routes agents there and provides QA/index utilities.
+This skill routes agents there and provides QA, index, tag, and document-move utilities.
+Read-only query and tree executables live in `scripts/dnl`.
 
 ## Role
 
@@ -144,10 +145,10 @@ Do not commit `.agents/skills/dnl-query/tag-index/` or `.agents/skills/dnl-query
 python3 .agents/skills/dnl-builder/dnl_util.py link index build
 python3 .agents/skills/dnl-builder/dnl_util.py link index check
 python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary
-python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
-python3 .agents/skills/dnl-query/dnl_query.py unresolved --format jsonl
-python3 .agents/skills/dnl-query/dnl_query.py unused --format jsonl
-python3 .agents/skills/dnl-query/dnl_query.py missing-tokens --format jsonl
+python3 scripts/dnl/query.py unresolved-summary
+python3 scripts/dnl/query.py unresolved --format jsonl
+python3 scripts/dnl/query.py unused --format jsonl
+python3 scripts/dnl/query.py missing-tokens --format jsonl
 ```
 
 `unresolved` and `missing-tokens` are often real route problems.

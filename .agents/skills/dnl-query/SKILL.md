@@ -1,90 +1,34 @@
 ---
 name: dnl-query
-description: Read-only query skill for finding DNL documents fast by tag/name/status/path without editing them.
+description: Use when an agent needs to find DNL documents by metadata or link records without editing DNL content.
 ---
 
 # DNL Query
 
-Use `.agents/skills/dnl-query` when you only need to find DNL documents, not edit them.
+Use this skill when you need to locate DNL documents quickly without scanning every Markdown file by hand.
+The executable tool is `scripts/dnl/query.py`; the detailed guide is `scripts/dnl/query.md`.
 
-## When to use
-
-- Finding DNL documents by tag
-- Narrowing documents by `name`, `status`, or path prefix
-- Reading a generated index instead of scanning many Markdown files directly
-- Quickly checking a document's outbound links, backlinks, and unresolved path candidates
-
-## Basic usage
+## Common Commands
 
 ```bash
-# Tag list and counts
-python3 .agents/skills/dnl-query/dnl_query.py tags
+# List tags and counts.
+python3 scripts/dnl/query.py tags
 
-# Documents with a specific tag
-python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl
+# List documents for a tag.
+python3 scripts/dnl/query.py docs --tag glossary-dnl
 
-# Print paths only
-python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl --format paths
+# Print paths only for follow-up reading.
+python3 scripts/dnl/query.py docs --tag rule-dnl --format paths
 
-# JSONL for AI follow-up processing
-python3 .agents/skills/dnl-query/dnl_query.py docs --tag glossary-dnl --format jsonl
-
-# Outbound links declared by a document
-python3 .agents/skills/dnl-query/dnl_query.py links --path docs/index.md
-
-# Source documents that reference a given document
-python3 .agents/skills/dnl-query/dnl_query.py backlinks --path DNL-system/README.md
-
-# Unresolved internal target candidates
-python3 .agents/skills/dnl-query/dnl_query.py unresolved
-
-# Unresolved candidates summarized by source directory
-python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
-
-# Path tokens declared but never used in the body
-python3 .agents/skills/dnl-query/dnl_query.py unused
-
-# File/path-like token candidates in the body but missing from YAML paths
-python3 .agents/skills/dnl-query/dnl_query.py missing-tokens
+# Inspect one document's outbound links and backlinks.
+python3 scripts/dnl/query.py deps --path DNL-system/README.md --format json
 ```
 
-## Link health query order
+## Role Boundary
 
-For a document-link health check, narrow the scope with a summary first, then look at detailed records.
+- Find DNL documents and link records: `scripts/dnl/query.py`
+- Read the full query guide: `scripts/dnl/query.md`
+- Inspect nearby directory structure after narrowing candidates: `scripts/dnl/tree.py`
+- Build or refresh indexes, edit DNL, or run QA: `.agents/skills/dnl-builder`
 
-```bash
-python3 .agents/skills/dnl-query/dnl_query.py unresolved-summary
-python3 .agents/skills/dnl-query/dnl_query.py unresolved --under docs --format jsonl
-python3 .agents/skills/dnl-query/dnl_query.py unused --under docs --format jsonl
-python3 .agents/skills/dnl-query/dnl_query.py missing-tokens --under docs --format jsonl
-```
-
-## Recommended tags
-
-Start by narrowing candidates with the tags below.
-
-- Structure/navigation: `portal-dnl`, `map-dnl`, `glossary-dnl`, `rule-dnl`
-- Work type: `guide-dnl`, `playbook-dnl`, `runbook-dnl`, `reference-dnl`, `troubleshooting-dnl`
-- Topic/tech: `auth`, `api`, `sql`, `i18n`, `svelte`, `migration`
-
-For the full set of tags and counts in the current index, run `python3 .agents/skills/dnl-query/dnl_query.py tags`.
-
-## Role boundaries
-
-- Find: `.agents/skills/dnl-query/dnl_query.py`
-- View structure: `.agents/skills/tree/tree.py`
-- Author/maintain/validate: `.agents/skills/dnl-builder`
-
-`dnl-query` only reads the index.
-For building a tag index, checking its freshness, or refreshing a single file, use `.agents/skills/dnl-builder/dnl_util.py tag index ...`.
-For building a link index or checking its freshness, use `.agents/skills/dnl-builder/dnl_util.py link index ...`.
-
-## When the index is missing
-
-The tag/link indexes are local artifacts that are not committed to git.
-If an index is missing or its freshness is in doubt, build it with the commands below.
-
-```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
-```
+The legacy `.agents/skills/dnl-query/dnl_query.py` path is a compatibility shim only.

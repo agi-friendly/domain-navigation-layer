@@ -29,9 +29,13 @@ AGENTS.md
 dnl-config.toml
 DNL-system/
 .agents/skills/
+scripts/dnl/
 ```
 
 Then add your project knowledge folder, such as `DNL/README.md`, first.
+
+`scripts/dnl/` is the official portable executable surface.
+The matching `.agents/skills` entries are thin behavior guides and compatibility shims, while builder-specific maintenance remains under `.agents/skills/dnl-builder`.
 
 `DNL/` is only an example root name. If you choose a different name, update `AGENTS.md` and `dnl-config.toml` to match.
 

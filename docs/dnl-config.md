@@ -19,12 +19,12 @@ The current public tools use `dnl-config.toml` in these places:
 | `dnl_util.py tag add` | `scan.include`, `scan.exclude` |
 | `dnl_util.py tag index build/check/update` | `scan.include`, `scan.exclude` |
 | `dnl_util.py link index build/check` | `scan.include`, `scan.exclude`, `paths.internal`, `paths.external` |
-| `dnl_query.py` | generated tag/link indexes, not `dnl-config.toml` directly |
+| `scripts/dnl/query.py` | generated tag/link indexes, not `dnl-config.toml` directly |
 
 The important pattern is:
 
 ```text
-dnl-config.toml -> dnl-builder tools -> generated indexes -> dnl-query
+dnl-config.toml -> dnl-builder tools -> generated indexes -> scripts/dnl/query.py
 ```
 
 ## Starter Repository Note
