@@ -181,9 +181,9 @@ DNL works by combining a small routing contract with lightweight validation:
 - DNL route documents point to the next useful context.
 - YAML `paths` define stable `@tokens` for documents and source pointers.
 - `dnl-config.toml` tells tools what to scan and which tags are required.
-- `.agents/skills/` gives agents reusable behavior guides and builder-specific maintenance workflows.
-- `scripts/dnl/` gives people and agents the official portable query and tree executables.
-- `qa.py` and generated indexes help catch missing frontmatter, stale scan config, and unresolved internal paths.
+- `.agents/skills/` gives agents reusable behavior guides and compatibility entrypoints.
+- `scripts/dnl/` gives people and agents the official portable tree, query, QA, and maintenance executables.
+- QA and generated indexes help catch missing frontmatter, stale scan config, and unresolved internal paths.
 - `working/` keeps active source material separate from canonical DNL until it is promoted.
 
 Read the mechanics and reliability model: [How DNL Works](docs/how-dnl-works.md).

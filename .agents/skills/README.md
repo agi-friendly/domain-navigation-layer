@@ -26,7 +26,7 @@ paths:
 2. Read `README.md` and `docs/` only for public explanation, onboarding, or README/docs work.
 3. If a wrapper file is maintained for the current AI (`<agent>/skills/{skill}/SKILL.md`), use it only as a short router.
 4. Read the canonical skill document (`.agents/skills/{skill}/SKILL.md`) and load only the referenced guide, tool, or supporting file you need.
-5. Run portable DNL executables from `scripts/dnl`; use builder-local scripts only for builder-specific maintenance.
+5. Run official DNL executables from `scripts/dnl`.
 
 ## Portable tooling rule
 
@@ -34,7 +34,7 @@ paths:
 - `scripts/dnl/{tool}.py`: official portable executable for people and agents.
 - `scripts/dnl/{tool}.md`: detailed options, examples, and troubleshooting.
 - `.agents/skills/{skill}/SKILL.md`: thin agent activation and behavior guide.
-- Retained `tree.py` and `dnl_query.py` files under `.agents/skills`: compatibility shims only.
+- Retained tree, query, QA, and maintenance executables under `.agents/skills`: compatibility shims only.
 - `tests/dnl/`: portable tooling tests.
 
 ## Multi-agent guide
@@ -43,7 +43,7 @@ paths:
 
 ## Skills
 - `dnl-builder` (`@dnl-builder.md`)
-  - Routes to canonical authoring/workflow docs and provides builder-specific QA, index, tag, and move maintenance.
+  - Routes to canonical authoring/workflow docs and the official QA and maintenance tools under `scripts/dnl`.
 - `dnl-query` (`@dnl-query.md`)
   - Routes agents to the official read-only query tool at `scripts/dnl/query.py`.
 - `tree` (`@tree.md`)

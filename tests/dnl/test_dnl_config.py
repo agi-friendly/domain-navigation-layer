@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+import sys
 from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS_DNL = REPO_ROOT / "scripts" / "dnl"
+sys.path.insert(0, str(SCRIPTS_DNL))
 
 from dnl_config import (
     DnlConfigError,

@@ -8,14 +8,16 @@ from pathlib import Path
 
 
 class DnlUtilMvTest(unittest.TestCase):
+    REPO_ROOT = Path(__file__).resolve().parents[2]
+    DNL_UTIL_SCRIPT = REPO_ROOT / "scripts" / "dnl" / "dnl_util.py"
+
     def run_util(
         self,
         root: Path,
         *args: str,
     ) -> subprocess.CompletedProcess[str]:
-        script = Path(__file__).resolve().parent / "dnl_util.py"
         return subprocess.run(
-            [sys.executable, str(script), "--root", str(root), *args],
+            [sys.executable, str(self.DNL_UTIL_SCRIPT), "--root", str(root), *args],
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,

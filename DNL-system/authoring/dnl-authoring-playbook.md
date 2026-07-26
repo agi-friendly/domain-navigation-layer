@@ -10,7 +10,7 @@ paths:
   "@working-authoring-rule.md": "{@DNL-system}/workflow/working-authoring-rule.md"
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
-  "@dnl-builder-qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
+  "@dnl-builder-qa.py": "{@dnl-root}/scripts/dnl/qa.py"
   "@dnl-builder/README.md": "{@DNL-system}/authoring/README.md"
 ---
 
@@ -132,7 +132,7 @@ Rules:
 - Split heavy background, investigation notes, and decision history into load-on-demand docs.
 - After promoting working material, rewire parent README/map/guide docs so active DNL no longer treats working as the priority path.
 - Search semantic stale after edits: old paths, old priority wording, missing parent routing, and completion claims without navigation.
-- After changes, run: python3 .agents/skills/dnl-builder/qa.py --profile portal
+- After changes, run: python3 scripts/dnl/qa.py --profile portal
 
 Task:
 <write your task here>

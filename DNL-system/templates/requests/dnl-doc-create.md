@@ -6,7 +6,7 @@ paths:
   "@markdown-rule.md": "{@DNL-system}/authoring/rules/markdown-rule.md"
   "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
   "@dnl-authoring-playbook.md": "{@DNL-system}/authoring/dnl-authoring-playbook.md"
-  "@qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
+  "@qa.py": "{@dnl-root}/scripts/dnl/qa.py"
 ---
 
 # DNL Document Creation Request Template
@@ -58,5 +58,5 @@ paths:
 ---
 
 ## 6) Verification
-- After writing, run: `python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all`
+- After writing, run: `python3 scripts/dnl/qa.py --profile portal --fail-on all`
 - Fix any violations before handing it off

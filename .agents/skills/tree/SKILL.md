@@ -7,7 +7,7 @@ description: Use when an agent needs a cross-platform directory tree view after 
 
 Use this skill when a candidate DNL area is already narrowed and you need a quick directory map.
 The executable tool is `scripts/dnl/tree.py`; the detailed guide is `scripts/dnl/tree.md`.
-The legacy `.agents/skills/tree/tree.py` path is a compatibility shim only.
+The retained executable in this skill directory is a compatibility shim only.
 
 ## Common Commands
 

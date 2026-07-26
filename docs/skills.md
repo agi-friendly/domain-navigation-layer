@@ -67,7 +67,7 @@ The starter includes three useful skills:
 
 | Skill | Purpose |
 | --- | --- |
-| `dnl-builder` | Routes agents to DNL authoring rules and owns builder-specific QA/index/tag/move maintenance |
+| `dnl-builder` | Routes agents to DNL authoring rules and the official QA/index/tag/move tools |
 | `dnl-query` | Routes agents to the portable read-only query tool |
 | `tree` | Routes agents to the portable scoped directory tree tool |
 
@@ -83,8 +83,8 @@ Use these boundaries:
 | `DNL-system/` | Defines DNL operating and authoring rules |
 | `DNL/`, `products/`, `projects/` | Stores project or domain knowledge |
 | `scripts/dnl/` | Provides portable executables and detailed command guides |
-| `.agents/skills/` | Provides thin behavior guides, compatibility shims, and builder-only maintenance |
-| `tests/dnl/` | Verifies portable query/tree behavior and compatibility shims |
+| `.agents/skills/` | Provides thin behavior guides and compatibility shims |
+| `tests/dnl/` | Verifies portable tree/query/QA/maintenance behavior and compatibility shims |
 | `.claude/`, `.cursor/`, `.github/` | Optional wrappers for specific agent tools |
 
 The same idea in one line:
@@ -121,8 +121,8 @@ A useful skill usually answers:
 - What counts as verification?
 - What should it do if the command fails?
 
-The skill can include examples, templates, references, or builder-specific maintenance scripts.
-Portable DNL commands shared with humans should live under `scripts/dnl/`.
+The skill can include examples, templates, references, or agent-specific helpers.
+Portable DNL commands shared with humans must live under `scripts/dnl/`.
 
 Common shape:
 
@@ -265,17 +265,17 @@ Use this order:
 For the starter DNL skills, useful checks include:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index check
 python3 -m unittest discover -s tests/dnl
 ```
 
 If a generated index is stale, rebuild it:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
+python3 scripts/dnl/dnl_util.py tag index build
+python3 scripts/dnl/dnl_util.py link index build
 ```
 
 If the repository is changing where canonical skills live, use the [Skill source migration guide](skill-source-migration.md) instead of treating it as a normal skill edit.

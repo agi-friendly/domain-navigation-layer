@@ -101,13 +101,13 @@ Indexes are generated artifacts and should not be committed.
 Build or check them with the builder maintenance commands:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/dnl_util.py tag index build
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index build
+python3 scripts/dnl/dnl_util.py link index check
 ```
 
 ## Compatibility
 
-`.agents/skills/dnl-query/dnl_query.py` remains as a compatibility shim for older automation and agent memory.
+The retained skill-side entrypoint remains a compatibility shim for older automation and agent memory.
 New documentation should use `scripts/dnl/query.py`.

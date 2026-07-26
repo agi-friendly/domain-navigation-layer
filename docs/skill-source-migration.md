@@ -199,14 +199,15 @@ Check these surfaces:
 
 The authoring docs are easy to miss.
 
-For example, if a DNL authoring portal points to:
+For example, DNL authoring portals should point to the portable runtime:
 
 ```text
-.agents/skills/dnl-builder/qa.py
-.agents/skills/dnl-builder/dnl_util.py
+scripts/dnl/qa.py
+scripts/dnl/dnl_util.py
 ```
 
-and the canonical skill home moves to `.claude/skills`, update those paths or keep a working wrapper path.
+These runtime paths stay stable even if the canonical AI behavior guide moves to
+`.claude/skills` or another agent-specific location.
 
 ## Wrapper Template
 
@@ -288,14 +289,13 @@ For this starter, useful checks are:
 
 ```bash
 git diff --check
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
-python3 -m unittest discover -s .agents/skills/dnl-builder -p 'test_*.py'
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index check
 python3 -m unittest discover -s tests/dnl -p 'test_*.py'
 ```
 
-If you moved the canonical skill home away from `.agents/skills`, update these commands before running them.
+If your repository uses a different tooling layout, update these commands before running them.
 
 Also search for stale paths:
 

@@ -194,8 +194,8 @@ List commands that are safe and meaningful for this repository.
 
 ```md
 # Verification
-- For DNL docs, run `python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all`.
-- For link index changes, run `python3 .agents/skills/dnl-builder/dnl_util.py link index check`.
+- For DNL docs, run `python3 scripts/dnl/qa.py --profile full --fail-on all`.
+- For link index changes, run `python3 scripts/dnl/dnl_util.py link index check`.
 ```
 
 ### Current Work
@@ -282,14 +282,14 @@ Rules:
 After changing `AGENTS.md`, run:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/qa.py --profile portal --fail-on all --json-summary
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
 ```
 
 If the change adds or removes DNL `paths` declarations inside scanned documents, also check the link index:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/dnl_util.py link index check
 ```
 
 ## Read Next

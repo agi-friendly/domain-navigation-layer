@@ -129,8 +129,8 @@ Be careful here. Authoring rules affect every scanned DNL document.
 If you change authoring rules, also check:
 
 - `dnl-config.toml`
-- `.agents/skills/dnl-builder/qa.py`
-- `.agents/skills/dnl-builder/dnl_util.py`
+- `scripts/dnl/qa.py`
+- `scripts/dnl/dnl_util.py`
 - generated tag/link indexes
 
 Do not change authoring rules just to fix one awkward document. Fix the document first.
@@ -321,17 +321,17 @@ Rules:
 After changing `DNL-system/`, run:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/qa.py --profile portal --fail-on all --json-summary
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index check
 ```
 
 If an index is stale, rebuild it:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
+python3 scripts/dnl/dnl_util.py tag index build
+python3 scripts/dnl/dnl_util.py link index build
 ```
 
 Then run the checks again.

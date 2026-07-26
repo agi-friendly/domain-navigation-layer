@@ -24,7 +24,7 @@ The current public tools use `dnl-config.toml` in these places:
 The important pattern is:
 
 ```text
-dnl-config.toml -> dnl-builder tools -> generated indexes -> scripts/dnl/query.py
+dnl-config.toml -> scripts/dnl maintenance tools -> generated indexes -> scripts/dnl/query.py
 ```
 
 ## Starter Repository Note
@@ -91,7 +91,7 @@ readme_dirs = [
 Then run:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all
+python3 scripts/dnl/qa.py --profile full --fail-on all
 ```
 
 If you have no `DNL/` folder yet, keep `include = ["DNL-system"]` until you create it.
@@ -351,17 +351,17 @@ If you add `docs/` to `scan.include`, those docs become part of DNL QA rules.
 Use these commands after changing `dnl-config.toml`:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/qa.py --profile portal --fail-on all --json-summary
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index check
 ```
 
 If the indexes are stale, rebuild them:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
+python3 scripts/dnl/dnl_util.py tag index build
+python3 scripts/dnl/dnl_util.py link index build
 ```
 
 Then run the checks again.
