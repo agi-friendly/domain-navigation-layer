@@ -71,7 +71,7 @@ python scripts/dnl/tree.py --root . --depth 3 --hidden --ascii
 
 Check DNL link quality:
 ```bash
-python .agents/skills/dnl-builder/qa.py --profile links --fail-on all
+python scripts/dnl/qa.py --profile links --fail-on all
 ```
 
 ## Wrapper template

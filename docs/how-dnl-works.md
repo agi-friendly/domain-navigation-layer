@@ -103,7 +103,7 @@ The important flow is:
 
 ```text
 dnl-config.toml
--> dnl-builder tools
+-> scripts/dnl maintenance tools
 -> generated tag and link indexes
 -> dnl-query lookup
 ```
@@ -149,18 +149,18 @@ It gives the repository a checkable navigation layer:
 Useful verification commands:
 
 ```bash
-python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all --json-summary
-python3 .agents/skills/dnl-builder/dnl_util.py tag index check
-python3 .agents/skills/dnl-builder/dnl_util.py link index check
+python3 scripts/dnl/qa.py --profile full --fail-on all --json-summary
+python3 scripts/dnl/qa.py --profile portal --fail-on all --json-summary
+python3 scripts/dnl/dnl_util.py tag index check
+python3 scripts/dnl/dnl_util.py link index check
 python3 scripts/dnl/query.py unresolved-summary
 ```
 
 If indexes are stale, rebuild them:
 
 ```bash
-python3 .agents/skills/dnl-builder/dnl_util.py tag index build
-python3 .agents/skills/dnl-builder/dnl_util.py link index build
+python3 scripts/dnl/dnl_util.py tag index build
+python3 scripts/dnl/dnl_util.py link index build
 ```
 
 ## What The Checks Do Not Prove

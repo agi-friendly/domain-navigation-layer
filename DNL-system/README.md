@@ -12,8 +12,11 @@ paths:
   "@docs-skills.md": "{@dnl-root}/docs/skills.md"
   "@docs-skill-source-migration.md": "{@dnl-root}/docs/skill-source-migration.md"
   "@docs-repository-layout.md": "{@dnl-root}/docs/repository-layout.md"
+  "@dnl-tooling.md": "{@dnl-root}/scripts/dnl/README.md"
   "@dnl-query-tool.md": "{@dnl-root}/scripts/dnl/query.md"
   "@dnl-tree-tool.md": "{@dnl-root}/scripts/dnl/tree.md"
+  "@dnl-qa-tool.md": "{@dnl-root}/scripts/dnl/qa.md"
+  "@dnl-util-tool.md": "{@dnl-root}/scripts/dnl/dnl_util.md"
   "@ai/README.md": "{@DNL-system}/ai/README.md"
   "@authoring/README.md": "{@DNL-system}/authoring/README.md"
   "@workflow/README.md": "{@DNL-system}/workflow/README.md"
@@ -35,12 +38,16 @@ This directory holds the maintenance guidance that keeps the documentation layer
 
 ## Portable tooling
 
+- Tooling portal: `@dnl-tooling.md`
 - Query generated DNL indexes: `@dnl-query-tool.md`
 - Inspect a scoped directory tree: `@dnl-tree-tool.md`
+- Validate DNL structure and routes: `@dnl-qa-tool.md`
+- Maintain indexes, tags, and safe document moves: `@dnl-util-tool.md`
 
 `DNL-system` defines the rules.
 `scripts/dnl` is the official executable and detailed-guide surface for people and agents.
-`.agents/skills` provides thin agent behavior guides, compatibility shims, and builder-only maintenance tools that have not been extracted into a portable core.
+`.agents/skills` provides thin agent behavior guides and compatibility shims.
+Generated indexes and QA reports remain under ignored `.agents/skills` runtime paths for compatibility; those paths do not own the implementation.
 
 ## Public reader docs
 

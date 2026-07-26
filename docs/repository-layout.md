@@ -50,16 +50,24 @@ Portable DNL executables and their detailed guides live here:
 
 ```text
 scripts/dnl/
+  README.md
+  dnl_config.py
+  dnl_util.py
+  dnl_util.md
+  dnl_util_core/
+  qa.py
+  qa.md
   query.py
   query.md
   tree.py
   tree.md
+  yaml_header.py
   requirements.txt
 ```
 
 Portable tests live under `tests/dnl/`.
-The retained `tree.py` and `dnl_query.py` files under `.agents/skills` are compatibility shims, not the official executable surface.
-Builder-specific QA, index, tag, and document-move maintenance remains under `.agents/skills/dnl-builder`.
+The retained tree, query, QA, and maintenance executables under `.agents/skills` are compatibility shims, not the official executable surface.
+Generated indexes and QA reports remain in their ignored `.agents/skills` runtime paths for compatibility.
 
 Read the [Skills customization guide](skills.md) before adding new skills or changing wrapper behavior.
 If you want a different canonical skill home, read the [Skill source migration guide](skill-source-migration.md) before moving files.

@@ -13,8 +13,8 @@ paths:
   "@working-to-dnl.md": "{@DNL-system}/workflow/working-to-dnl.md"
   "@working-to-archive.md": "{@DNL-system}/workflow/working-to-archive.md"
   "@dnl-config.toml": "{@dnl-root}/dnl-config.toml"
-  "@qa.py": "{@dnl-root}/.agents/skills/dnl-builder/qa.py"
-  "@dnl-util.py": "{@dnl-root}/.agents/skills/dnl-builder/dnl_util.py"
+  "@qa.py": "{@dnl-root}/scripts/dnl/qa.py"
+  "@dnl-util.py": "{@dnl-root}/scripts/dnl/dnl_util.py"
 ---
 
 # DNL authoring portal
@@ -61,9 +61,9 @@ Both are required when promoting working material.
 5. Rewire parent README, maps, guides, and cross-links.
 6. Search for semantic stale text: old paths, old priority wording, raw working references treated as current truth, or completion claims without navigation.
 7. Run QA:
-   - `python3 .agents/skills/dnl-builder/qa.py --profile portal --fail-on all`
-   - `python3 .agents/skills/dnl-builder/qa.py --profile full --fail-on all`
-   - `python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary`
+   - `python3 scripts/dnl/qa.py --profile portal --fail-on all`
+   - `python3 scripts/dnl/qa.py --profile full --fail-on all`
+   - `python3 scripts/dnl/qa.py --profile health --json-summary`
 
 ## dnl-config.toml boundary
 
@@ -85,23 +85,23 @@ YAML required fields, field order, allowed statuses, tag/token formats, hidden-d
 
 - `@dnl-util.py`: utility entrypoint for bulk DNL maintenance
 - Add a tag, dry-run:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive`
+  - `python3 scripts/dnl/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive`
 - Add a tag, write:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive --write`
+  - `python3 scripts/dnl/dnl_util.py tag add --dir docs/sample-dnl/sample-module --tag sample-module --recursive --write`
 - Move one DNL markdown document, dry-run:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference`
+  - `python3 scripts/dnl/dnl_util.py mv --path docs/old.md --to docs/reference`
 - Move one DNL markdown document and rewrite backlink YAML paths:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py mv --path docs/old.md --to docs/reference --write`
+  - `python3 scripts/dnl/dnl_util.py mv --path docs/old.md --to docs/reference --write`
 - Rebuild tag index:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py tag index build`
+  - `python3 scripts/dnl/dnl_util.py tag index build`
 - Check tag index freshness:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py tag index check`
+  - `python3 scripts/dnl/dnl_util.py tag index check`
 - Rebuild link index:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py link index build`
+  - `python3 scripts/dnl/dnl_util.py link index build`
 - Check link index freshness:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py link index check`
+  - `python3 scripts/dnl/dnl_util.py link index check`
 - Update one tag-index file:
-  - `python3 .agents/skills/dnl-builder/dnl_util.py tag index update --path docs/sample-dnl/sample-module/README.md`
+  - `python3 scripts/dnl/dnl_util.py tag index update --path docs/sample-dnl/sample-module/README.md`
 
 The move command only supports a single `.md` file.
 `--to` must already be a DNL directory; automatic directory creation and rename targets are intentionally unsupported.
@@ -117,11 +117,11 @@ Link health is an observation signal before it is a hard gate.
 Use this flow:
 
 1. Rebuild link index.
-   - `python3 .agents/skills/dnl-builder/dnl_util.py link index build`
+   - `python3 scripts/dnl/dnl_util.py link index build`
 2. Check index freshness.
-   - `python3 .agents/skills/dnl-builder/dnl_util.py link index check`
+   - `python3 scripts/dnl/dnl_util.py link index check`
 3. Read the health summary.
-   - `python3 .agents/skills/dnl-builder/qa.py --profile health --json-summary`
+   - `python3 scripts/dnl/qa.py --profile health --json-summary`
 4. Narrow suspicious areas.
    - `python3 scripts/dnl/query.py unresolved-summary`
 5. Inspect detailed candidates.

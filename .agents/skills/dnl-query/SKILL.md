@@ -31,4 +31,4 @@ python3 scripts/dnl/query.py deps --path DNL-system/README.md --format json
 - Inspect nearby directory structure after narrowing candidates: `scripts/dnl/tree.py`
 - Build or refresh indexes, edit DNL, or run QA: `.agents/skills/dnl-builder`
 
-The legacy `.agents/skills/dnl-query/dnl_query.py` path is a compatibility shim only.
+The retained executable in this skill directory is a compatibility shim only.

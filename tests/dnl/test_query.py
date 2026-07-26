@@ -283,7 +283,7 @@ class DnlQueryTest(unittest.TestCase):
 
             self.assertEqual(completed.returncode, 2)
             self.assertIn("DNL query index not found", completed.stderr)
-            self.assertIn(".agents/skills/dnl-builder/dnl_util.py tag index build", completed.stderr)
+            self.assertIn("scripts/dnl/dnl_util.py tag index build", completed.stderr)
 
     def test_links_lists_outbound_links_for_source_path(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -435,7 +435,7 @@ class DnlQueryTest(unittest.TestCase):
 
             self.assertEqual(completed.returncode, 2)
             self.assertIn("DNL query index not found", completed.stderr)
-            self.assertIn(".agents/skills/dnl-builder/dnl_util.py link index build", completed.stderr)
+            self.assertIn("scripts/dnl/dnl_util.py link index build", completed.stderr)
 
     def test_unused_lists_unused_path_tokens(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

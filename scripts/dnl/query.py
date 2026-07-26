@@ -12,8 +12,8 @@ from typing import Iterable
 
 DEFAULT_TAG_INDEX_DIR = ".agents/skills/dnl-query/tag-index"
 DEFAULT_LINK_INDEX_DIR = ".agents/skills/dnl-query/link-index"
-TAG_INDEX_BUILD_COMMAND = "python3 .agents/skills/dnl-builder/dnl_util.py tag index build"
-LINK_INDEX_BUILD_COMMAND = "python3 .agents/skills/dnl-builder/dnl_util.py link index build"
+TAG_INDEX_BUILD_COMMAND = "python3 scripts/dnl/dnl_util.py tag index build"
+LINK_INDEX_BUILD_COMMAND = "python3 scripts/dnl/dnl_util.py link index build"
 
 
 def main(argv: list[str] | None = None) -> int:

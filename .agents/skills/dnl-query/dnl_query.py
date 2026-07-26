@@ -5,23 +5,33 @@ import runpy
 import sys
 from pathlib import Path
 
+LEGACY_PATH = ".agents/skills/dnl-query/dnl_query.py"
+CANONICAL_PATH = "scripts/dnl/query.py"
+
 
 def find_repo_root(start: Path) -> Path:
-    current = start.resolve()
+    current = start.absolute()
     for candidate in (current, *current.parents):
         if (candidate / ".git").exists():
             return candidate
-        if (candidate / "scripts" / "dnl" / "query.py").is_file():
+        if (candidate / CANONICAL_PATH).is_file():
             return candidate
-    return start.resolve().parents[3]
+    return start.absolute().parents[3]
 
 
 def main() -> int:
     repo_root = find_repo_root(Path(__file__))
-    target = repo_root / "scripts" / "dnl" / "query.py"
+    target = repo_root / CANONICAL_PATH
+    print(
+        f"[deprecated] {LEGACY_PATH} is a compatibility shim; "
+        f"use {CANONICAL_PATH} instead.",
+        file=sys.stderr,
+        flush=True,
+    )
     if not target.is_file():
-        print(f"[error] scripts/dnl/query.py not found: {target}", file=sys.stderr)
+        print(f"[error] {CANONICAL_PATH} not found: {target}", file=sys.stderr)
         return 2
+    sys.path.insert(0, str(target.parent))
     runpy.run_path(str(target), run_name="__main__")
     return 0
 

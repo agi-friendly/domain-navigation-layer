@@ -7,17 +7,22 @@ import tempfile
 import unittest
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+SCRIPTS_DNL = REPO_ROOT / "scripts" / "dnl"
+sys.path.insert(0, str(SCRIPTS_DNL))
+
 from qa import document_declares_paths, portal_doc, should_validate_yaml_frontmatter
 
 
 class DnlQaYamlTest(unittest.TestCase):
+    QA_SCRIPT = SCRIPTS_DNL / "qa.py"
+
     def run_qa(
         self,
         files: dict[str, str],
         include: str | None = "docs",
         profile: str | None = None,
     ) -> subprocess.CompletedProcess[str]:
-        qa_script = Path(__file__).resolve().parent / "qa.py"
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             for relative_path, content in files.items():
@@ -37,7 +42,7 @@ exclude = []
 
             command = [
                 sys.executable,
-                str(qa_script),
+                str(self.QA_SCRIPT),
                 "--root",
                 str(root),
                 "--report",
