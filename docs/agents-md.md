@@ -6,6 +6,14 @@ It is not the human README. It is not the whole knowledge base. Its job is to te
 
 Think of it as the first router.
 
+## Loading the Entrypoint
+
+Use the root `AGENTS.md` as the shared entrypoint. Automatic loading depends on the agent tool, version, and settings. Check that it is in the current context; if it is missing, ask the agent to read it explicitly. Re-read it when the file changes, context is lost, or a conflict needs checking.
+
+This starter keeps no duplicate `CLAUDE.md`, `.clauderc`, `.cursorrules`, or `.claude/instructions.md` entrypoint files. `.github/copilot-instructions.md` remains a thin pointer to `AGENTS.md`.
+
+The always-applied `.cursor/rules/cursor-context.mdc` supplements context and search selection. Cursor may use IDE search for text, filenames, and narrowed paths, while `dnl-query` handles tag, status, and link relationships. Search results remain candidates to verify against current documents and source files; they do not replace DNL routing.
+
 ## What AGENTS.md Should Do
 
 A good `AGENTS.md` should answer:

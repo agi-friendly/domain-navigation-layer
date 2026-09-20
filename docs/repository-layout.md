@@ -46,6 +46,8 @@ Tool-specific folders such as `.claude/`, `.cursor/`, and `.github/` keep thin w
 
 Those wrappers should route back to `.agents/skills` instead of duplicating the full instructions.
 
+Separately, `.cursor/rules/cursor-context.mdc` supplements context and search selection, and `.github/copilot-instructions.md` points to the root `AGENTS.md`. These files do not own the shared routing contract.
+
 Portable DNL executables and their detailed guides live here:
 
 ```text
