@@ -1,0 +1,17 @@
+---
+description: Cursor context and search engine selection. Supplements AGENTS.md routing.
+alwaysApply: true
+---
+
+# Cursor context
+
+- If the root `AGENTS.md` is already in the current context, do not read it again unless its content changed, context was lost, content is missing, or a conflict needs checking.
+- Use open files and user-mentioned paths as the default signal when they already identify a domain, project, or module. Do not restart layer discovery from a broader map.
+
+# Search engines
+
+- `dnl-query` and `tree` are available options. They do not prohibit Cursor's Grep, Glob, semantic search, or open-file indexing.
+- Override: for name/path candidate discovery under the root `AGENTS.md` and `DNL-system/ai/doc-selection-rules.md`, Cursor may use IDE search first for document text, filenames, and already narrowed paths. Use `dnl-query` for tag, status, and link-relationship queries.
+- Use semantic search to find related candidates and Grep/Glob to confirm exact text and file paths. Search results are candidates; base final conclusions on current documents and source files. If an index seems incomplete or delayed, inspect files in the relevant scope directly. Rebuild stale DNL indexes.
+- Use `tree` or Glob for a folder map only after narrowing the scope. Do not list the repository root or an entire knowledge tree while the target scope is unknown.
+- Choosing a suitable search engine does not bypass `AGENTS.md` routing or authorize a repository-wide investigation.

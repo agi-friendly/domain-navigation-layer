@@ -26,6 +26,10 @@ paths:
 
 This directory holds operating rules for AI agents using a DNL repository.
 
+## AI bootstrap entry
+
+The root `AGENTS.md` is the default AI entrypoint. Check automatic loading for the tool, version, and settings in use; if the file is missing from the current context, read it explicitly. `.cursor/rules/` supplements Cursor context and search selection, while `.github/copilot-instructions.md` points to the root `AGENTS.md`. Follow the root routing contract and load only the operating documents needed for the task.
+
 ## Recommended reading order
 
 1. `@context-loading.md` - how to load only the needed context
