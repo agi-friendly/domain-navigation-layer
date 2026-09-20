@@ -214,6 +214,115 @@ exclude = []
 
             self.assertEqual([entry["token"] for entry in missing_tokens], ["@undeclared.md"])
 
+    def test_directory_alias_indexes_children_and_supports_queries_and_qa(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_scan_config(root)
+            self.write_doc(root, "docs/guides/target.md")
+            self.write_doc(
+                root, "docs/source.md", paths={"@guide": "{@docs}/guides/"},
+                body="Use `@guide/target.md` twice: @guide/target.md. Also @guide/missing.md.",
+            )
+            completed = self.run_util(root, "link", "index", "build")
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            index_dir = root / ".agents/skills/dnl-query/link-index"
+            links = self.read_jsonl(index_dir / "all-links.jsonl")
+            self.assertEqual(len(links), 3)
+            self.assertTrue(all(row["usedInBody"] for row in links))
+            self.assertEqual(self.read_jsonl(index_dir / "unused-paths.jsonl"), [])
+            self.assertEqual(self.read_jsonl(index_dir / "missing-path-tokens.jsonl"), [])
+            unresolved = self.read_jsonl(index_dir / "unresolved-paths.jsonl")
+            self.assertEqual([row["token"] for row in unresolved], ["@guide/missing.md"])
+            self.assertEqual(unresolved[0]["unresolvedReason"], "target-not-found")
+            query_script = self.REPO_ROOT / "scripts/dnl/query.py"
+            query = subprocess.run(
+                [sys.executable, str(query_script), "--root", str(root), "backlinks",
+                 "--path", "docs/guides/target.md", "--format", "jsonl"],
+                capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(query.returncode, 0, query.stderr)
+            self.assertEqual(json.loads(query.stdout)["token"], "@guide/target.md")
+            qa_script = self.REPO_ROOT / "scripts/dnl/qa.py"
+            qa = subprocess.run(
+                [sys.executable, str(qa_script), "--root", str(root), "--profile", "health",
+                 "--json-summary"], capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(qa.returncode, 0, qa.stderr)
+            health = json.loads(qa.stdout)["link_health"]
+            self.assertEqual(health["missingPathTokens"], 0)
+            self.assertEqual(health["unusedPathTokens"], 0)
+            self.assertEqual(health["unresolvedPaths"], 1)
+
+    def test_directory_alias_exact_then_longest_prefix_with_slash_boundary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_scan_config(root)
+            for name in ["general/one.md", "special/two.md", "override.md"]:
+                self.write_doc(root, f"docs/{name}")
+            self.write_doc(
+                root, "docs/source.md",
+                paths={"@guide": "{@docs}/general", "@guide/sub": "{@docs}/special",
+                       "@guide/sub/exact.md": "{@docs}/override.md"},
+                body="@guide/one.md @guide/sub/two.md @guide/sub/exact.md @guides/no.md",
+            )
+            result = self.run_util(root, "link", "index", "build")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            index_dir = root / ".agents/skills/dnl-query/link-index"
+            links = {row["token"]: row for row in self.read_jsonl(index_dir / "all-links.jsonl")}
+            self.assertEqual(links["@guide/one.md"]["targetPath"], "docs/general/one.md")
+            self.assertEqual(links["@guide/sub/two.md"]["targetPath"], "docs/special/two.md")
+            self.assertEqual(links["@guide/sub/exact.md"]["targetPath"], "docs/override.md")
+            missing = self.read_jsonl(index_dir / "missing-path-tokens.jsonl")
+            self.assertEqual([row["token"] for row in missing], ["@guides/no.md"])
+
+    def test_external_directory_alias_preserves_unverified_external_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_scan_config(root)
+            with (root / "dnl-config.toml").open("a", encoding="utf-8") as stream:
+                stream.write('\n[paths.external]\n"server" = {required = false, validate = "if-defined"}\n')
+            self.write_doc(
+                root, "docs/source.md", paths={"@dev": "{@server}/docs/04-development"},
+                body="`@dev/query-guide.md`",
+            )
+            result = self.run_util(root, "link", "index", "build")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            index_dir = root / ".agents/skills/dnl-query/link-index"
+            links = self.read_jsonl(index_dir / "all-links.jsonl")
+            child = next(row for row in links if row["token"] == "@dev/query-guide.md")
+            self.assertEqual(child["target"], "{@server}/docs/04-development/query-guide.md")
+            self.assertEqual(child["declaredToken"], "@dev")
+            self.assertEqual(child["targetKind"], "external")
+            self.assertIsNone(child["targetExists"])
+            self.assertEqual(self.read_jsonl(index_dir / "missing-path-tokens.jsonl"), [])
+
+    def test_invalid_directory_references_are_unresolved_not_backlinks(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_scan_config(root)
+            self.write_doc(root, "docs/guides/target.md")
+            self.write_doc(root, "docs/outside.md")
+            self.write_doc(
+                root, "docs/source.md",
+                paths={"@guide": "{@docs}/guides", "@file": "{@docs}/outside.md",
+                       "@web": "https://example.com/docs", "@unused": "{@docs}"},
+                body=("@guide/../outside.md @guide//target.md @file/child.md @web/child.md\n"
+                      "```md\n@unused/outside.md\n```\n"),
+            )
+            result = self.run_util(root, "link", "index", "build")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            index_dir = root / ".agents/skills/dnl-query/link-index"
+            unresolved = self.read_jsonl(index_dir / "unresolved-paths.jsonl")
+            reasons = {row["token"]: row["unresolvedReason"] for row in unresolved}
+            self.assertEqual(reasons["@guide/../outside.md"], "invalid-alias-suffix")
+            self.assertEqual(reasons["@guide//target.md"], "invalid-alias-suffix")
+            self.assertEqual(reasons["@file/child.md"], "alias-base-not-directory")
+            self.assertEqual(reasons["@web/child.md"], "directory-alias-requires-local-path")
+            unused = self.read_jsonl(index_dir / "unused-paths.jsonl")
+            self.assertEqual([row["token"] for row in unused], ["@unused"])
+            backlinks = self.read_jsonl(index_dir / "backlinks.jsonl")
+            self.assertEqual(backlinks[0]["sources"][0]["token"], "@file")
+
     def test_link_index_build_skips_hidden_dirs_and_skill_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

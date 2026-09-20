@@ -2,7 +2,8 @@
 name: "작성 규칙"
 status: "draft"
 tags: ["rule-dnl", "dnl-builder"]
-paths: {}
+paths:
+  "@yaml-frontmatter-rule.md": "{@DNL-system}/authoring/rules/yaml-frontmatter-rule.md"
 ---
 
 > This document is a writing rule for DNL authors and AI agents, not part of the DNL itself.
@@ -17,6 +18,8 @@ paths: {}
 
 ## AI 우선 링크 표기(정본)
 DNL의 주 독자는 AI입니다. 따라서 **로컬 마크다운 링크 대신, YAML `paths` 선언 + 심볼(@토큰) 참조**를 사용합니다.
+
+Directory aliases are optional when repeated long paths hurt readability. Choose them for the document context; declaration and resolution rules are in `@yaml-frontmatter-rule.md`.
 
 ### 권장 패턴(정본)
 - 문서 상단 YAML frontmatter에 필요한 경로만 `paths` map으로 선언 (java import처럼)
@@ -78,7 +81,7 @@ paths:
 > 핵심 원칙: 문서의 의미와 네비게이션은 YAML `paths`, `@토큰`, `{@변수}`로 통일하고, 로컬 파일 링크는 예외 없이 제거합니다.
 
 ## 프로젝트 기준 상대 경로 작성 방법
-- 다른 문서, 소스코드에 대한 자세한 경로 파일 참조 시, 문서의 핵심 흐름을 설명하는 데 필요한 파일만 YAML frontmatter에 선언합니다. (java의 import 처럼)
+- 다른 문서, 소스코드에 대한 자세한 경로 파일 참조 시, 문서의 핵심 흐름을 설명하는 데 필요한 파일이나 공통 디렉토리만 YAML frontmatter에 선언합니다. (java의 import 처럼)
 md 파일 작성 예시
 ```markdown
 ---

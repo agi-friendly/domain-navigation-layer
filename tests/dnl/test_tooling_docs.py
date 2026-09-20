@@ -102,6 +102,7 @@ PORTABLE_DOCS = (
     REPO_ROOT / "scripts/dnl/tree.md",
     REPO_ROOT / "scripts/dnl/query.md",
     REPO_ROOT / "scripts/dnl/qa.md",
+    REPO_ROOT / "scripts/dnl/lint.md",
     REPO_ROOT / "scripts/dnl/dnl_util.md",
 )
 
@@ -117,7 +118,7 @@ class PortableToolingDocsTest(unittest.TestCase):
                     f"Korean text remains in {path}",
                 )
 
-    def test_tooling_portal_routes_all_four_tools_and_guides(self) -> None:
+    def test_tooling_portal_routes_tools_and_guides(self) -> None:
         portal = (REPO_ROOT / "scripts/dnl/README.md").read_text(encoding="utf-8")
 
         required = (
@@ -127,6 +128,8 @@ class PortableToolingDocsTest(unittest.TestCase):
             "scripts/dnl/query.md",
             "scripts/dnl/qa.py",
             "scripts/dnl/qa.md",
+            "scripts/dnl/lint.py",
+            "scripts/dnl/lint.md",
             "scripts/dnl/dnl_util.py",
             "scripts/dnl/dnl_util.md",
         )

@@ -57,6 +57,8 @@ scripts/dnl/
   dnl_util.py
   dnl_util.md
   dnl_util_core/
+  lint.py
+  lint.md
   qa.py
   qa.md
   query.py

@@ -242,11 +242,31 @@ paths:
   - "@markdown-rule.md: {@DNL-system}/authoring/rules/markdown-rule.md"
 ```
 
+### Directory aliases (optional)
+
+When repeated long directory paths hurt readability, declare the directory once and append a child path in the body. File aliases and directory aliases can coexist. Choose whichever is clearer for the document; no count threshold or bulk conversion is required.
+
+```yaml
+paths:
+  "@guides": "{@dnl-root}/docs/guides"
+```
+
+Body reference:
+
+```markdown
+See `@guides/query-guide.md` for query conventions.
+```
+
+- Aliases are local to the document's `paths` map. The reference combines the declared directory with the child path; it does not instruct the agent to read the entire directory.
+- An exact declared key wins. Otherwise, use the longest alias matching at a `/` boundary. Existing keys containing slashes remain valid.
+- Use a local logical path for the directory value and `/` between child path segments. Do not use `.`, `..`, or empty segments, or extend a file or web URL as a directory.
+- Point to the specific file needed. Reducing path repetition and separating document topics are different decisions; consider splitting only when the content itself warrants it.
+
 ## 신규/수정 문서 작성 절차
 
 1. 새 문서는 `status: "draft"`로 시작한다.
 2. 파일명이 `README.md`면 `tags`에 `portal-dnl`을 넣는다.
 3. 문서 성격에 맞는 태그를 1~3개 정도 추가한다.
 4. `description`은 문서 목적을 빠르게 전달할 가치가 있을 때만 쓴다.
-5. 본문에서 참조할 문서/파일은 `paths`에 선언하고 `@토큰`으로 사용한다.
+5. Declare referenced files or shared directories in `paths`. In the body, use the declared token or append a child path to a directory alias.
 6. 사용자가 명시적으로 요청하지 않는 한 `active`, `deprecated` 상태 변경은 하지 않는다.

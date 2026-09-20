@@ -153,6 +153,55 @@ exclude = []
             self.assertIn("destination directory does not exist", completed.stderr)
             self.assertTrue(source.exists())
 
+    def test_mv_directory_alias_adds_exact_override_and_preserves_siblings(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source, _ = self.arrange_move_fixture(root)
+            self.write_doc(root, "docs/source/sibling.md")
+            referrer = self.write_doc(
+                root, "docs/directory-referrer.md", paths={"@area": "{@docs}/source"},
+                body="Read @area/target.md and @area/sibling.md.",
+            )
+            before = referrer.read_text(encoding="utf-8")
+            dry_run = self.run_util(root, "mv", "--path", "docs/source/target.md",
+                                    "--to", "docs/reference")
+            self.assertEqual(dry_run.returncode, 0, dry_run.stderr)
+            self.assertIn("token=@area/target.md", dry_run.stdout)
+            self.assertEqual(referrer.read_text(encoding="utf-8"), before)
+            self.assertTrue(source.exists())
+            result = self.run_util(root, "mv", "--path", "docs/source/target.md",
+                                   "--to", "docs/reference", "--write")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            after = referrer.read_text(encoding="utf-8")
+            self.assertIn('"@area": "{@docs}/source"', after)
+            self.assertIn('"@area/target.md": "{@docs}/reference/target.md"', after)
+            self.assertIn("Read @area/target.md and @area/sibling.md.", after)
+            self.assertFalse(source.exists())
+            check = self.run_util(root, "link", "index", "check")
+            self.assertEqual(check.returncode, 0, check.stderr)
+            index_dir = root / ".agents/skills/dnl-query/link-index"
+            self.assertEqual((index_dir / "unresolved-paths.jsonl").read_text(), "")
+            self.assertEqual((index_dir / "missing-path-tokens.jsonl").read_text(), "")
+
+    def test_mv_reuses_exact_alias_without_duplicate_yaml_targets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.arrange_move_fixture(root)
+            referrer = self.write_doc(
+                root, "docs/directory-referrer.md",
+                paths={"@area": "{@docs}/source", "@target.md": "{@docs}/source/target.md"},
+                body=("Read @area/target.md and @target.md.\n"
+                      "```md\n@area/target.md\n```"),
+            )
+            result = self.run_util(root, "mv", "--path", "docs/source/target.md",
+                                   "--to", "docs/reference", "--write")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            after = referrer.read_text(encoding="utf-8")
+            self.assertIn('"@target.md": "{@docs}/reference/target.md"', after)
+            self.assertNotIn('"@area/target.md":', after)
+            self.assertIn("Read @target.md and @target.md.", after)
+            self.assertIn("```md\n@area/target.md\n```", after)
+
     def test_mv_rejects_file_destination_rename(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
