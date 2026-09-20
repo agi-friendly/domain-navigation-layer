@@ -16,12 +16,16 @@ DNL tooling used by people and agents.
 | --- | --- | --- |
 | Scoped tree view | [`scripts/dnl/tree.py`](tree.py) | [`scripts/dnl/tree.md`](tree.md) |
 | Generated-index query | [`scripts/dnl/query.py`](query.py) | [`scripts/dnl/query.md`](query.md) |
+| Optional document review hints | [`scripts/dnl/lint.py`](lint.py) | [`scripts/dnl/lint.md`](lint.md) |
 | Repository QA | [`scripts/dnl/qa.py`](qa.py) | [`scripts/dnl/qa.md`](qa.md) |
 | DNL maintenance | [`scripts/dnl/dnl_util.py`](dnl_util.py) | [`scripts/dnl/dnl_util.md`](dnl_util.md) |
 
 `tree.py` and `query.py` are read-only. `qa.py` validates source without
 editing it. `dnl_util.py` includes write-capable tag and move commands, so read
 its safety guide before applying changes.
+
+`lint.py` is an optional, read-only aid for human review. Its warnings do not
+fail QA or add a required step to AI authoring.
 
 ## Requirements
 

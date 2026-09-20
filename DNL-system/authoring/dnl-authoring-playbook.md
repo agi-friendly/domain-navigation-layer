@@ -46,6 +46,7 @@ Core principles:
 - UI/interface documents should describe what that surface can prove.
 - Implementation/domain documents should own processing rules, storage behavior, and source evidence.
 - Avoid duplicating the same assertion across several files.
+- If repeated long paths hurt readability, optionally use directory aliases as described in `@yaml-frontmatter-rule.md`. There is no required count or bulk conversion of existing documents.
 
 Promotion or maintenance is complete only when:
 

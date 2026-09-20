@@ -247,13 +247,17 @@ def parse_document_links(
 
     _, body = extract_frontmatter(text)
     body_tokens = body_token_counts(body)
-    declared_tokens = set(header.paths)
+    references = {
+        token: match_path_alias(token, header.paths)
+        for token in body_tokens
+    }
+    used_declarations = {match[0] for match in references.values() if match is not None}
     links: list[dict[str, object]] = []
     unused_paths: list[dict[str, object]] = []
 
     for token, target in header.paths.items():
         resolved = resolve_target(root, config, rel_path, target)
-        used = token in body_tokens
+        used = token in used_declarations
         link = {
             "source": rel_path,
             "token": token,
@@ -270,6 +274,41 @@ def parse_document_links(
         if not used:
             unused_paths.append(link)
 
+    # Keep the directory declaration and each referenced child as separate edges.
+    # File-level backlinks and missing-file checks must survive path compression.
+    for token, match in references.items():
+        if match is None or not match[1]:
+            continue
+        declared_token, suffix = match
+        base_target = header.paths[declared_token]
+        target = f"{base_target.rstrip('/')}/{suffix}"
+        resolved = resolve_target(root, config, rel_path, target)
+        base = resolve_target(root, config, rel_path, base_target)
+        reason = None
+        if any(part in {"", ".", ".."} for part in suffix.split("/")):
+            reason = "invalid-alias-suffix"
+        elif base["kind"] == "url":
+            reason = "directory-alias-requires-local-path"
+        elif base["kind"] in {"internal", "literal"} and not (root / str(base["path"])).is_dir():
+            reason = "alias-base-not-directory"
+        if reason:
+            resolved["reason"] = reason
+            resolved["exists"] = False
+        child_link = {
+            "source": rel_path,
+            "token": token,
+            "declaredToken": declared_token,
+            "target": target,
+            "targetKind": resolved["kind"],
+            "targetVariable": resolved["variable"],
+            "targetPath": resolved["path"],
+            "targetExists": resolved["exists"],
+            "usedInBody": True,
+        }
+        if resolved["reason"]:
+            child_link["unresolvedReason"] = resolved["reason"]
+        links.append(child_link)
+
     missing_path_tokens = [
         {
             "source": rel_path,
@@ -277,10 +316,21 @@ def parse_document_links(
             "count": count,
         }
         for token, count in body_tokens.items()
-        if token not in declared_tokens and is_missing_path_token_candidate(token)
+        if references[token] is None and is_missing_path_token_candidate(token)
     ]
 
     return links, unused_paths, missing_path_tokens, []
+
+
+def match_path_alias(token: str, paths: dict[str, str]) -> tuple[str, str] | None:
+    """Prefer exact declarations, then the longest slash-delimited alias."""
+    if token in paths:
+        return token, ""
+    candidates = [alias for alias in paths if token.startswith(f"{alias}/")]
+    if not candidates:
+        return None
+    alias = max(candidates, key=len)
+    return alias, token[len(alias) + 1 :]
 
 
 def resolve_target(root: Path, config: DnlConfig, source_rel_path: str, target: str) -> dict[str, object]:

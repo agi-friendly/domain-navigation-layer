@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import posixpath
 import re
 import sys
@@ -234,6 +235,25 @@ def rewrite_yaml_path_targets(text: str, replacements: dict[str, str]) -> str:
     if closing_index is None:
         raise ValueError("backlink source has no YAML frontmatter")
 
+    existing = {token: target for token, target in replacements.items() if token in header.paths}
+    additions: dict[str, str] = {}
+    body_replacements: dict[str, str] = {}
+    final_paths = {**header.paths, **existing}
+    for token, target in replacements.items():
+        if token in header.paths:
+            continue
+        match = link.match_path_alias(token, header.paths)
+        if match is None or not match[1]:
+            raise ValueError(f"backlink source missing YAML path token: {token}")
+        # A shared directory cannot move with one child. Add an exact file
+        # override, or reuse a declared destination to avoid duplicate values.
+        destination_alias = next((key for key, value in final_paths.items() if value == target), None)
+        if destination_alias is not None:
+            body_replacements[token] = destination_alias
+        else:
+            additions[token] = target
+            final_paths[token] = target
+
     in_paths = False
     changed_tokens: set[str] = set()
     for index in range(1, closing_index):
@@ -243,23 +263,38 @@ def rewrite_yaml_path_targets(text: str, replacements: dict[str, str]) -> str:
             in_paths = False
         if in_paths:
             match = QUOTED_MAP_LINE.match(line.rstrip("\r\n"))
-            if match and match.group(2) in replacements:
+            if match and match.group(2) in existing:
                 indent = line[: len(line) - len(line.lstrip())]
                 key_quote = match.group(1)
                 token = match.group(2)
                 value_quote = match.group(3)
                 lines[index] = (
                     f"{indent}{key_quote}{token}{key_quote}: "
-                    f"{value_quote}{replacements[token]}{value_quote}{line_ending(line)}"
+                    f"{value_quote}{existing[token]}{value_quote}{line_ending(line)}"
                 )
                 changed_tokens.add(token)
             continue
         if stripped == "paths:":
             in_paths = True
 
-    missing = sorted(set(replacements) - changed_tokens)
+    missing = sorted(set(existing) - changed_tokens)
     if missing:
         raise ValueError(f"backlink source missing YAML path token: {', '.join(missing)}")
+    if body_replacements:
+        in_fence = False
+        for index in range(closing_index + 1, len(lines)):
+            if FENCE_START.match(lines[index]):
+                in_fence = not in_fence
+                continue
+            if not in_fence:
+                lines[index] = link.BODY_TOKEN.sub(
+                    lambda match: body_replacements.get(match.group(), match.group()), lines[index]
+                )
+    newline = line_ending(lines[closing_index]) or "\n"
+    lines[closing_index:closing_index] = [
+        f"  {json.dumps(token, ensure_ascii=False)}: {json.dumps(target, ensure_ascii=False)}{newline}"
+        for token, target in additions.items()
+    ]
     return "".join(lines)
 
 

@@ -107,6 +107,7 @@ The move command only supports a single `.md` file.
 `--to` must already be a DNL directory; automatic directory creation and rename targets are intentionally unsupported.
 The command accepts repo-relative paths and `[paths.internal]` token paths.
 Before writing, it rebuilds the link index and plans YAML `paths` backlink updates.
+When a child referenced through a directory alias moves, the shared directory stays unchanged. The command adds an exact file alias or reuses an existing destination alias in the body.
 After `--write`, it refreshes both link and tag indexes.
 If the source document contains local Markdown links or images, move assets and update references manually first.
 
